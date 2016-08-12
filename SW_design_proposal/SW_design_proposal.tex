@@ -1,0 +1,110 @@
+\documentclass[a4paper]{article}
+
+\usepackage{fullpage}
+\usepackage{parskip}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{enumitem}
+
+\begin{document}
+
+\begin{titlepage}
+
+\centering
+
+\vfill
+
+\includegraphics[width=10cm]{Images/Wits-logo1.jpg}
+
+\vskip 0.1cm
+
+\center 
+
+\textsc{\LARGE University of the Witwatersrand}\\[0.5cm] 
+
+\textsc{\Large Software Design Proposal} \\[0.5cm] 
+
+\begin{minipage}{0.4\textwidth}
+
+\begin{center} \large
+
+\textbf{Team Name:} \\[0.3cm]
+
+\textsc{Level Seven Crew} \\[0.3cm]
+
+\end{center}
+
+\begin{center} \large
+
+\textbf{Product Name:} \\[0.3cm]
+
+\textsc{HealFolio} \\[0.3cm]
+
+\end{center}
+
+\begin{flushleft} \large
+
+\textbf{Team Members:} \\[0.3cm]
+
+Jan Badenhorst
+Adam Lerumo
+Tumbone Asukile
+Daniel da Silva
+
+\end{flushleft}
+
+\end{minipage} \\[0.7cm]
+
+\begin{minipage}{0.4\textwidth}
+
+\begin{flushright} \large
+
+\textbf{Senior Lecturer:} \\[0.3cm]
+
+Dr. Terence Van Zyl
+
+\end{flushright}
+
+\end{minipage} \\[1cm]
+
+{\large July 27, 2016}
+
+{\emph{Updated:} August 12, 2016}
+    
+\end{titlepage}
+
+\setlength\parindent{24pt}
+
+\section*{Introduction}
+	The team will be designing software (HealFolio) aimed at improving service delivery for all types of medical practitioners; specifically the filing system currently used by medical practitioners. This software will provide doctors with easier access to patient records and provide more security. It will also help them make more accurate diagnoses, provide better prescriptions and more as the software is further developed. Below is an outline of the problem and proposed solutions.
+
+\section*{Problem Diagnosis}
+	The software to be implemented will operate in the medical industry, predominantly amongst General Practitioners (GP's). The issues in this sector include things such as (but not limited to):
+	\begin{itemize}
+		\item Patient record sharing across many different practices.
+		\item Security in the use of medical aid for visits to GP's and other practitioners.
+		\item Patient reaction to prescribed medications.
+	\end{itemize}
+
+	The above list provides a brief outline of the core issues to be addressed by the project, more issues may be identified as the project progresses, changes will not be reflected here but in the more detailed document "Requirements Analysis Document (RAD)".
+
+\section*{Proposed Treatment}
+	The software stack to be used will be decided at a later date however some information can already be determined from evaluating the problem:
+	\begin{itemize}
+		\item For ease of use by practitioners, windows will be the platform on which the primary software runs.
+		\item A database will be necessary for storing patient/doctor information.
+		\item The database should be scalable to accomodate large amounts of data and secure as much of the information will be considered sensitive.
+		\item For high usability, a web application is under consideration for use by doctors, making the software independent of operating system.
+		\item For other features, an android application may be more useful for patients, however the first goal would be an application on the same platform as what the doctors use. 
+	\end{itemize}
+
+	As with the problem definition, this provides a small amount of insight into the project and for more detail the reader should refer to "Architecture Description (AD)".
+	
+\section*{Plan of Work}
+	To be completed...
+	
+\end{document}
