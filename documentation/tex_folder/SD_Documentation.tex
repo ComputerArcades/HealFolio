@@ -1,0 +1,102 @@
+
+\documentclass[12pt]{article}
+\usepackage{witsa4, witshead, url}
+\usepackage{epsfig}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.3ex}
+\textheight = 24 cm
+
+\title{Software Design\\Software Documentation Specifications}
+\author{\texttt{Team Members} \\Adam Lerumo\\Tumbone Asukile\\Daniel da Silva\\Jan Badenhorst}
+\date{\today}
+\begin{document}
+
+
+\makewitshead{School of Computer Science and Applied Mathematics}
+
+\section{Functional requirements ("shall lists")}
+\subsection{Medical Practioner Dashboard (login access required)}
+The doctor/nurse should be able to update the patients information who is consulting at that time of consultation. The dashboard will also have the following functionalities:
+\subsubsection{Patient Profile}
+\begin{itemize}
+\item \textbf{Patient name}
+\item \textbf{Patient Surname}
+\item \textbf{Patient Identification Number (Primary search key)}
+\item \textbf{Patient Address}
+\item \textbf{Patient Next of Kin Contact details}
+\item \textbf{Patient details}
+\item \textbf{Patient Employment status}
+\item \textbf{Patient Mariatal Status}
+\item \textbf{Practitioner visited history}
+\item \textbf{Patient payment history}
+\item \textbf{Patient payment method (e.g medical aid)}
+\item \textbf{Patient illeness}
+\item \textbf{Patient diagnosis}
+\item \textbf{Patient Prescription}
+\item \textbf{Patient previous prescriptions from other practitioners ( valid for a certain period )}
+\item \textbf{Medication given to patient}
+\item \textbf{Patient allergies}
+\end{itemize}
+\subsubsection{Practice Profile}
+\begin{itemize}
+\item \textbf{Doctor / Nurse (User Authentication - Required)}
+\item \textbf{Practice name}
+\item \textbf{Practice number}
+\item \textbf{Practice adddress}
+\item \textbf{Practice operating hours}
+\item \textbf{Invetory available (System should be able to alert if suppliers are low)}
+\end{itemize}
+
+\subsection{Systems Admin Dashboard}
+It should have all of the functionalities mentiaoned above and the following functionalities:
+\subsubsection{Doctor/Nurse Profile (Systems Admin authentication)}
+We need this to keep track of which doctor makes changes to the database.
+\begin{itemize}
+\item \textbf{Doctor Name}
+\item \textbf{Doctor Surname}
+\item \textbf{Doctor ID number}
+\item \textbf{Doctor practice number}
+\item \textbf{Doctor contact details}
+\item \textbf{Doctor Practice history}
+\end{itemize}
+\section{Nonfunctional requirements}
+\subsection{Usability}
+\subsection{Reliability}
+\subsection{Performance}
+\subsection{Supportability}
+\subsection{Implementation}
+\subsection{Interface}
+\subsection{Packaging}
+\subsection{Legal}
+
+\section{Input Requirements}
+\subsection{Patient identifier key - ID number}
+\subsection{Doctor/Nurse identifier key and user access - Practice Number}
+\subsection{System identifier key and user access - ID number}
+
+\section{Process Requirements}
+\subsection{Database transaction}
+The system must be able to send, receive and trigger transaction to database system.
+\subsection{Data integrity}
+Commit transactions that are completed and/or rollback unfinished or time-out transactions.
+\subsection{Data validation}
+Data error from the user’s end and from the back-end database-processing end must be gracefully handled. There will be data validation and error-handling routines as part of the patient registration system.
+\subsection{Performance}
+Must resolve locking issues and must not allow concurrent access to patient information. Send, receive and display user messages to assist the over-all user experience.
+\subsection{Data repository}
+The  system will maintain the existing patient information on the database as the main repository of data.
+\section{Output Requirements}
+\subsection{Transaction summary and confirmation}
+\subsection{Exception reports}
+System exception reports must be consolidated to record special patient records or special conditions not normally handled .Examples are diabetics, high/low blood pateients, epileptic.
+\subsection{Registration Reports and summaries}
+System adminstartor and Doctors/nurses must be able to extract summarized and rolled-up data into meaningful
+information. All records will be archived but accessible on demand.
+\section{Software Requirements}
+\subsection{Client Operating Systems}
+Windows, Android
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%out of the document%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

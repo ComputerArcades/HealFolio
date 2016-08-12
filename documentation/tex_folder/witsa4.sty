@@ -1,0 +1,39 @@
+ % Scott Hazelhurst April 1996, 2003     
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{witsa4}[08]
+\newif\ifpdf \pdffalse
+\DeclareOption{pdftex}{\def\Gin@driver{pdftex.def}\pdftrue}
+\@ifundefined{pdfoutput}%
+  {\let\pdfoutput\@undefined
+   \ExecuteOptions{dvips}}%
+  {\ifcase\pdfoutput
+      \ExecuteOptions{dvips}%
+   \else
+      \ExecuteOptions{pdftex}%
+   \fi}%
+\ProcessOptions
+\topmargin 0pt
+%\advance \topmargin by -\headheight
+%\advance \topmargin by -\headsep
+     
+\textheight 240mm
+     
+\oddsidemargin 0pt
+\evensidemargin \oddsidemargin
+\marginparwidth 0.5in
+     
+\textwidth 16cm
+
+
+\advance\hoffset by -0mm  % A4 is narrower.
+\ifpdf 
+\advance\voffset by  -15mm
+\else     
+\advance\voffset by  -8mm
+\fi
+\endinput
+
+     
+     
+

@@ -1,0 +1,138 @@
+%% witshead.sty
+%% 
+\def\fileversion{2}
+\def\filedate{8 January 2003}
+\def\filename{witshead.sty}
+\def\Copyright{Copyright (C) 1996, 2003 Scott Hazelhurst}
+\NeedsTeXFormat{LaTeX2e}[1994/01/01]
+\ProvidesPackage{witshead}[2003/01/08]
+\typeout{Package `witshead' <\filedate>.}
+\typeout{\Copyright}
+\def\affiliation#1{\gdef\@affiliation{#1}}
+
+\RequirePackage{graphicx}
+\newcommand{\makewitshead}[1]{{\bfseries
+\vspace*{-18mm}
+\newlength{\mmlen}
+\setlength{\mmlen}{\textwidth}
+\addtolength{\mmlen}{-1cm}
+\hspace*{-1cm}
+\begin{tabular}{l l}
+\unitlength=1mm
+\begin{picture}(5,0)
+\put(0,0){\makebox(0,0){\includegraphics[scale=0.25]{Crest}}}
+\end{picture}
+&
+\parbox[t][1cm]{20cm}%
+{\shortstack[l]{{\large\sc University of the Witwatersrand,
+Johannesburg}\\
+\rule{\mmlen}{0.5pt}\\{#1}}}\\
+\end{tabular}
+  \vskip 18\p@
+  \begin{center}%
+    {\Large \@title \par}%
+    \vskip 1.5em%
+    \mdseries%
+    {\large
+     \lineskip .75em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+      \vskip 1.5em%
+    {\large \@date \par}%       % Set date in \large size.
+  \end{center}\par
+}}
+
+
+\def\makewitsslidehead#1{%
+{\bfseries
+\vspace{-10mm}
+\newlength{\mmlen}
+\setlength{\mmlen}{118mm}
+\addtolength{\mmlen}{-1.5cm}
+{\shortstack[l]{{\large\sc University of the Witwatersrand,
+Johannesburg}\\\rule{\mmlen}{0.5pt}\\{#1}}}\\
+  \vfill
+  \begin{center}%
+    {\Large \@title \par}%
+    \vfill
+    \mdseries%
+    {\large
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+      \ifx\undefined\@affiliation
+      \else
+         \parbox{8cm}{{\footnotesize\centering\@affiliation}}
+      \fi
+      \vfill
+    {\normalsize \@date \par}%       % Set date in \large size.
+      \vfill
+    \mbox{\put(0,0){\makebox(0,0){\includegraphics[scale=0.2]{Crest}}}}
+      \vfill
+  \end{center}\par
+}}
+
+
+
+\def\makepwitsslidehead#1{%
+{\bfseries
+\vspace{-10mm}
+\newlength{\mmlen}
+\setlength{\mmlen}{86mm}
+\addtolength{\mmlen}{-1.5cm}
+{\shortstack[l]{{University of the Witwatersrand,
+Johannesburg}\\\rule{\mmlen}{0.5pt}\\{#1}}}\\
+  \vskip 18\p@
+  \begin{center}%
+    {\Large \@title \par}%
+    \vskip 1.5em%
+    \mdseries%
+    {\large
+     \lineskip .75em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+      \ifx\undefined\@affiliation
+      \else
+         \parbox{8cm}{{\footnotesize\centering\@affiliation}}
+      \fi
+      \vskip 0.5em%
+    {\large \@date \par}%       % Set date in \large size.
+    \mbox{\put(0,0){\makebox(0,0){\includegraphics[scale=0.2]{Crest}}}
+}
+  \end{center}\par
+}}
+
+
+
+\def\makewitsslideheadcresttop#1{%
+{\bfseries
+\begin{center}
+\vspace{-10mm}
+\put(0,0){\makebox(0,0){\includegraphics[scale=0.2]{Crest}}}
+\vspace*{-14mm}\hspace{0.9cm}
+{\shortstack[l]{{\sc University of the Witwatersrand,
+Johannesburg}\\\hrulefill\\{\small #1}}}\\
+\end{center}
+  \vskip 18\p@
+  \begin{center}%
+    {\Large \@title \par}%
+    \vskip 1.5em%
+    \mdseries%
+    {\large
+     \lineskip .75em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+      \ifx\undefined\@affiliation
+      \else
+         \parbox{8cm}{{\footnotesize\centering\@affiliation}}
+      \fi
+      \vskip 1.5em%
+    {\large \@date \par}%       % Set date in \large size.
+  \end{center}\par
+\vfill
+}}
+
+\typeout{Package `END witshead' <\filedate>.}
