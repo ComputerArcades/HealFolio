@@ -174,7 +174,7 @@ The proposed system aims to address issues with the current two systems (Private
 The functional requirements are generalized as follows:
 \begin{itemize}
 	\item All information on patients must be kept in a database accessible to the application at all times
-	\item Doctor able to view patient information which consists of the following:
+	\item Doctor able to view patient information including but not limited to:
 		\begin{itemize}
 			\item ID number
 			\item Name
@@ -205,6 +205,23 @@ The functional requirements are generalized as follows:
 	\item Doctor able to add information for an existing patient such as a new visitation, diagnoses, prescriptions.
 	\item Doctor able to add new patients.
 \end{itemize}
+
+\begin{table}[h!]
+	\centering
+	\caption{Requirements}
+	\label{tab:table1}
+	\begin{tabular}{l|c|l}
+		Identifier & Priority & Requirement\\
+		\hline
+		REQ1 & 4 & Doctor able to view patient information.\\
+		REQ2 & 2 & Doctor able to view patient medical history.\\
+		REQ3 & 1 & Doctor able to view assorted reports.\\
+		REQ4 & 3 & Doctor able to add information for an existing patient.\\
+		REQ5 & 4 & Doctor able to add new patients.\\
+		REQ6 & 5 & Doctor able to log in to system.\\
+		REQ7 & 4 & Doctor able to update patient information.\\
+	\end{tabular}
+\end{table}
 		
 \subsection{\textit{Nonfunctional Requirements}}
 Nonfunctional requirements identified by the shortfalls of the current system and general knowledge of the field are as follows:
@@ -218,21 +235,81 @@ Nonfunctional requirements identified by the shortfalls of the current system an
 	Performance is important in that a doctor cannot wait long periods of time for a patient's file to load. Caching data for patients who attend a particular practice can help with this, however if the patient is new to the practice performance and reliability could be at stake.
 	
 	\subsubsection{\textit{Supportability}}
-	???
+	\begin{itemize}
+		\item \textbf{Testability:} The funcionality of the program should run in accordance with the requirements.
+		\item \textbf{Adaptability:}
+		\item \textbf{Maintainability:}
+		\item \textbf{Compatibility:}
+		\item \textbf{Configurability:}
+		\item \textbf{Installability:}
+		\item \textbf{Scalability:}
+		\item \textbf{Localizability:}
+	\end{itemize}
 	
 	\subsubsection{\textit{Implementation}}
 	The implementation needs to be easy as a patient might switch from a practice using the system to a practice that isn't yet. In this case the patient may insist on the new practice using the system at least for them. The doctor would need to be able to pull the patient's records without having to download an application or sit through an extended sign up process.
 	
-	\subsubsection{\textit{Packaging}}
-	???
-	
 	\subsubsection{\textit{Legal}}
 	The system would have to adhere to many regulations and laws in place such as the privacy of a patient's HIV status. A decision has to be made as to whether something is declared the doctor's responsibility or the application is made more secure. A good example would be whether or not any doctor can access any patient's information. The responsibility could either be placed on doctors to not use the database for personal reasons or it could be made secure by only allowing doctors access to a patient's information when a patient grants it to them.
 		
-\subsection{\textit{System models}}
+\newpage
+\subsection{\textit{System Models}}
+	\subsubsection{\textit{Scenarios}}
+	
+	\subsubsection{\textit{Use Case Model}}
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Use cases}
+		\label{tab:table2}
+		\begin{tabular}{l|c|l}
+			Actor & Actor's goal & Use case name\\
+			\hline
+			Doctor		& Log in and update patient information.									& update(UC1) + (UC6)\\
+			Doctor		& Log in and view medical history.											& history(UC2) + (UC6)\\
+			Doctor		& Log in and give diagnoses.												& diagnose(UC3) + (UC6)\\
+			Doctor		& Log in and retrieve reports.												& report(UC4) + (UC5) + (UC6)\\
+			Database	& Generate report.															& generate(UC5)\\
+			Database	& Verify password and practice number.										& verify(UC6)
+		\end{tabular}
+	\end{table}
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Requirements-to-use-case traceability matrix}
+		\label{tab:table3}
+		\begin{tabular}{r|c|c|c|c|c|c|c}
+			Requirement & PW & UC1 & UC2 & UC3 & UC4 & UC5 & UC6\\
+			\hline
+			REQ1		& 4  &  X  &     &     &     &     &    \\
+			REQ2		& 2	 &     &  X  &     &     &     &    \\
+			REQ3		& 1	 &     &     &     &  X  &     &    \\
+			REQ4		& 3  &     &     &  X  &     &     &    \\
+			REQ5		& 4  &     &     &     &     &     &    \\
+			REQ6		& 5	 &  X  &  X  &  X  &  X  &     &    \\
+			REQ7		& 4  &  X  &     &     &     &     &    \\
+		\end{tabular}
+	\end{table}
+	
+	\begin{table}[h!]
+		\centering
+		\caption{Requirements-to-use-case traceability matrix summations}
+		\label{tab:table4}
+		\begin{tabular}{r|c|c|c|c|c|c}
+			Use case 	& UC1 & UC2 & UC3 & UC4 & UC5 & UC6 \\
+			\hline
+			Max PW		&  4  &  5  &  5  &  5  &     &    \\
+			Total PW	&  13 &  7  &  8  &  6  &     &    \\
+		\end{tabular}
+	\end{table}
+	
+	\begin{figure}[h!]
+		\caption{Use case diagram}
+		\label{figure1}
+		\includegraphics[width=15cm]{use-case-diagram.png}
+	\end{figure}
 
 \newpage
-
 \section{Glossary}
 
 \end{document}
