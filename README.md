@@ -1,3 +1,5 @@
+[![Stories in Ready](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=ready&title=Ready)](http://waffle.io/ComputerArcades/HealFolio)
+
 HealFolio
 =========
 
