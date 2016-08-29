@@ -1,6 +1,6 @@
 [![Stories in Ready](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=ready&title=Ready)](http://waffle.io/ComputerArcades/HealFolio)
 
-[![Stories in Backlog](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Ready)](http://waffle.io/ComputerArcades/HealFolio)
+[![Stories in Backlog](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Done)](http://waffle.io/ComputerArcades/HealFolio)
 
 https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Ready
 
