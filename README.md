@@ -2,7 +2,7 @@
 
 [![Stories in Progress](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=In%20Progress&title=In%20Progress)](http://waffle.io/ComputerArcades/HealFolio)
 
-[![Stories in Done](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Done&title=Done)](http://waffle.io/ComputerArcades/HealFolio)
+[![Stories in Done](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=done&title=Done)](http://waffle.io/ComputerArcades/HealFolio)
 
 HealFolio
 =========
