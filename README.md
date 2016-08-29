@@ -4,7 +4,7 @@
 
 [![Stories in Progress](https://badge.waffle.io/ComputerArcades/HealFolio.svg?label=waffle%3Ain%20progress&title=In%20Progress)](http://waffle.io/ComputerArcades/HealFolio)
 
-[![Stories in Progress](https://badge.waffle.io/waffleio/waffle.io.svg?label=waffle%3Ain%20progress&title=In%20Progress)](http://waffle.io/waffleio/waffle.io)
+[![Stories in Progress](https://badge.waffle.io/ComputerArcades/HealFolio.svg?label=waffle%3Ain%20progress&title=In%20Progress)](http://waffle.io/ComputerArcades/HealFolio)
 
 HealFolio
 =========
