@@ -1,5 +1,7 @@
 [![Stories in Ready](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=ready&title=Ready)](http://waffle.io/ComputerArcades/HealFolio)
 
+[![Stories in Backlog](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=backlog&title=Backlog)](http://waffle.io/ComputerArcades/HealFolio)
+
 HealFolio
 =========
 
