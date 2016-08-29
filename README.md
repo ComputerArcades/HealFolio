@@ -1,10 +1,8 @@
 [![Stories in Ready](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=ready&title=Ready)](http://waffle.io/ComputerArcades/HealFolio)
 
-[![Stories in Done](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Done)](http://waffle.io/ComputerArcades/HealFolio)
-
-[![Stories in Progress](https://badge.waffle.io/ComputerArcades/HealFolio.svg?label=HealFolio%3Ain%20progress&title=In%20Progress)](http://waffle.io/ComputerArcades/HealFolio)
-
 [![Stories in Progress](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=In%20Progress&title=In%20Progress)](http://waffle.io/ComputerArcades/HealFolio)
+
+[![Stories in Done](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Done&title=Done)](http://waffle.io/ComputerArcades/HealFolio)
 
 HealFolio
 =========
