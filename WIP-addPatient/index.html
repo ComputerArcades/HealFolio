@@ -1,0 +1,133 @@
+<html ng-app="sampleApp">
+<head>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+	
+	
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
+</head>
+
+
+<body ng-controller="SampleCtrl">
+
+<div class="container">
+
+<h3>Add a patient</h3>
+    <form ng-submit="addPatient()">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Patient Information</div>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">ID number</span>
+			<input ng-model="patient_id" placeholder="1234567891234" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">First names</span>
+			<input ng-model="patient_first_names" placeholder="Jane" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Surname</span>
+			<input ng-model="patient_surname" placeholder="Doe" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Race</span>
+			<input ng-model="patient_race" placeholder="Caucasian" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Allergies</span>
+			<input ng-model="patient_allergies" placeholder="Penicillin" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+		</div>
+		
+		<div class="panel panel-primary">
+			<div class="panel-heading">Medical Aid Information</div>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Medical aid provider</span>
+			<input ng-model="medical_aid_provider" placeholder="Discovery" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Medical aid scheme</span>
+			<input ng-model="medical_aid_scheme" placeholder="Key Care Classic" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Medical aid number</span>
+			<input ng-model="medical_aid_number" placeholder="123456" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Main member ID</span>
+			<input ng-model="main_member_id" placeholder="1234567891234" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Main member first names</span>
+			<input ng-model="main_member_first_names" placeholder="John" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Main member surname</span>
+			<input ng-model="main_member_surname" placeholder="Doe" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Main member medical aid number</span>
+			<input ng-model="main_member_medical_aid_number" placeholder="123457" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+		</div>
+		
+		<div class="panel panel-primary">
+			<div class="panel-heading">Contact Information</div>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Address line one</span>
+			<input ng-model="address_1" placeholder="42 Sunshine Ave" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Address line two</span>
+			<input ng-model="address_2" placeholder="Sandton" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Address line three</span>
+			<input ng-model="address_3" placeholder="Johannesburg" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Postal code</span>
+			<input ng-model="postal_code" placeholder="4321" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+			<span class="label label-info">Phone number</span>
+			<input ng-model="phone_number" placeholder="0XX XXX XXXX" class="form-control"/>
+			
+			<div style="height: 10px;"></div>
+		</div>
+
+		<button class="btn btn-primary" type="submit"> Add Patient</button>
+    </form>
+
+</div>
+
+<script>
+		var config = {
+			apiKey: "AIzaSyBkYiQUwmzRo482w0UFk7gM4Qvm0hC3ZrU",
+			authDomain: "healfolio-288ba.firebaseapp.com",
+			databaseURL: "https://healfolio-288ba.firebaseio.com",
+			storageBucket: "healfolio-288ba.appspot.com",
+		};
+		firebase.initializeApp(config);
+</script>
+
+<!-- AngularJS custom codes -->
+<script src="app/app.js"></script>
+
+</body>
+</html>
