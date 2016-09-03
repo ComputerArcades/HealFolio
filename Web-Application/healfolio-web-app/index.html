@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <title>Healfolio Web Application</title>
+    <meta name="Description" content="Medical Info Web Application created with AngularJS and Firebase">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/healfolio-custom.css" type="text/css">
+</head>
+
+<body ng-cloak="">
+
+<section id="mainview">
+    <div ng-view="" id="ng-view"></div>
+</section>
+
+
+
+<!-- Libraries -->
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+
+<script src="js/angular.min.js"></script>
+<!--<script src="js/ui-bootstrap-tpls-0.11.2.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
+
+
+
+<script>
+//    var config = {
+//        apiKey: "AIzaSyC8w3TgwmmFp6IIpIxi8vAq4tOwD3bGkY4",
+//        authDomain: "project-1387a.firebaseapp.com",
+//        databaseURL: "https://project-1387a.firebaseio.com",
+//        storageBucket: "project-1387a.appspot.com"
+//    };
+    var config = {
+        apiKey: "AIzaSyCZ2VyaK6u-6ls_Jyp4y0VdoyKiy-HvCkw",
+        authDomain: "healfolio.firebaseapp.com",
+        databaseURL: "https://healfolio.firebaseio.com",
+        storageBucket: "healfolio.appspot.com"
+    };
+
+    firebase.initializeApp(config);
+
+</script>
+
+<!-- AngularJS custom codes -->
+<script src="app/app.js"></script>
+<script src="app/authCtrl.js"></script>
+<script src="app/dashboardCtrl.js"></script>
+<script src="app/patientsCtrl.js"></script>
+
+</body>
+</html>
