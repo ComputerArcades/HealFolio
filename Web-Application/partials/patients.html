@@ -1,0 +1,76 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/#">Healfolio</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/#">Dashboard</a></li>
+                <li><a href="">Profile</a></li>
+                <li><a href="" ng-click="doLogout()">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li ><a href="">Dashboard <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="">Patients</a></li>
+            </ul>
+            <!--<ul class="nav nav-sidebar">-->
+            <!--<li><a href="">Nav item</a></li>-->
+            <!--<li><a href="">Nav item again</a></li>-->
+            <!--<li><a href="">Another nav item</a></li>-->
+            <!--<li><a href="">More navigation</a></li>-->
+            <!--</ul>-->
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Patients</h1>
+
+            <button type="button" class="btn btn-success fa fa-plus" ng-click="open(customer);">&nbsp;Add New Patient</button>
+
+            <div class="table-responsive">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">List of Patients
+                        <div class="sw-search" >
+                            <div class="nav-search" id="nav-search">
+                                Filter: <span class="input-icon">
+                    <input placeholder="Filter patients list ..." class="nav-search-input" ng-model="filterPatient" ng-change="resetLimit();"  autocomplete="off" type="text" style="width:300px;" focus>
+                    <i class="search-icon fa fa-search nav-search-icon"></i>
+                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tr ng-show="patients.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
+                            <tr ng-hide="patients.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
+
+                            <tr><th ng-repeat="p in columns">{{p.text}}</th></tr>
+
+                            <tr ng-repeat="p in patients | filter:filterPatient | orderBy:'id'" id="{{p.id_num}}" animate-on-change='p.age' ng-animate="'animate'">
+                                <td>{{p.id_num}}</td><td>{{p.name}}</td><td>{{p.age}}</td><td>{{p.gender}}</td><td>{{p.race}}</td>
+                                <td style="width:100px">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default fa fa-edit" ng-click="open(p);"></button>
+                                        <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="deletePatient(p);"></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
