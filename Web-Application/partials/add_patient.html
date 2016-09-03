@@ -1,26 +1,171 @@
-<h3>Patients</h3>
-<ul>
-    <li ng-repeat="patient in patients">
-        <!-- edit a message -->
-        <input ng-model="patient.name" ng-change="patients.$save(patient)" />
-        <input ng-model="patient.id_num" ng-change="patients.$save(patient)" />
-        <input ng-model="patient.age" ng-change="patients.$save(patient)" />
-        <input ng-model="patient.gender" ng-change="patients.$save(patient)" />
-        <input ng-model="patient.race" ng-change="patients.$save(patient)" />
-
-        <!-- delete a message -->
-        <button class="btn btn-danger" ng-click="patients.$remove(patient)">Delete Patient</button>
-    </li>
-</ul>
-<form ng-submit="addPatient()">
-    <input ng-model="patient_name" placeholder="Name"/>
-    <input ng-model="patient_id_num" placeholder="Id number"/>
-    <input ng-model="patient_age" placeholder="Age"/>
-    <input ng-model="patient_gender" placeholder="Gender"/>
-    <input ng-model="patient_race" placeholder="Race"/>
-    <!--<button class="" type="submit">Add Patient</button>-->
-    <div class="btn-group">
-        <button type="submit" class="btn btn-success" > Add Patient
-        </button>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/">Healfolio</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#/">Dashboard</a></li>
+                <li><a href="">Profile</a></li>
+                <li><a href="" ng-click="doLogout()">Logout</a></li>
+            </ul>
+        </div>
     </div>
-</form>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li ><a href="#/">Dashboard <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="#/patients">Patients</a></li>
+            </ul>
+            <!--<ul class="nav nav-sidebar">-->
+            <!--<li><a href="">Nav item</a></li>-->
+            <!--<li><a href="">Nav item again</a></li>-->
+            <!--<li><a href="">Another nav item</a></li>-->
+            <!--<li><a href="">More navigation</a></li>-->
+            <!--</ul>-->
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Add a Patient</h1>
+
+            <!-- Display Patients in Database -->
+            <!--<ul>-->
+                <!--<li ng-repeat="patient in patients">-->
+                    <!--&lt;!&ndash; edit a message &ndash;&gt;-->
+                    <!--<input ng-model="patient.name" ng-change="patients.$save(patient)" />-->
+                    <!--<input ng-model="patient.id_num" ng-change="patients.$save(patient)" />-->
+                    <!--<input ng-model="patient.age" ng-change="patients.$save(patient)" />-->
+                    <!--<input ng-model="patient.gender" ng-change="patients.$save(patient)" />-->
+                    <!--<input ng-model="patient.race" ng-change="patients.$save(patient)" />-->
+
+                    <!--&lt;!&ndash; delete a message &ndash;&gt;-->
+                    <!--<button class="btn btn-danger" ng-click="patients.$remove(patient)">Delete Patient</button>-->
+                <!--</li>-->
+            <!--</ul>-->
+
+            <form ng-submit="addPatient()">
+                <input ng-model="patient_name" placeholder="Name"/>
+                <input ng-model="patient_id_num" placeholder="Id number"/>
+                <input ng-model="patient_age" placeholder="Age"/>
+                <input ng-model="patient_gender" placeholder="Gender"/>
+                <input ng-model="patient_race" placeholder="Race"/>
+                <!--<button class="" type="submit">Add Patient</button>-->
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-success" > Add Patient</button>
+                </div>
+                <a class="btn btn-warning" href="#/patients" role="button">Cancel</a>
+            </form>
+            <br>
+            <br>
+
+            <!--Add Patient form with validation -->
+            <form ng-submit="addPatientDetails()">
+            <!--<form ng-submit="addPatient()">-->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Patient Information</div>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">ID number</span>
+                    <span ng-class="label_patient_id" class="label label-default">Required</span>
+                    <input ng-model="patient_id" placeholder="1234567891234" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">First names</span>
+                    <span ng-class="label_patient_first_names" class="label label-default">Required</span>
+                    <input ng-model="patient_first_names" placeholder="Jane" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Surname</span>
+                    <span ng-class="label_patient_surname" class="label label-default">Required</span>
+                    <input ng-model="patient_surname" placeholder="Doe" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Race (required)</span>
+                    <span ng-class="label_patient_race" class="label label-default">Required</span>
+                    <input ng-model="patient_race" placeholder="Caucasian" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Allergies</span>
+                    <input ng-model="patient_allergies" placeholder="Penicillin" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                </div>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Medical Aid Information</div>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Medical aid provider</span>
+                    <input ng-model="medical_aid_provider" placeholder="Discovery" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Medical aid scheme</span>
+                    <input ng-model="medical_aid_scheme" placeholder="Key Care Classic" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Medical aid number</span>
+                    <input ng-model="medical_aid_number" placeholder="123456" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Main member ID</span>
+                    <input ng-model="main_member_id" placeholder="1234567891234" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Main member first names</span>
+                    <input ng-model="main_member_first_names" placeholder="John" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Main member surname</span>
+                    <input ng-model="main_member_surname" placeholder="Doe" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Main member medical aid number</span>
+                    <input ng-model="main_member_medical_aid_number" placeholder="123457" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                </div>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Contact Information</div>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Address line one</span>
+                    <input ng-model="address_1" placeholder="42 Sunshine Ave" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Address line two</span>
+                    <input ng-model="address_2" placeholder="Sandton" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Address line three</span>
+                    <input ng-model="address_3" placeholder="Johannesburg" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Postal code</span>
+                    <input ng-model="postal_code" placeholder="4321" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                    <span class="label label-info">Phone number</span>
+                    <span ng-class="label_phone_number" class="label label-default">Required</span>
+                    <input ng-model="phone_number" placeholder="0XX XXX XXXX" class="form-control"/>
+
+                    <div style="height: 10px;"></div>
+                </div>
+
+                <button class="btn btn-primary" type="submit"> Add Patient</button>
+            </form>
+
+
+
+        </div>
+    </div>
+</div>

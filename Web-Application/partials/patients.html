@@ -7,11 +7,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/#">Healfolio</a>
+            <a class="navbar-brand" href="#/">Healfolio</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/#">Dashboard</a></li>
+                <li><a href="#/">Dashboard</a></li>
                 <li><a href="">Profile</a></li>
                 <li><a href="" ng-click="doLogout()">Logout</a></li>
             </ul>
@@ -23,9 +23,8 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li ><a href="">Dashboard <span class="sr-only">(current)</span></a></li>
+                <li ><a href="#/">Dashboard <span class="sr-only">(current)</span></a></li>
                 <li class="active"><a href="">Patients</a></li>
-                <li><a href="#/addpatient">Add a Patient</a></li>
             </ul>
             <!--<ul class="nav nav-sidebar">-->
             <!--<li><a href="">Nav item</a></li>-->
@@ -38,7 +37,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Patients</h1>
 
-            <button type="button" class="btn btn-success fa fa-plus" ng-click="open(customer);">&nbsp;Add New Patient</button>
+            <a class="btn btn-success fa fa-plus" href="#/addpatient" role="button">Add New Patient</a>
 
             <div class="table-responsive">
                 <div class="panel panel-primary">

@@ -1,4 +1,4 @@
-app.controller('dashboardCtrl', function ($scope, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
+app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in.

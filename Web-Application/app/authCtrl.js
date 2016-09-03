@@ -15,7 +15,7 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
         )
             .then(function(user) {
                 // Success callback
-                console.log('Authentication successful');
+//                console.log('Authentication successful');
                 $rootScope.authenticated = true;
                 $location.path("/");
 //
