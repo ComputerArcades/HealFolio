@@ -1,0 +1,26 @@
+<h3>Patients</h3>
+<ul>
+    <li ng-repeat="patient in patients">
+        <!-- edit a message -->
+        <input ng-model="patient.name" ng-change="patients.$save(patient)" />
+        <input ng-model="patient.id_num" ng-change="patients.$save(patient)" />
+        <input ng-model="patient.age" ng-change="patients.$save(patient)" />
+        <input ng-model="patient.gender" ng-change="patients.$save(patient)" />
+        <input ng-model="patient.race" ng-change="patients.$save(patient)" />
+
+        <!-- delete a message -->
+        <button class="btn btn-danger" ng-click="patients.$remove(patient)">Delete Patient</button>
+    </li>
+</ul>
+<form ng-submit="addPatient()">
+    <input ng-model="patient_name" placeholder="Name"/>
+    <input ng-model="patient_id_num" placeholder="Id number"/>
+    <input ng-model="patient_age" placeholder="Age"/>
+    <input ng-model="patient_gender" placeholder="Gender"/>
+    <input ng-model="patient_race" placeholder="Race"/>
+    <!--<button class="" type="submit">Add Patient</button>-->
+    <div class="btn-group">
+        <button type="submit" class="btn btn-success" > Add Patient
+        </button>
+    </div>
+</form>

@@ -25,6 +25,7 @@
             <ul class="nav nav-sidebar">
                 <li ><a href="">Dashboard <span class="sr-only">(current)</span></a></li>
                 <li class="active"><a href="">Patients</a></li>
+                <li><a href="#/addpatient">Add a Patient</a></li>
             </ul>
             <!--<ul class="nav nav-sidebar">-->
             <!--<li><a href="">Nav item</a></li>-->
@@ -63,7 +64,7 @@
                                 <td style="width:100px">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default fa fa-edit" ng-click="open(p);"></button>
-                                        <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="deletePatient(p);"></button>
+                                        <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="patients.$remove(p)"></button>
                                     </div>
                                 </td>
                             </tr>
