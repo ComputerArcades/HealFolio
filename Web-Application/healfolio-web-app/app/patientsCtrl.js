@@ -4,15 +4,16 @@
 app.controller('patientsCtrl', function ($scope, $firebaseArray, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
     $scope.patients = {};
 
-    var ref = firebase.database().ref().child("Patients");
+    var ref = firebase.database().ref().child("patients");
 
     // create a synchronized array
     $scope.patients = $firebaseArray(ref);
 
     $scope.columns = [
         {text:"ID",predicate:"id_num",sortable:true,dataType:"number"},
-        {text:"Name",predicate:"name",sortable:true},
-        {text:"Age",predicate:"age",sortable:true,dataType:"number"},
+        {text:"First Names",predicate:"first_names",sortable:true},
+        {text:"Last Name",predicate:"lastname",sortable:true},
+        {text:"Date of Birth",predicate:"date_of_birth",sortable:true,dataType:"number"},
         {text:"Gender",predicate:"gender",sortable:true},
         {text:"Race",predicate:"race",sortable:true},
         {text:"Action",predicate:"",sortable:false}
@@ -24,32 +25,11 @@ app.controller('patientsCtrl', function ($scope, $firebaseArray, $firebaseAuth, 
 
 app.controller("addPatientCtrl", function($scope, $firebaseArray,$location) {
 
-    var ref = firebase.database().ref().child("Patients");
+    var ref = firebase.database().ref().child("patients");
 
     // create a synchronized array
-    $scope.patients = $firebaseArray(ref);
-//
-//    // add new items to the array
-//    // the patient is automatically added to our Firebase database!
-    $scope.addPatient = function() {
-        $scope.patients.$add({
-            name: $scope.patient_name,
-            id_num: $scope.patient_id_num,
-            age: $scope.patient_age,
-            gender: $scope.patient_gender,
-            race: $scope.patient_race
-        });
-//        console.log("Patient Added!");
-        $location.path("/patients");
-    };
+    $scope.patients = $firebaseArray(ref);//
 
-
-
-    //Adding Patient Details to Temporary Object/Table
-
-//    var ref_db = database.ref().child("patients");
-
-//    $scope.patients = $firebaseArray(ref_db);
     var database = firebase.database();
 
     $scope.addPatientDetails = function() {
@@ -61,15 +41,15 @@ app.controller("addPatientCtrl", function($scope, $firebaseArray,$location) {
 
         if(valid_id && valid_first_names && valid_surname && valid_race){
             //Send data to database
-            database.ref('Patient_Details/'+$scope.patient_id).set({
+            database.ref('patient_details/'+$scope.patient_id).set({
                 id_num: $scope.patient_id,
                 first_names: $scope.patient_first_names,
                 surname: $scope.patient_surname,
                 dob: getDOB($scope.patient_id),
                 gender: getGender($scope.patient_id),
                 race: $scope.patient_race,
-                allergies: ($scope.patient_allergies == null) ? "N/A" : $scope.patient_allergies,
 
+                allergies: ($scope.patient_allergies == null) ? "N/A" : $scope.patient_allergies,
                 med_aid_provider: ($scope.medical_aid_provider == null) ? "N/A" : $scope.medical_aid_provider,
                 med_aid_scheme: ($scope.medical_aid_scheme == null) ? "N/A" : $scope.medical_aid_scheme,
                 med_aid_number: ($scope.medical_aid_number == null) ? "N/A" : $scope.medical_aid_number,
@@ -84,6 +64,35 @@ app.controller("addPatientCtrl", function($scope, $firebaseArray,$location) {
                 postal_code: ($scope.postal_code == null) ? "N/A" : $scope.postal_code,
                 phone_number: ($scope.phone_number == null) ? "N/A" : $scope.phone_number
             });
+
+////            var patient_basic = {
+//                first_names: $scope.patient.first_names,
+//                last_name: $scope.patient_surname,
+//                date_of_birth: getDOB($scope.patient_id),
+//                gender: getGender($scope.patien_id),
+//                race = $scope.patient_race,
+//                $scope.patient_basic
+//        }
+            var patient_basic_info = {};
+            patient_basic_info.first_names = $scope.patient_first_names;
+            patient_basic_info.last_name = $scope.patient_surname;
+            patient_basic_info.date_of_birth = getDOB($scope.patient_id);
+            patient_basic_info.gender = getGender($scope.patient_id);
+            patient_basic_info.race = $scope.patient_race;
+
+            var patient_details = {};
+            patient_details.allergies = ($scope.patient_allergies == null) ? "N/A" : $scope.patient_allergies;
+            patient_details.address1 = ($scope.address_1 == null) ? "N/A" : $scope.address_1;
+            patient_details.postal_code = ($scope.postal_code == null) ? "N/A" : $scope.postal_code;
+            patient_details.phone_number = ($scope.phone_number == null) ? "N/A" : $scope.phone_number;
+
+            var patient_db_updates = {};
+            patient_db_updates['/patients/'+$scope.patient_id] = patient_basic_info;
+            patient_db_updates['/patients_details/'+$scope.patient_id] = patient_details;
+
+            firebase.database().ref().update(patient_db_updates);
+
+
             console.log("Patient Details added successfully!");
             $location.path("/patients");
         }

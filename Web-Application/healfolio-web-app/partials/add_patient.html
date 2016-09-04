@@ -37,36 +37,6 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Add a Patient</h1>
 
-            <!-- Display Patients in Database -->
-            <!--<ul>-->
-                <!--<li ng-repeat="patient in patients">-->
-                    <!--&lt;!&ndash; edit a message &ndash;&gt;-->
-                    <!--<input ng-model="patient.name" ng-change="patients.$save(patient)" />-->
-                    <!--<input ng-model="patient.id_num" ng-change="patients.$save(patient)" />-->
-                    <!--<input ng-model="patient.age" ng-change="patients.$save(patient)" />-->
-                    <!--<input ng-model="patient.gender" ng-change="patients.$save(patient)" />-->
-                    <!--<input ng-model="patient.race" ng-change="patients.$save(patient)" />-->
-
-                    <!--&lt;!&ndash; delete a message &ndash;&gt;-->
-                    <!--<button class="btn btn-danger" ng-click="patients.$remove(patient)">Delete Patient</button>-->
-                <!--</li>-->
-            <!--</ul>-->
-
-            <form ng-submit="addPatient()">
-                <input ng-model="patient_name" placeholder="Name"/>
-                <input ng-model="patient_id_num" placeholder="Id number"/>
-                <input ng-model="patient_age" placeholder="Age"/>
-                <input ng-model="patient_gender" placeholder="Gender"/>
-                <input ng-model="patient_race" placeholder="Race"/>
-                <!--<button class="" type="submit">Add Patient</button>-->
-                <div class="btn-group">
-                    <button type="submit" class="btn btn-success" > Add Patient</button>
-                </div>
-                <a class="btn btn-warning" href="#/patients" role="button">Cancel</a>
-            </form>
-            <br>
-            <br>
-
             <!--Add Patient form with validation -->
             <form ng-submit="addPatientDetails()">
             <!--<form ng-submit="addPatient()">-->
