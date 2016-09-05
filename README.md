@@ -10,6 +10,9 @@ HealFolio
 <sub> Level Seven Crew </sub>
 -----------------------------
 
+<sub> Demo: https://healfolio.firebaseapp.com/#/login </sub>
+-----------------------------
+
 Summary
 -------
 
