@@ -24,7 +24,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li ><a href="#/">Dashboard <span class="sr-only">(current)</span></a></li>
-                <li class="active"><a href="">Patients</a></li>
+                <li class="active"><a href="#/patients">Patients</a></li>
             </ul>
             <!--<ul class="nav nav-sidebar">-->
             <!--<li><a href="">Nav item</a></li>-->
@@ -37,7 +37,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Patient Dashboard</h1>
 
-            <h3>{{patient.last_name}}, {{patient.first_names}} </h3>
+            <h3>{{patient.last_name +", "+ patient.first_names}} </h3>
             <h4>Id Num: {{patient.$id}}</h4>
             <a class="btn btn-success" href="" role="button">New Diagnosis</a>
             <a class="btn btn-primary" href="" role="button">View Patient Information</a>
