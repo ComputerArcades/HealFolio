@@ -59,7 +59,7 @@
                             <tr><th ng-repeat="p in columns">{{p.text}}</th></tr>
 
                             <tr ng-repeat="p in patients | filter:filterPatient | orderBy:'id'" id="{{p.id_num}}" animate-on-change='p.age' ng-animate="'animate'">
-                                <td>{{p.id_num}}</td><td>{{p.first_names}}</td><td>{{p.last_name}}</td><td>{{p.date_of_birth}}</td><td>{{p.gender}}</td><td>{{p.race}}</td>
+                                <td><a href="#/patient_dashboard/{{p.$id}}">{{p.$id}}</a></td><td>{{p.first_names}}</td><td>{{p.last_name}}</td><td>{{p.date_of_birth}}</td><td>{{p.gender}}</td><td>{{p.race}}</td>
                                 <td style="width:100px">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default fa fa-edit" ng-click="open(p);"></button>
@@ -72,5 +72,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>

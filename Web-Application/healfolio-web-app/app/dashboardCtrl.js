@@ -3,7 +3,7 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseAuth,
         if (user) {
             // User is signed in.
 //            console.log("User is signed in!");
-            console.log("User Id: "+ firebase.auth().currentUser.uid + "\nEmail: " + firebase.auth().currentUser.email);
+//            console.log("User Id: "+ firebase.auth().currentUser.uid + "\nEmail: " + firebase.auth().currentUser.email);
         } else {
             // No user is signed in.
             $location.path("/login");

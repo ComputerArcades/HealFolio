@@ -18,8 +18,17 @@ app.controller('patientsCtrl', function ($scope, $firebaseArray, $firebaseAuth, 
         {text:"Race",predicate:"race",sortable:true},
         {text:"Action",predicate:"",sortable:false}
     ];
+});
 
+app.controller('patientsDashboardCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
+    $scope.patients = {};
+    $scope.Patients = {};
 
+//    var ref = firebase.database().ref().child("patients/"+$routeParams.patientId);
+    var ref = firebase.database().ref().child("patients");
+    // create a synchronized array
+//    $scope.patient_info = $firebaseArray(ref);
+    $scope.patient = $firebaseObject(ref.child($routeParams.patientId));
 
 });
 
