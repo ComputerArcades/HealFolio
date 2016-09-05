@@ -25,10 +25,16 @@ app.controller('patientsDashboardCtrl', function ($scope, $firebaseArray, $fireb
     $scope.Patients = {};
 
 //    var ref = firebase.database().ref().child("patients/"+$routeParams.patientId);
+//    $scope.patient = $firebaseObject(ref.child($routeParams.patientId));
+
     var ref = firebase.database().ref().child("patients");
     // create a synchronized array
-//    $scope.patient_info = $firebaseArray(ref);
-    $scope.patient = $firebaseObject(ref.child($routeParams.patientId));
+    var patient_info = $firebaseArray(ref);
+
+    //Due to asynchronous function, you need to use a promise to update the $scope otherwise "$getRecord()" will always return a "null"
+    patient_info.$loaded().then(function(patient_info){
+        $scope.patient = patient_info.$getRecord($routeParams.patientId);
+    })
 
 });
 
