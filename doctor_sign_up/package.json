@@ -4,7 +4,7 @@
   "description": "An application for keeping medical records",
   "repository": {
     "type": "git",
-    "url": "https://github.com/planetoftheweb/angularregistration.git"
+    "url": "https://github.com/ComputerArcades/HealFolio.git"
   },
   "author": "Level Seven Crew",
   "devDependencies": {
