@@ -1,7 +1,7 @@
 {
   "name": "angularRegistration",
   "version": "0.0.1",
-  "description": "An application for taking attendance at meetups. Part of my Data Driven Web Applications with Angular.js course at Lynda.com",
+  "description": "An application for keeping medical records",
   "repository": {
     "type": "git",
     "url": "https://github.com/planetoftheweb/angularregistration.git"
