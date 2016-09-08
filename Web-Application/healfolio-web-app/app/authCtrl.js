@@ -52,6 +52,22 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
 //            }
 //        });
 
+    };
+
+    $scope.doctor = {};
+    $scope.doctor = {first_name:'',last_name:'',email:'',password:'',id_num:'',practice_number:'',practice_name:'',cell_phone:''};
+    $scope.doctorSignUp = function(paramDoctor){
+        $scope.doctor_email = "user1@healfolio.com";
+        $scope.doctor_password = "healfolio";
+
+        firebase.auth().createUserWithEmailAndPassword($scope.doctor_email, $scope.doctor_password).catch(function(error) {
+            // Handle Errors here.
+            console.log("Error Code: " + error.code);
+            console.log("Error Message: " + error.message);
+        });
+
+        
+
 
     };
 
