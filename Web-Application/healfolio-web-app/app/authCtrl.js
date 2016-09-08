@@ -60,13 +60,20 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
         $scope.doctor_email = "user1@healfolio.com";
         $scope.doctor_password = "healfolio";
 
-        firebase.auth().createUserWithEmailAndPassword($scope.doctor_email, $scope.doctor_password).catch(function(error) {
-            // Handle Errors here.
-            console.log("Error Code: " + error.code);
-            console.log("Error Message: " + error.message);
-        });
+//        firebase.auth().createUserWithEmailAndPassword($scope.doctor_email, $scope.doctor_password).catch(function(error) {
+//            // Handle Errors here.
+//            console.log("Error Code: " + error.code);
+//            console.log("Error Message: " + error.message);
+//        });
 
-        
+        firebase.auth().createUserWithEmailAndPassword($scope.doctor_email, $scope.doctor_password)
+            .then(function(user){
+                console.log("Doctor added successfully!");
+                console.log(user);
+            },function(error){
+                //Failure callback
+                console.log(error);
+            });
 
 
     };
