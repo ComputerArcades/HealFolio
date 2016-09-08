@@ -12,4 +12,5 @@
     "gulp-util": "^2.2.20",
     "gulp-webserver": "^0.8.1"
   }
+  "license": "UNLICENSED"
 }
