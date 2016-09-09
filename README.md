@@ -4,8 +4,6 @@
 
 [![Stories in Progress](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=In%20Progress&title=Issues%20In%20Progress)](http://waffle.io/ComputerArcades/HealFolio)
 
-[![Stories in Done](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Done&title=Issues%20In%20Done)](http://waffle.io/ComputerArcades/HealFolio)
-
 [![Stories in Discussions](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Discuss&title=Issues%20Being%20Discussed)](http://waffle.io/ComputerArcades/HealFolio)
 
 HealFolio
