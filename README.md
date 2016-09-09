@@ -1,8 +1,10 @@
+[![Stories in Backlog](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Backlog&title=Issues%20Being%20Discussed)](http://waffle.io/ComputerArcades/HealFolio)
+
 [![Stories in Ready](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Ready&title=Issues%20In%20Ready)](http://waffle.io/ComputerArcades/HealFolio)
 
 [![Stories in Progress](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=In%20Progress&title=Issues%20In%20Progress)](http://waffle.io/ComputerArcades/HealFolio)
 
-[![Stories in Discussions](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Discuss&title=Discussions)](http://waffle.io/ComputerArcades/HealFolio)
+[![Stories in Discussions](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Discuss&title=Issues%20Being%20Discussed)](http://waffle.io/ComputerArcades/HealFolio)
 
 HealFolio
 =========
