@@ -2,7 +2,7 @@
 
 [![Stories in Progress](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=In%20Progress&title=In%20Progress)](http://waffle.io/ComputerArcades/HealFolio)
 
-[![Stories in Ideas](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Ideas&title=Ideas)](http://waffle.io/ComputerArcades/HealFolio)
+[![Stories in Discuss](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Discuss&title=Discussions)](http://waffle.io/ComputerArcades/HealFolio)
 
 HealFolio
 =========
@@ -133,8 +133,8 @@ Appendix A: Statement of Effort
 
 |                 | Daniel  | Tumbone | Adam | Jan |
 | :-------------: | ------: | ------: | ---: | --: |
-| Finishing       |         |         |      |     |
-| Introduction    |         |         |      |     |
-| Current System  |         |         |      |     |
-| Proposed System |         |         |      |     |
-| Glossary        |         |         |      |     |
+| Finishing       |   25%   |   25%   | 25%  | 25% |
+| Introduction    |   15%   |   15%   | 35%  | 35% |
+| Current System  |   30%   |   30%   | 30%  | 10% |
+| Proposed System |   15%   |   15%   | 35%  | 35% |
+| Glossary        |   15%   |   15%   | 15%  | 55% |
