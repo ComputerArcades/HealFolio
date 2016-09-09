@@ -133,8 +133,8 @@ Appendix A: Statement of Effort
 
 |                 | Daniel  | Tumbone | Adam | Jan |
 | :-------------: | ------: | ------: | ---: | --: |
-| Finishing       |         |         |      |     |
-| Introduction    |         |         |      |     |
-| Current System  |         |         |      |     |
-| Proposed System |         |         |      |     |
-| Glossary        |         |         |      |     |
+| Finishing       |   25%   |   25%   | 25%  | 25% |
+| Introduction    |   15%   |   15%   | 35%  | 35% |
+| Current System  |   30%   |   30%   | 30%  | 10% |
+| Proposed System |   15%   |   15%   | 35%  | 35% |
+| Glossary        |   15%   |   15%   | 15%  | 55% |
