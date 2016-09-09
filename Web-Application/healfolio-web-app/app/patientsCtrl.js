@@ -2,12 +2,54 @@
  * Created by tumbone on 03-Sep-16.
  */
 app.controller('patientsCtrl', function ($scope, $firebaseArray, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
-    $scope.patients = {};
+//    $scope.patients = {};
 
-    var ref = firebase.database().ref().child("patients");
+//    var ref = firebase.database().ref().child("patients");
 
     // create a synchronized array
-    $scope.patients = $firebaseArray(ref);
+//    $scope.patients = $firebaseArray(ref);
+
+    $scope.doctor = {};
+    $scope.patients = [];
+
+    $scope.doctor_id_num = 123456789; //This here will come from some form of current User variable
+    var ref_doctors = firebase.database().ref().child("doctors");
+    var ref_patients = firebase.database().ref().child("patients");
+
+    //  create a synchronized array
+    //  FIX: Figure out how to maybe just retrieve a single record here to the client, this here retrieves the entire doctors object
+    var doctor_info = $firebaseArray(ref_doctors);
+    var patient_info = $firebaseArray(ref_patients);
+
+
+    //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
+    doctor_info.$loaded()
+        .then(function(){
+            $scope.doctor = doctor_info.$getRecord($scope.doctor_id_num);
+
+            patient_info.$loaded()
+                .then(function(){
+//                    console.log(patient_info.$getRecord(patient_id_num));
+
+                    //iterating over an object in javascript, you need to the ".hasOwnProperty" attribute
+                    for (var patient_id_num in $scope.doctor.patients) {
+                        if (!$scope.doctor.patients.hasOwnProperty(patient_id_num)) {
+                            //The current property is not a direct property of $scope.doctor.patients
+                            continue;
+                        }
+                        //Do your logic with the property here
+//                        console.log(patient_id_num);
+                        $scope.patients.push(patient_info.$getRecord(patient_id_num));
+                    }
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+
+        })
+        .catch(function(error){
+            console.log(error);
+        });
 
     $scope.columns = [
         {text:"ID",predicate:"id_num",sortable:true,dataType:"number"},
@@ -21,20 +63,24 @@ app.controller('patientsCtrl', function ($scope, $firebaseArray, $firebaseAuth, 
 });
 
 app.controller('patientsDashboardCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
-    $scope.patients = {};
-    $scope.Patients = {};
+    $scope.patient = {};
 
 //    var ref = firebase.database().ref().child("patients/"+$routeParams.patientId);
 //    $scope.patient = $firebaseObject(ref.child($routeParams.patientId));
 
     var ref = firebase.database().ref().child("patients");
-    // create a synchronized array
+    //  create a synchronized array
+    //  FIX: Figure out how to maybe just retrieve a single record here to the client, this here retrieves the entire patients object
     var patient_info = $firebaseArray(ref);
 
-    //Due to asynchronous function, you need to use a promise to update the $scope otherwise "$getRecord()" will always return a "null"
-    patient_info.$loaded().then(function(patient_info){
-        $scope.patient = patient_info.$getRecord($routeParams.patientId);
-    })
+    //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
+    patient_info.$loaded()
+        .then(function(){
+            $scope.patient = patient_info.$getRecord($routeParams.patientId);
+        })
+        .catch(function(error){
+            console.log(error);
+        });
 
 });
 
@@ -43,7 +89,7 @@ app.controller("addPatientCtrl", function($scope, $firebaseArray,$location) {
     var ref = firebase.database().ref().child("patients");
 
     // create a synchronized array
-    $scope.patients = $firebaseArray(ref);//
+    $scope.patients = $firebaseArray(ref);
 
     var database = firebase.database();
 
