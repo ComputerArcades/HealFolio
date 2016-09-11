@@ -4,8 +4,8 @@
     novalidate>
 
     <div class="textintro">
-      <h1>Register</h1>
-      <p>To access site features</p>
+      <h1>Register New Doctor</h1>
+      <h2>To be able to access patient information</h2>
       <p class="message" ng-show="message">{{ message }}</p>
     </div>
 
@@ -31,8 +31,32 @@
       <input type="password" name="password" placeholder="Password"
       ng-model="user.password" ng-required="true">
       <p class="error validationerror"
-      ng-show="myform.password.$invalid && myform.email.$touched">
+      ng-show="myform.password.$invalid && myform.password.$touched">
       Password is required</p>
+      
+      <input type="number" name="id_number" placeholder="ID Number"
+      ng-model="user.id_number" ng-required="true" ng-maxlength="13" ng-minlength="13">
+      <p class="error validationerror"
+      ng-show="myform.id_number.$invalid && myform.id_number.$touched">
+      Please type in correct ID number</p>
+
+      <input type="number" name="practice_number" placeholder="Practice Number"
+      ng-model="user.practice_number" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.practice_number.$invalid && myform.practice_number.$touched">
+      Practice Number is invalid</p>
+
+      <input type="text" name="practice_name" placeholder="Practice Name"
+      ng-model="user.practice_name" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.practice_name.$invalid && myform.practice_name.$touched">
+      Practice Name required or Practice Name does not match with the Practice Name of the Practice Number given above</p>
+
+      <input type="number" name="contact_number" placeholder="Contact Number"
+      ng-model="user.contact_number" ng-required="true" ng-maxlength="10" ng-minlength="10">
+      <p class="error validationerror"
+      ng-show="myform.contact_number.$invalid && myform.contact_number.$touched">
+      Contact Number is required e.g 0824888894</p>
 
     </fieldset>
 

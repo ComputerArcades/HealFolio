@@ -1,6 +1,6 @@
 var myApp = angular.module('myApp',
   ['ngRoute', 'firebase'])
-  .constant('FIREBASE_URL', 'https://angdata77.firebaseIO.com/');
+  .constant('FIREBASE_URL', 'https://healfolio-1f903.firebaseio.com/');
 
 
 myApp.run(['$rootScope', '$location',
@@ -20,6 +20,19 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'views/login.html',
       controller: 'RegistrationController'
     }).
+    when('/user_type', {
+      templateUrl: 'views/user_type.html',
+      //controller: 'PathController'
+      controller: 'RegistrationController'
+    }).
+    when('/patient_register', {
+      templateUrl: 'views/patient_register.html',
+      controller: 'RegistrationController'
+    }).
+    when('/doctor_register', {
+      templateUrl: 'views/doctor_register.html',
+      controller: 'RegistrationController'
+    }).    
     when('/register', {
       templateUrl: 'views/register.html',
       controller: 'RegistrationController'
