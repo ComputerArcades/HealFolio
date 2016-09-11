@@ -2,9 +2,6 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseAuth,
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in.
-//            console.log("User is signed in!");
-//            console.log("User Id: "+ firebase.auth().currentUser.uid + "\nEmail: " + firebase.auth().currentUser.email);
-            console.log(user);
         } else {
             // No user is signed in.
             $location.path("/login");

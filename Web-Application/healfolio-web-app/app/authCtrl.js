@@ -4,7 +4,7 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
     $scope.login = {email:'',password:''};
     $rootScope.authenticated = false;
 
-//    console.log(firebase.User);
+
     $scope.Auth = $firebaseAuth();
 
     $scope.doLogin = function (paramUser) {
@@ -15,8 +15,8 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
         )
             .then(function(user) {
                 // Success callback
-//                console.log('Authentication successful');
                 $rootScope.authenticated = true;
+                $rootScope.displayName = user.displayName;
                 $location.path("/");
 //
             }, function(error) {
