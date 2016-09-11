@@ -1,37 +1,40 @@
 <div class="container">
-    <h3>Doctor Sign Up</h3>
-    <form ng-submit="doctorSignUp()">
-        <div class="form-group">
-            <input ng-model="doctor.first_name" placeholder="First Name"/>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h3>Doctor Sign Up</h3>
+            <form ng-submit="doctorSignUp()">
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="doctor.first_name" placeholder="First Name"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="doctor.last_name" placeholder="Last Name"/>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" ng-model="doctor.email" placeholder="Email"/>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" ng-model="doctor.password" placeholder="Password"/>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" ng-model="doctor.confirm_password" placeholder="Confirm Password"/>
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" ng-model="doctor.id_num" placeholder="Id number"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="doctor.practice_number" placeholder="Practice number"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="doctor.practice_name" placeholder="Practice Name"/>
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" ng-model="doctor.cell_phone" placeholder="Cell Phone"/>
+                </div>
+                <!--<button class="" type="submit">Add Patient</button>-->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success" >Sign Up</button>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <input ng-model="doctor.last_name" placeholder="Last Name"/>
-        </div>
-        <div class="form-group">
-            <input ng-model="doctor.email" placeholder="Email"/>
-        </div>
-        <div class="form-group">
-            <input ng-model="doctor.password" placeholder="Password"/>
-        </div>
-        <div class="form-group">
-            <input ng-model="doctor.confirm_password" placeholder="Confirm Password"/>
-        </div>
-        <div class="form-group">
-            <input ng-model="doctor.id_num" placeholder="Id number"/>
-        </div>
-        <div class="form-group">
-            <input ng-model="doctor.practice_number" placeholder="Practice number"/>
-        </div>
-        <div class="form-group">
-            <input ng-model="doctor.practice_name" placeholder="Practice Name"/>
-        </div>
-        <div class="form-group">
-            <input ng-model="doctor.cell_phone" placeholder="Cell Phone"/>
-        </div>
-        <!--<button class="" type="submit">Add Patient</button>-->
-        <div class="btn-group">
-            <button type="submit" class="btn btn-success" > Sign Up
-            </button>
-        </div>
-    </form>
+    </div>
 </div>

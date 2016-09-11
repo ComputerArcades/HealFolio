@@ -54,6 +54,14 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
 
     };
 
+    $scope.select_doctor = function(){
+        $location.path("/doctor_signup");
+    };
+
+    $scope.select_patient = function(){
+        $location.path("/patient_signup");
+    };
+
     $scope.doctor = {};
     $scope.doctor = {first_name:'',last_name:'',email:'',password:'',id_num:'',practice_number:'',practice_name:'',cell_phone:''};
     $scope.doctorSignUp = function(paramDoctor){
