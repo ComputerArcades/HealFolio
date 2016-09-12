@@ -121,7 +121,7 @@ app.controller('patientDoctorRequestsCtrl', function ($scope, $firebaseArray, $f
                     .then(function(){
                         //Success Callback
 
-                        console.log("Request accepted successfully!");
+                        alert("Doctor request has been accepted!");
                         $scope.doctor_requests.$remove(paramDoctor);
                     })
                     .catch(function(error){

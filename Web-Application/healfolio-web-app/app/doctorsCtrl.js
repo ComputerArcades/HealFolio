@@ -65,7 +65,7 @@ app.controller("addPatientCtrl", function($scope, $rootScope, $firebaseArray, $l
     // create a synchronized array
     $scope.patients = $firebaseArray(ref);
 
-
+//    $scope.message = true;
     var database = firebase.database();
 
     $scope.addPatientId = function(paramDoctorIdnum){
@@ -76,10 +76,11 @@ app.controller("addPatientCtrl", function($scope, $rootScope, $firebaseArray, $l
         database.ref('patients').child($scope.patient_id_num).child('doctor_requests').set(doc_obj)
             .then(function(){
                 //Success Callback
-                console.log("Request sent successfully!");
+//                console.log("Request sent successfully!");
+                alert("Patient request sent successfully!");
             })
             .catch(function(error){
-                console.log(error);
+                alert(error);
             });
     };
 
