@@ -18,11 +18,8 @@ HealFolio
 Summary
 -------
 
-The team will be designing software (HealFolio) aimed at improving service delivery for all types of
-medical practitioners; specifically the filing system currently used by medical practitioners. This software
-will provide doctors with easier access to patient records and provide more security. It will also help
-them make more accurate diagnoses, provide better prescriptions and more as the software is further
-developed. Below is an outline of the problem and proposed solutions.
+Designing software application going from a customer statement of work to user stories or use cases and all the way through to a completed product. Using the Scrum methodology to achieve this whilst applying aspects of software architecture, design
+paradigms and design patterns.
 
 Audience
 --------
