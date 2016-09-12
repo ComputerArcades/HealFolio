@@ -37,102 +37,21 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">Add a Patient</h1>
 
-            <!--Add Patient form with validation -->
-            <form ng-submit="addPatientDetails()">
-            <!--<form ng-submit="addPatient()">-->
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Patient Information</div>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">ID number</span>
-                    <span ng-class="label_patient_id" class="label label-default">Required</span>
-                    <input ng-model="patient_id" placeholder="1234567891234" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">First names</span>
-                    <span ng-class="label_patient_first_names" class="label label-default">Required</span>
-                    <input ng-model="patient_first_names" placeholder="Jane" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Surname</span>
-                    <span ng-class="label_patient_surname" class="label label-default">Required</span>
-                    <input ng-model="patient_surname" placeholder="Doe" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Race (required)</span>
-                    <span ng-class="label_patient_race" class="label label-default">Required</span>
-                    <input ng-model="patient_race" placeholder="Caucasian" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Allergies</span>
-                    <input ng-model="patient_allergies" placeholder="Penicillin" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
+            <!-- Add Patient using their id number -->
+            <div class="row">
+                <div class="col-md-6">
+                    <form ng-submit="addPatientId()">
+                        <div class="form-group">
+                            <input type="number" class="form-control" placeholder="ID Number" name="id_num" ng-model="patient_id_num" required focus/>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-lg btn-success" >
+                                Send Request
+                            </button>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Medical Aid Information</div>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Medical aid provider</span>
-                    <input ng-model="medical_aid_provider" placeholder="Discovery" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Medical aid scheme</span>
-                    <input ng-model="medical_aid_scheme" placeholder="Key Care Classic" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Medical aid number</span>
-                    <input ng-model="medical_aid_number" placeholder="123456" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Main member ID</span>
-                    <input ng-model="main_member_id" placeholder="1234567891234" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Main member first names</span>
-                    <input ng-model="main_member_first_names" placeholder="John" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Main member surname</span>
-                    <input ng-model="main_member_surname" placeholder="Doe" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Main member medical aid number</span>
-                    <input ng-model="main_member_medical_aid_number" placeholder="123457" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                </div>
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Contact Information</div>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Address line one</span>
-                    <input ng-model="address_1" placeholder="42 Sunshine Ave" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Address line two</span>
-                    <input ng-model="address_2" placeholder="Sandton" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Address line three</span>
-                    <input ng-model="address_3" placeholder="Johannesburg" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Postal code</span>
-                    <input ng-model="postal_code" placeholder="4321" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                    <span class="label label-info">Phone number</span>
-                    <span ng-class="label_phone_number" class="label label-default">Required</span>
-                    <input ng-model="phone_number" placeholder="0XX XXX XXXX" class="form-control"/>
-
-                    <div style="height: 10px;"></div>
-                </div>
-
-                <button class="btn btn-primary" type="submit"> Add Patient</button>
-            </form>
+            </div>
 
 
 

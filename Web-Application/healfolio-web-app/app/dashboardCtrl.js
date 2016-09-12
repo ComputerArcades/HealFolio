@@ -1,6 +1,6 @@
 app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
 
-    //This code below will go on the app's Routing function
+//    This code below will go on the app's Routing function
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in.
@@ -12,13 +12,16 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
     });
 
     var user = firebase.auth().currentUser;
-    $scope.user_auth = {};
+    $rootScope.user_auth = {};
 
+
+
+    //FIX: Rather use this in the app's Routing function
     if(user){
         var ref = firebase.database().ref("users").child(user.uid);
 
         // return it as a synchronized object
-        $scope.user_auth = $firebaseObject(ref);
+        $rootScope.user_auth = $firebaseObject(ref);
 //    $scope.user_auth.$loaded()
 //        .then(function(){
 //            console.log($scope.user_auth);
@@ -29,13 +32,11 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
 //        });
     }else{
         console.log("Error: Page was loaded outside the scope of the application!");
+
+        //FIX: Change what happens if $scope does not exist, i.e page refresh problem
+        firebase.auth().signOut();
+        $location.path("/login");
     }
-
-
-
-
-
-
 
 
 

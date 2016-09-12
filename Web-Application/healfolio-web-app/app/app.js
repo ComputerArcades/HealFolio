@@ -12,10 +12,10 @@ app.config(['$routeProvider',
                 controller: 'dashboardCtrl',
                 role: 0
             }).
-            when('/patients',{
+            when('/patients/:doctorId',{
                 title: 'Patients',
                 templateUrl: 'partials/patients.html',
-                controller: 'patientsCtrl'
+                controller: 'doctorsCtrl'
             }).
             when('/patient_dashboard/:patientId',{
                 title: 'Patient Dashboard',
