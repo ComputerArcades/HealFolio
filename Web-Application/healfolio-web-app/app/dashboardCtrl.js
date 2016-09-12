@@ -41,7 +41,7 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
 
 
 
-    $scope.doLogout = function(){
+    $rootScope.doLogout = function(){
         firebase.auth().signOut();
         $location.path("/login");
     };

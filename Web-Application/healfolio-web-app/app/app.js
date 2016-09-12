@@ -17,6 +17,11 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/patients.html',
                 controller: 'doctorsCtrl'
             }).
+            when('/doctors/:patientId',{
+                title: 'Doctors',
+                templateUrl: 'partials/patient_doctors.html',
+                controller: 'patientsCtrl'
+            }).
             when('/patient_dashboard/:patientId',{
                 title: 'Patient Dashboard',
                 templateUrl: 'partials/patient_dashboard.html',

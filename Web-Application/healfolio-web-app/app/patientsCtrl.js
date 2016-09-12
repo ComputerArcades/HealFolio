@@ -13,6 +13,7 @@ app.controller('patientsCtrl', function ($scope, $firebaseArray, $firebaseAuth, 
     $scope.patients = [];
 
     $scope.doctor_id_num = 123456789; //This here will come from some form of current User variable
+    $scope.patient_id_num = $routeParams.patientId;
     var ref_doctors = firebase.database().ref().child("doctors");
     var ref_patients = firebase.database().ref().child("patients");
 
@@ -115,8 +116,20 @@ app.controller('patientDoctorRequestsCtrl', function ($scope, $firebaseArray, $f
         database.ref('doctors').child(paramDoctor.$id).child('patients').set(doc_obj)
             .then(function(){
                 //Success Callback
-                console.log("Request accepted successfully!");
-                $scope.doctor_requests.$remove(paramDoctor);
+
+                var key = paramDoctor.$id;
+                var pat_obj = {};
+                pat_obj[key] = true;
+                database.ref('patients').child($rootScope.user_auth.id_num).child('doctors').set(pat_obj)
+                    .then(function(){
+                        //Success Callback
+
+                        console.log("Request accepted successfully!");
+                        $scope.doctor_requests.$remove(paramDoctor);
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    });
             })
             .catch(function(error){
                 console.log(error);
