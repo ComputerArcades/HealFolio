@@ -49,11 +49,10 @@ app.controller('doctorsCtrl',function($scope, $rootScope, $firebaseAuth, $fireba
 
     $scope.columns = [
         {text:"ID",predicate:"id_num",sortable:true,dataType:"number"},
-        {text:"First Names",predicate:"first_names",sortable:true},
+        {text:"First Name",predicate:"first_name",sortable:true},
         {text:"Last Name",predicate:"lastname",sortable:true},
         {text:"Date of Birth",predicate:"date_of_birth",sortable:true,dataType:"number"},
         {text:"Gender",predicate:"gender",sortable:true},
-        {text:"Race",predicate:"race",sortable:true},
         {text:"Action",predicate:"",sortable:false}
     ];
 

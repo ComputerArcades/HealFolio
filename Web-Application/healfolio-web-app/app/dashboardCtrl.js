@@ -22,6 +22,7 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
 
         // return it as a synchronized object
         $rootScope.user_auth = $firebaseObject(ref);
+//        console.log($scope.user_auth.id_num);
 //    $scope.user_auth.$loaded()
 //        .then(function(){
 //            console.log($scope.user_auth);

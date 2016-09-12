@@ -22,6 +22,11 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/patient_dashboard.html',
                 controller: 'patientsDashboardCtrl'
             }).
+            when('/patient_doctor_requests',{
+                title: 'Patient\'s Doctor Requests',
+                templateUrl: 'partials/patient_doctor_requests.html',
+                controller: 'patientDoctorRequestsCtrl'
+            }).
             when('/addpatient',{
                 title:'Add a Patient',
                 templateUrl:'partials/add_patient.html',
