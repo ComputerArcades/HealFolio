@@ -32,13 +32,13 @@
                     </div>
                     <div class="panel-body">
                         <table class="table table-striped">
-                            <tr ng-show="patients.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
-                            <tr ng-hide="patients.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
+                            <tr ng-show="doctors.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
+                            <tr ng-hide="doctors.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
 
                             <tr><th ng-repeat="p in columns">{{p.text}}</th></tr>
 
-                            <tr ng-repeat="p in patients | filter:filterDoctor | orderBy:'id'" id="{{p.id_num}}" animate-on-change='p.age' ng-animate="'animate'">
-                                <td><a href="#/patient_dashboard/{{p.$id}}">{{p.$id}}</a></td><td>{{p.first_name}}</td><td>{{p.last_name}}</td><td>{{p.date_of_birth}}</td><td>{{p.gender}}</td>
+                            <tr ng-repeat="doc in doctors | filter:filterDoctor | orderBy:'id'" id="{{p.id_num}}" animate-on-change='p.age' ng-animate="'animate'">
+                                <td>{{doc.first_name+ ' '+doc.last_name}}</td><td>{{doc.$id}}</td><td>{{doc.practice_name}}</td><td>{{doc.practice_number}}</td>
                                 <td style="width:100px">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default fa fa-edit" ng-click="open(p);"></button>

@@ -9,10 +9,10 @@ app.controller('patientsCtrl', function ($scope, $firebaseArray, $firebaseAuth, 
     // create a synchronized array
 //    $scope.patients = $firebaseArray(ref);
 
-    $scope.doctor = {};
-    $scope.patients = [];
+    $scope.patient = {};
+    $scope.doctors = [];
 
-    $scope.doctor_id_num = 123456789; //This here will come from some form of current User variable
+//    $scope.doctor_id_num = 123456789; //This here will come from some form of current User variable
     $scope.patient_id_num = $routeParams.patientId;
     var ref_doctors = firebase.database().ref().child("doctors");
     var ref_patients = firebase.database().ref().child("patients");
@@ -24,23 +24,22 @@ app.controller('patientsCtrl', function ($scope, $firebaseArray, $firebaseAuth, 
 
 
     //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
-    doctor_info.$loaded()
+    patient_info.$loaded()
         .then(function(){
-            $scope.doctor = doctor_info.$getRecord($scope.doctor_id_num);
+            $scope.patient = patient_info.$getRecord($scope.patient_id_num);
 
-            patient_info.$loaded()
+            doctor_info.$loaded()
                 .then(function(){
-//                    console.log(patient_info.$getRecord(patient_id_num));
 
                     //iterating over an object in javascript, you need to the ".hasOwnProperty" attribute
-                    for (var patient_id_num in $scope.doctor.patients) {
-                        if (!$scope.doctor.patients.hasOwnProperty(patient_id_num)) {
+                    for (var doctor_id_num in $scope.patient.doctors) {
+                        if (!$scope.patient.doctors.hasOwnProperty(doctor_id_num)) {
                             //The current property is not a direct property of $scope.doctor.patients
                             continue;
                         }
                         //Do your logic with the property here
 //                        console.log(patient_id_num);
-                        $scope.patients.push(patient_info.$getRecord(patient_id_num));
+                        $scope.doctors.push(doctor_info.$getRecord(doctor_id_num));
                     }
                 })
                 .catch(function(error){
@@ -53,12 +52,10 @@ app.controller('patientsCtrl', function ($scope, $firebaseArray, $firebaseAuth, 
         });
 
     $scope.columns = [
+        {text:"Doctor",predicate:"first_name",sortable:true},
         {text:"ID",predicate:"id_num",sortable:true,dataType:"number"},
-        {text:"First Names",predicate:"first_names",sortable:true},
-        {text:"Last Name",predicate:"lastname",sortable:true},
-        {text:"Date of Birth",predicate:"date_of_birth",sortable:true,dataType:"number"},
-        {text:"Gender",predicate:"gender",sortable:true},
-        {text:"Race",predicate:"race",sortable:true},
+        {text:"Practice Name",predicate:"gender",sortable:true},
+        {text:"Practice Number",predicate:"date_of_birth",sortable:true,dataType:"number"},
         {text:"Action",predicate:"",sortable:false}
     ];
 });
