@@ -88,12 +88,18 @@ Reliability emphasizes dependability in the lifecycle management of a product. D
 
 Computer performance is the amount of work accomplished by a computer system . Depending on the context, high computer performance may involve one or more of the following:
 
--Short response time for a given piece of work
--High throughput (rate of processing work)
--Low utilization of computing resource(s)
--High availability of the computing system or application
--Fast (or highly compact) data compression and decompression
--High bandwidth
+-Short response time for a given piece of work.
+
+-High throughput (rate of processing work).
+
+-Low utilization of computing resource(s).
+
+-High availability of the computing system or application.
+
+-Fast (or highly compact) data compression and decompression.
+
+-High bandwidth.
+
 -Short data transmission time
 
 ##### 3.3.4 Supportability
