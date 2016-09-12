@@ -100,28 +100,17 @@ Computer performance is the amount of work accomplished by a computer system . D
 In software engineering and hardware engineering, serviceability (also known as supportability,) is one of the -ilities or aspects (from IBM's RAS(U) (Reliability, Availability, Serviceability, and Usability)). It refers to the ability of technical support personnel to install, configure, and monitor computer products, identify exceptions or faults, debug or isolate faults to root cause analysis, and provide hardware or software maintenance in pursuit of solving a problem and restoring the product into service. Incorporating serviceability facilitating features typically results in more efficient product maintenance and reduces operational costs and maintains business continuity.
 
 Examples of features that facilitate serviceability include:
-
--Help desk notification of exceptional events (e.g., by electronic mail or by sending text to a pager).
-
--Network monitoring.
-
--Documentation.
-
--Event logging / Tracing (software).
-
--Logging of program state, such as.
-
-   -Execution path and/or local and global variables.
-   
-   -Procedure entry and exit, optionally with incoming and return variable values (see: subroutine).
-   
-   -Exception block entry, optionally with local state (see: exception handling).
-   
--Software upgrade.
-
--Graceful degradation, where the product is designed to allow recovery from exceptional events without intervention by         technical support staff.
-
--Hardware replacement or upgrade planning, where the product is designed to allow efficient hardware upgrades with minimal     computer system downtime (e.g., hotswap components).
+* Help desk notification of exceptional events (e.g., by electronic mail or by sending text to a pager).
+* Network monitoring.
+* Documentation.
+* Event logging / Tracing (software).
+* Logging of program state, such as.
+⋅⋅⋅* Execution path and/or local and global variables.
+⋅⋅⋅* Procedure entry and exit, optionally with incoming and return variable values (see: subroutine).
+⋅⋅⋅* Exception block entry, optionally with local state (see: exception handling).
+⋅⋅⋅* Software upgrade.
+* Graceful degradation, where the product is designed to allow recovery from exceptional events without intervention by       ⋅⋅⋅technical support staff.
+*Hardware replacement or upgrade planning, where the product is designed to allow efficient hardware upgrades with minimal    ⋅⋅⋅computer system downtime (e.g., hotswap components).
 
 ##### 3.3.5 Implementation
 
