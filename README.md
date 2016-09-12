@@ -108,17 +108,27 @@ In software engineering and hardware engineering, serviceability (also known as 
 
 Examples of features that facilitate serviceability include:
 
--Help desk notification of exceptional events (e.g., by electronic mail or by sending text to a pager)
--Network monitoring
--Documentation
--Event logging / Tracing (software)
--Logging of program state, such as
-  -Execution path and/or local and global variables
-  -Procedure entry and exit, optionally with incoming and return variable values (see: subroutine)
-  -Exception block entry, optionally with local state (see: exception handling)
--Software upgrade
--Graceful degradation, where the product is designed to allow recovery from exceptional events without intervention by         technical support staff
--Hardware replacement or upgrade planning, where the product is designed to allow efficient hardware upgrades with minimal     computer system downtime (e.g., hotswap components.)
+-Help desk notification of exceptional events (e.g., by electronic mail or by sending text to a pager).
+
+-Network monitoring.
+
+-Documentation.
+
+-Event logging / Tracing (software).
+
+-Logging of program state, such as.
+
+   -Execution path and/or local and global variables.
+   
+   -Procedure entry and exit, optionally with incoming and return variable values (see: subroutine).
+   
+   -Exception block entry, optionally with local state (see: exception handling).
+   
+-Software upgrade.
+
+-Graceful degradation, where the product is designed to allow recovery from exceptional events without intervention by         technical support staff.
+
+-Hardware replacement or upgrade planning, where the product is designed to allow efficient hardware upgrades with minimal     computer system downtime (e.g., hotswap components).
 
 ##### 3.3.5 Implementation
 
