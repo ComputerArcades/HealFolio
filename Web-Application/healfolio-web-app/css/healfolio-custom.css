@@ -152,18 +152,18 @@ button{
     margin-top: -4.5px;
 }
 
-
-
-
-
-
-
-
-
-
+/* Pre-Loading-Spinner
+======================================================*/
+.pre-loading-spinner {
+    padding-top: 80%;
+}
 
 
 /*Login Page */
+.login-form-box {
+    margin-top: 40%;
+    padding: 5%;
+}
 .page-content{
     margin-top: 100px;
 }
@@ -172,5 +172,5 @@ button{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .thumbnail {
-    padding: 5%;
+    /*padding: 5%;*/
 }

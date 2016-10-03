@@ -1,4 +1,14 @@
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-5 text-center">
+            <div ng-hide="user_status" class="pre-loading-spinner">
+                <span><i class="fa fa-spinner fa-3x fa-spin"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
+
     <div ng-show="user_auth.account_type=='doctor'">
         <div class="container-fluid">
             <div class="row">
