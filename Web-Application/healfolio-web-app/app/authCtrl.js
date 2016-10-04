@@ -2,7 +2,7 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
 
     $scope.login = {};
     $scope.login = {email:'',password:''};
-    $scope.hide_navbar = true;
+    $rootScope.hide_navbar = true;
 
 
     $scope.Auth = $firebaseAuth();
@@ -15,7 +15,7 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
         )
             .then(function(user) {
                 // Success callback
-                $rootScope.authenticated = true;
+                $rootScope.hide_navbar = false;
                 $rootScope.displayName = user.displayName;
                 $location.path("/");
 //
