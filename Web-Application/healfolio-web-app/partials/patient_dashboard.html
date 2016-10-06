@@ -19,7 +19,8 @@
             <h3>{{patient.last_name +", "+ patient.first_name}} </h3>
             <h4>Id Num: {{patient.$id}}</h4>
             <a class="btn btn-success" href="" role="button">New Diagnosis</a>
-            <a class="btn btn-primary" href="" role="button">View Patient Information</a>
+            <a class="btn btn-primary" href="#/patient_info/{{patient.$id}}" role="button">View Patient Information</a>
+			<a class="btn btn-primary" href="" role="button">View Patient Medical History</a>
 
         </div>
     </div>

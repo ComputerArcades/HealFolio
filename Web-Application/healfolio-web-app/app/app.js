@@ -56,8 +56,13 @@ app.config(['$routeProvider',
                 title: 'Sign Up',
                 templateUrl: 'partials/signup.html',
                 controller: 'authCtrl'
-            })
-            .otherwise({
+            }).
+			when('/patient_info/:patientId',{
+				title: 'Patient information',
+				templateUrl: 'partials/patient_info.html',
+				controller: 'patientsDashboardCtrl'
+			}).
+            otherwise({
                 redirectTo: '/'
             });
     }]);
