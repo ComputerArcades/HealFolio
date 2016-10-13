@@ -80,6 +80,14 @@ app.controller('patientsDashboardCtrl', function ($scope, $firebaseArray, $fireb
             console.log(error);
         });
 
+
+    //Javascript tag handling on patients dashboard
+    $('#myTabs a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+
 });
 
 app.controller('patientDoctorRequestsCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {

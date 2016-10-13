@@ -1,5 +1,7 @@
 <div class="container-fluid">
     <div class="row">
+
+        <!--FIX: This left hand side-bar may not be visible -->
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li ><a href="#/">Dashboard <span class="sr-only">(current)</span></a></li>
@@ -18,9 +20,30 @@
 
             <h3>{{patient.last_name +", "+ patient.first_name}} </h3>
             <h4>Id Num: {{patient.$id}}</h4>
-            <a class="btn btn-success" href="" role="button">New Diagnosis</a>
             <a class="btn btn-primary" href="#/patient_info/{{patient.$id}}" role="button">View Patient Information</a>
 			<a class="btn btn-primary" href="" role="button">View Patient Medical History</a>
+
+            </br>
+            </br>
+
+            <div>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist" id="myTabs">
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Diagnosis</a></li>
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Prescriptions</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <a class="btn btn-success" href="" role="button">New Diagnosis</a>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="profile">Profile info...</div>
+                </div>
+
+            </div>
+
 
         </div>
     </div>
