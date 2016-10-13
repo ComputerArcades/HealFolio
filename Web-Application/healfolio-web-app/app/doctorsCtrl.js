@@ -59,6 +59,31 @@ app.controller('doctorsCtrl',function($scope, $rootScope, $firebaseAuth, $fireba
 });
 
 
+app.controller('addDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth, $firebaseArray, $routeParams, $location){
+    $scope.diagnosis_info = {};
+    $scope.diagnosis_info = {title:'',notes:''};
+
+    $scope.temp = new Date().getTime();
+    console.log(new Date($scope.temp));
+
+    $scope.newDiagnosis = function(){
+
+        var database = firebase.database();
+
+        //Add the new Diagnosis to firebase
+        $scope.date_time = new Date().getTime();  //Retreiving the time in a universal format to store with firebase
+        database.ref('diagnosis/' + $routeParams.patientId + '/'+ $scope.date_time).set({
+            title: $scope.diagnosis_info.title,
+            notes: $scope.diagnosis_info.notes
+        });
+
+        $location.path('#/');
+
+    }
+
+});
+
+
 app.controller("addPatientCtrl", function($scope, $rootScope, $firebaseArray, $location, $routeParams) {
 
     var ref = firebase.database().ref().child("patients");
