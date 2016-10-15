@@ -90,37 +90,50 @@ app.controller('patientsDashboardCtrl', function ($scope, $firebaseArray, $fireb
     //Display Diagnosis Records
     $scope.diagnosis = [];
 
-    var ref_diag = firebase.database().ref().child("diagnosis/"+$routeParams.patientId);
+    var ref_diag = firebase.database().ref().child("diagnosis");
+//    var ref_diag = firebase.database().ref().child("diagnosis/" + $routeParams.patientId);
 
     var diag_info = $firebaseArray(ref_diag);
 
+    $scope.patient_diag = {};
     diag_info.$loaded()
         .then(function(){
+//            var t_id = 1476505305171;
+            $scope.patient_diag = diag_info.$getRecord($routeParams.patientId);
+//            $scope.diagnosis = diag_info.$getRecord(t_id);
+//            console.log(diag_info.$getRecord($routeParams.patientId));
 
-//            console.log(diag_info);
-            for (var timestamp_id in diag_info){
-                if(!diag_info.hasOwnProperty(timestamp_id)){
-                    continue;
-                }
-                //Add record to Array
-//                $scope.diagnosis.push(diag)
-                $scope.diagnosis.push(timestamp_id);
-//                console.log(timestamp_id);
+//            for (var temp in $scope.patient_diag){
+//                if (!$scope.patient_diag.hasOwnProperty){
+//                    continue;
+//                }
+//                console.log(temp);
+//            }
 
-            }
-            console.log($scope.diagnosis);
+
+//            console.log($scope.diagnosis[t_id]);
+//
+//            for (var timestamp_id in diag_info){
+//                if(!diag_info.hasOwnProperty(timestamp_id)){
+//                    continue;
+//                }
+//                //Add record to Array
+//                console.log(diag_info.$getRecord(timestamp_id));
+////                $scope.diagnosis.push(diag_info.$getRecord(timestamp_id));
+//
+//            }
 
 //            console.log(diag_info.$getRecord($routeParams.patientId));
+//            console.log($scope.diagnosis);
         })
         .catch(function(error){
             console.log(error);
         });
     $scope.columns = [
         {text:"Date",predicate:"id_num",sortable:true,dataType:"number"},
-        {text:"First Name",predicate:"first_name",sortable:true},
-        {text:"Last Name",predicate:"lastname",sortable:true},
-        {text:"Date of Birth",predicate:"date_of_birth",sortable:true,dataType:"number"},
-        {text:"Gender",predicate:"gender",sortable:true},
+        {text:"Title/Summary",predicate:"title",sortable:true},
+        {text:"Practice",predicate:"practice_name",sortable:true},
+        {text:"Doctor",predicate:"doctor_name",sortable:true},
         {text:"Action",predicate:"",sortable:false}
     ];
 

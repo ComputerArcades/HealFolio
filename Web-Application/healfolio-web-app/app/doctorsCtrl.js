@@ -27,18 +27,16 @@ app.controller('doctorsCtrl',function($scope, $rootScope, $firebaseAuth, $fireba
                 .then(function(){
 //                    console.log(patient_info.$getRecord(patient_id_num));
 
-                    //iterating over an object in javascript, you need to use the ".hasOwnProperty" attribute
+                    //iterating over an object in javascript, you need to the ".hasOwnProperty" attribute
                     for (var patient_id_num in $scope.doctor.patients) {
                         if (!$scope.doctor.patients.hasOwnProperty(patient_id_num)) {
                             //The current property is not a direct property of $scope.doctor.patients
                             continue;
                         }
-                        console.log(patient_id_num);
                         //Add the record to the $scope.patients array
                         $scope.patients.push(patient_info.$getRecord(patient_id_num));
                     }
-
-
+//                    console.log($scope.patients[0]);
                 })
                 .catch(function(error){
                     console.log(error);
@@ -82,20 +80,42 @@ app.controller('addDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth, $f
 
 
     $scope.newDiagnosis = function(){
-
-        var database = firebase.database();
-        //Add the new Diagnosis to firebase
         $scope.date_time = new Date().getTime();  //Retreiving the time in a universal format to store with firebase
-        database.ref('diagnosis/' + $routeParams.patientId + '/'+ $scope.date_time).set({
+
+        var ref = firebase.database().ref().child('diagnosis/' + $routeParams.patientId);
+        var diag_info = $firebaseArray(ref);
+        diag_info.$add({
+            date_time: $scope.date_time,
             practice_name: $scope.doctor.practice_name,
             practice_number: $scope.doctor.practice_number,
             doctor_id: $rootScope.user_auth.id_num,
             doctor_name: $rootScope.displayName,
             title: $scope.diagnosis_info.title,
             notes: $scope.diagnosis_info.notes
-        });
+        })
+            .then(function(data) {
+//                console.log("added record with id " + id);
+                $location.path('#/patient_dashboard/'+$routeParams.patientId);
+            })
+            .catch(function(error){
+                console.log(error);
+            });
 
-        $location.path('#/patient_dashboard/'+$routeParams.patientId);
+
+//        var database = firebase.database();
+//        //Add the new Diagnosis to firebase
+//        $scope.date_time = new Date().getTime();  //Retreiving the time in a universal format to store with firebase
+//        database.ref('diagnosis/' + $routeParams.patientId + '/'+ $scope.date_time).set({
+//            date_time: $scope.date_time,
+//            practice_name: $scope.doctor.practice_name,
+//            practice_number: $scope.doctor.practice_number,
+//            doctor_id: $rootScope.user_auth.id_num,
+//            doctor_name: $rootScope.displayName,
+//            title: $scope.diagnosis_info.title,
+//            notes: $scope.diagnosis_info.notes
+//        });
+
+
     }
 
 });

@@ -35,7 +35,7 @@
                 <div class="tab-content">
 
                     <!-- Diagnosis Content -->
-                    <!--<div role="tabpanel" class="tab-pane active" id="home">-->
+                    <div role="tabpanel" class="tab-pane active" id="home">
                         <a class="btn btn-success" href="#/doc_add_diagnosis/{{patient.$id}}" role="button">New Diagnosis</a>
                         <!--<div class="table-responsive">-->
                             <!--<div class="panel panel-primary">-->
@@ -43,7 +43,8 @@
                                     <!--<div class="sw-search" >-->
                                         <!--<div class="nav-search" id="nav-search">-->
                                             <!--Filter: <span class="input-icon">-->
-                                <!--<input placeholder="Filter diagnosis list ..." class="nav-search-input" ng-model="filterDiagnosis" ng-change="resetLimit();"  autocomplete="off" type="text" style="width:300px;" focus>-->
+                                <!--<!--<input placeholder="Filter diagnosis list ..." class="nav-search-input" ng-model="filterDiagnosis" ng-change="resetLimit();"  autocomplete="off" type="text" style="width:300px;" focus>-->-->
+                                <!--<input placeholder="Filter diagnosis list ..." class="nav-search-input" autocomplete="off" type="text" style="width:300px;" focus>-->
                                 <!--<i class="search-icon fa fa-search nav-search-icon"></i>-->
                             <!--</span>-->
                                         <!--</div>-->
@@ -56,12 +57,13 @@
 
                                         <!--<tr><th ng-repeat="diag in columns">{{diag.text}}</th></tr>-->
 
-                                        <!--<tr ng-repeat="diag in diagnosis | filter:filterDiagnosis | orderBy:'id'" id="{{p.id_num}}" animate-on-change='p.age' ng-animate="'animate'">-->
-                                            <!--<td><a href="#/patient_dashboard/{{p.$id}}">{{p.$id}}</a></td><td>{{p.first_name}}</td><td>{{p.last_name}}</td><td>{{p.date_of_birth}}</td><td>{{p.gender}}</td>-->
+                                        <!--<!--<tr ng-repeat="diag in diagnosis | filter:filterDiagnosis | orderBy:'id'" id="{{p.id_num}}" animate-on-change='p.age' ng-animate="'animate'">-->-->
+                                        <!--<tr ng-repeat="diag in diagnosis" id="{{p.id_num}}" animate-on-change='p.age' ng-animate="'animate'">-->
+                                            <!--<td><a href="#/patient_dashboard/{{diag.$id}}">{{diag.date_time}}</a></td><td>{{diag.title}}</td><td>{{diag.practice_name}}</td><td>{{diag.doctor_name}}</td>-->
                                             <!--<td style="width:100px">-->
                                                 <!--<div class="btn-group">-->
-                                                    <!--<button type="button" class="btn btn-default fa fa-edit" ng-click="open(p);"></button>-->
-                                                    <!--<button type="button" class="btn btn-danger fa fa-trash-o" ng-click="patients.$remove(p)"></button>-->
+                                                    <!--<button type="button" class="btn btn-default fa fa-edit" ng-click="open(diag);"></button>-->
+                                                    <!--<button type="button" class="btn btn-danger fa fa-trash-o" ng-click="patients.$remove(diag)"></button>-->
                                                 <!--</div>-->
                                             <!--</td>-->
                                         <!--</tr>-->
@@ -69,7 +71,7 @@
                                 <!--</div>-->
                             <!--</div>-->
                         <!--</div>-->
-                    <!--</div>-->
+                    </div>
 
                     <!-- Prescriptions Content -->
                     <div role="tabpanel" class="tab-pane" id="profile">Prescriptions</div>
