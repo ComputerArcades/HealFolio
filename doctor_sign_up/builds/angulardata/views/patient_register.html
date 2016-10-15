@@ -1,0 +1,189 @@
+<section class="card register">
+  <form name="myform"
+    ng-submit="register()"
+    novalidate>
+
+    <div class="textintro">
+      <h1>Register New Patient</h1>
+      <h2>To be able to give certain practices access to your personal information</h2>
+      <p class="message" ng-show="message">{{ message }}</p>
+    </div>
+
+    <br> </br>
+
+    <p>Personal Information</p>
+    <fieldset>
+      <input type="text" name="firstname" placeholder="First Name"
+      ng-model="user.firstname" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.firstname.$invalid && myform.firstname.$touched">
+      First name required</p>
+
+      <input type="text" name="lastname" placeholder="Last Name"
+      ng-model="user.lastname" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.lastname.$invalid && myform.lastname.$touched">
+      Last name required</p>
+
+      <input type="email" name="email" placeholder="Email"
+      ng-model="user.email" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.email.$invalid && myform.email.$touched">
+      Must be a valid email</p>
+
+      <input type="password" name="password" placeholder="Password"
+      ng-model="user.password" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.password.$invalid && myform.password.$touched">
+      Password is required</p>
+      
+      <input type="number" name="id_number" placeholder="ID Number"
+      ng-model="user.id_number" ng-required="true" ng-maxlength="13" ng-minlength="13">
+      <p class="error validationerror"
+      ng-show="myform.id_number.$invalid && myform.id_number.$touched">
+      Please type in correct ID number</p>
+
+      <input type="text" name="race" placeholder="Race"
+      ng-model="user.race" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.race.$invalid && myform.race.$touched">
+      Race is required</p>
+
+      <input type="text" name="gender" placeholder="Male/Female"
+      ng-model="user.gender" ng-required="true" >
+      <p class="error validationerror"
+      ng-show="myform.gender.$invalid && myform.gender.$touched">
+      Gender is required</p>
+
+      <input type="" name="allergies" placeholder="Allergies"
+      ng-model="user.allergies" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.allergies.$invalid && myform.allergies.$touched">
+      Allergies is required eg. Penicillin</p>
+
+    </fieldset>
+
+    <p>Contact Information</p>
+    <fieldset>
+      <input type="text" name="address1" placeholder="Address Line one "
+      ng-model="user.address1" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.address1.$invalid && myform.address3.$touched">
+      Street name is required eg. 42 Sunshine Ave</p>
+
+      <input type="text" name="address2" placeholder="Address Line two "
+      ng-model="user.address2" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.address2.$invalid && myform.address2.$touched">
+      Surbub name is required eg. Sandton</p>
+
+
+      <input type="text" name="address3" placeholder="Address Line three "
+      ng-model="user.address3" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.address3.$invalid && myform.address3.$touched">
+      City name is required eg. Johannesburg</p>
+
+      <input type="number" name="postal_code" placeholder="Postal code"
+      ng-model="user.postal_code" ng-required="true" ng-maxlength="4" ng-minlength="4">
+      <p class="error validationerror"
+      ng-show="myform.postal_code.$invalid && myform.postal_code.$touched">
+      Postal code required eg. 4321</p>
+
+      <input type="number" name="contact_number" placeholder="Contact Number"
+      ng-model="user.contact_number" ng-required="true" ng-maxlength="10" ng-minlength="10">
+      <p class="error validationerror"
+      ng-show="myform.contact_number.$invalid && myform.contact_number.$touched">
+      Contact Number is required e.g 0824888894</p>
+
+    </fieldset>
+
+
+    <p>Emergency Contact Person</p>
+    <fieldset>
+
+      <input type="text" name="relationship" placeholder="Relationship"
+      ng-model="user.relationship" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.relationship.$invalid && myform.relationship.$touched">
+      First name required eg. Cousin</p>
+
+      <input type="text" name="emergency_contact_firstname" placeholder="First Name"
+      ng-model="user.emergency_contact_firstname" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.emergency_contact_firstname.$invalid && myform.emergency_contact_firstname.$touched">
+      First name required</p>
+
+      <input type="text" name="emergency_contact_lastname" placeholder="Last Name"
+      ng-model="user.emergency_contact_lastname" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.emergency_contact_lastname.$invalid && myform.emergency_contact_lastname.$touched">
+      Last name required</p>
+
+      <input type="email" name="emergency_contact_email" placeholder="Email"
+      ng-model="user.emergency_contact_email" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.emergency_contact_email.$invalid && myform.emergency_contact_email.$touched">
+      Must be a valid email</p>
+
+      <input type="number" name="emergency_contact_contact_number" placeholder="Contact Number"
+      ng-model="user.emergency_contact_contact_number" ng-required="true" ng-maxlength="10" ng-minlength="10">
+      <p class="error validationerror"
+      ng-show="myform.emergency_contact_contact_number.$invalid && myform.emergency_contact_contact_number.$touched">
+      Contact Number is required e.g 0824888894</p>
+
+    </fieldset>
+
+    <p>Medical Aid Information</p>
+    <fieldset>
+      <input type="text" name="medical_aid_provider" placeholder="Medical aid provider"
+      ng-model="user.medical_aid_provider" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.medical_aid_provider.$invalid && myform.medical_aid_provider.$touched">
+      Medical aid Provider required eg. Discovery</p>
+
+      <input type="text" name="medical_aid_scheme" placeholder="Medical aid scheme"
+      ng-model="user.medical_aid_scheme" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.medical_aid_scheme.$invalid && myform.medical_aid_scheme.$touched">
+      Medical aid scheme required eg. Key Care Classic</p>
+
+      <input type="number" name="medical_aid_number" placeholder="Medical Aid Number"
+      ng-model="user.medical_aid_number" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.medical_aid_number.$invalid && myform.medical_aid_number.$touched">
+      Valid Medical aid number required</p>
+
+      <input type="number" name="main_member_id_number" placeholder="Main Member ID Number"
+      ng-model="user.main_member_id_number" ng-required="true" ng-maxlength="13" ng-minlength="13">
+      <p class="error validationerror"
+      ng-show="myform.main_member_id_number.$invalid && myform.main_member_id_number.$touched">
+      Please type in correct ID number</p>
+
+      <input type="text" name="main_member_firstname" placeholder="Main memeber First Name"
+      ng-model="user.main_member_firstname" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.main_member_firstname.$invalid && myform.main_member_firstname.$touched">
+      First name required</p>
+
+      <input type="text" name="main_member_lastname" placeholder="Main memeber Last Name"
+      ng-model="user.main_member_lastname" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.main_member_lastname.$invalid && myform.main_member_lastname.$touched">
+      Last name required</p>
+
+      <input type="number" name="main_member_medical_aid_number" placeholder="Main Memmber Medical Aid Number"
+      ng-model="user.main_member_medical_aid_number" ng-required="true">
+      <p class="error validationerror"
+      ng-show="myform.main_member_medical_aid_number.$invalid && myform.main_member_medical_aid_number.$touched">
+      Main Member Medical aid number required</p>
+
+    </fieldset>
+
+
+
+    <button type="submit" class="btn"
+    ng-disabled="myform.$invalid">Add New Patient</button>
+    <p>or <a ng-href="#/login">login</a></p>
+  </form>
+</section>

@@ -1,5 +1,11 @@
+.DS_Store
+node_modules
+bower_components
+.tmp
+npm-debug.log
 *.txt
 *.log
 *.aux
 *.pdf
 *.synctex.gz
+*~
