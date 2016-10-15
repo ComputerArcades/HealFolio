@@ -33,9 +33,45 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="home">
+
+                    <!-- Diagnosis Content -->
+                    <!--<div role="tabpanel" class="tab-pane active" id="home">-->
                         <a class="btn btn-success" href="#/doc_add_diagnosis/{{patient.$id}}" role="button">New Diagnosis</a>
-                    </div>
+                        <!--<div class="table-responsive">-->
+                            <!--<div class="panel panel-primary">-->
+                                <!--<div class="panel-heading">History-->
+                                    <!--<div class="sw-search" >-->
+                                        <!--<div class="nav-search" id="nav-search">-->
+                                            <!--Filter: <span class="input-icon">-->
+                                <!--<input placeholder="Filter diagnosis list ..." class="nav-search-input" ng-model="filterDiagnosis" ng-change="resetLimit();"  autocomplete="off" type="text" style="width:300px;" focus>-->
+                                <!--<i class="search-icon fa fa-search nav-search-icon"></i>-->
+                            <!--</span>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="panel-body">-->
+                                    <!--<table class="table table-striped">-->
+                                        <!--<tr ng-show="diagnosis.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>-->
+                                        <!--<tr ng-hide="diagnosis.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>-->
+
+                                        <!--<tr><th ng-repeat="diag in columns">{{diag.text}}</th></tr>-->
+
+                                        <!--<tr ng-repeat="diag in diagnosis | filter:filterDiagnosis | orderBy:'id'" id="{{p.id_num}}" animate-on-change='p.age' ng-animate="'animate'">-->
+                                            <!--<td><a href="#/patient_dashboard/{{p.$id}}">{{p.$id}}</a></td><td>{{p.first_name}}</td><td>{{p.last_name}}</td><td>{{p.date_of_birth}}</td><td>{{p.gender}}</td>-->
+                                            <!--<td style="width:100px">-->
+                                                <!--<div class="btn-group">-->
+                                                    <!--<button type="button" class="btn btn-default fa fa-edit" ng-click="open(p);"></button>-->
+                                                    <!--<button type="button" class="btn btn-danger fa fa-trash-o" ng-click="patients.$remove(p)"></button>-->
+                                                <!--</div>-->
+                                            <!--</td>-->
+                                        <!--</tr>-->
+                                    <!--</table>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!-- Prescriptions Content -->
                     <div role="tabpanel" class="tab-pane" id="profile">Prescriptions</div>
                 </div>
             </div>

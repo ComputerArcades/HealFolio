@@ -12,6 +12,7 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
         }
     });
 
+    //Retrieve the user that has been authenticated
     var user = firebase.auth().currentUser;
     $rootScope.user_auth = {};
     $scope.user_status = false;

@@ -66,10 +66,10 @@ app.controller('patientsDashboardCtrl', function ($scope, $firebaseArray, $fireb
 //    var ref = firebase.database().ref().child("patients/"+$routeParams.patientId);
 //    $scope.patient = $firebaseObject(ref.child($routeParams.patientId));
 
-    var ref = firebase.database().ref().child("patients");
+    var ref_patient = firebase.database().ref().child("patients");
     //  create a synchronized array
     //  FIX: Figure out how to maybe just retrieve a single record here to the client, this here retrieves the entire patients object
-    var patient_info = $firebaseArray(ref);
+    var patient_info = $firebaseArray(ref_patient);
 
     //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
     patient_info.$loaded()
@@ -86,6 +86,43 @@ app.controller('patientsDashboardCtrl', function ($scope, $firebaseArray, $fireb
         e.preventDefault();
         $(this).tab('show');
     });
+
+    //Display Diagnosis Records
+    $scope.diagnosis = [];
+
+    var ref_diag = firebase.database().ref().child("diagnosis/"+$routeParams.patientId);
+
+    var diag_info = $firebaseArray(ref_diag);
+
+    diag_info.$loaded()
+        .then(function(){
+
+//            console.log(diag_info);
+            for (var timestamp_id in diag_info){
+                if(!diag_info.hasOwnProperty(timestamp_id)){
+                    continue;
+                }
+                //Add record to Array
+//                $scope.diagnosis.push(diag)
+                $scope.diagnosis.push(timestamp_id);
+//                console.log(timestamp_id);
+
+            }
+            console.log($scope.diagnosis);
+
+//            console.log(diag_info.$getRecord($routeParams.patientId));
+        })
+        .catch(function(error){
+            console.log(error);
+        });
+    $scope.columns = [
+        {text:"Date",predicate:"id_num",sortable:true,dataType:"number"},
+        {text:"First Name",predicate:"first_name",sortable:true},
+        {text:"Last Name",predicate:"lastname",sortable:true},
+        {text:"Date of Birth",predicate:"date_of_birth",sortable:true,dataType:"number"},
+        {text:"Gender",predicate:"gender",sortable:true},
+        {text:"Action",predicate:"",sortable:false}
+    ];
 
 
 });

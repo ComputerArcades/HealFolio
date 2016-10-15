@@ -16,6 +16,10 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="page-header">New Diagnosis</h1>
             <div class="col-md-6">
+                <p>Practice Name: {{doctor.practice_name}}</p>
+                <p>Practice Number: {{doctor.practice_number}}</p>
+                <p>Doctor Id: {{user_auth.id_num}}</p>
+                <p>Doctor Name: {{displayName}}</p>
                 <form ng-submit="newDiagnosis()">
                     <div class="form-group">
                         <input type="text" class="form-control" ng-model="diagnosis_info.title" placeholder="Title"/>
