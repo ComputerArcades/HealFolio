@@ -18,45 +18,33 @@ HealFolio
 Summary
 -------
 
-The results of the requirements elicitation and the analysis activities are docu-
-mented in the Requirements Analysis Document (RAD). This document com-
-pletely describes the system in terms of functional and nonfunctional require-
-ments and serves as a contractual basis between the customer and the developer.
-The RAD must be written in the language of the customer’s domain of busi-
-ness/expertise. Under no circumstances should any "computerese" terminology
-creep into this document.
+Designing software application going from a customer statement of work to user stories or use cases and all the way through to a completed product. Using the Scrum methodology to achieve this whilst applying aspects of software architecture, design
+paradigms and design patterns.
 
 Audience
 --------
 
-The audience for the RAD includes the customer, the users, the project man-
-agement, the system analysts (i.e., the developers who participate in the re-
-quirements), and the system designers (i.e., the developers who participate in
-the system design). The first part of the document, including use cases and
-nonfunctional requirements, is written during requirements elicitation.  The
-formalization of the specification in terms of object models is written during
-analysis. We use an example template for a RAD introduced in the book.
+The application will interact with people is the medical field, private practices, where doctors would be able to use relevant information from not only their past experience but a collective of as many practitioners that use the application. Where previous they had a to look a hard copy of patient and similar cases that would might be overlooked or very time consuming will now be able to call various report to there device from a vast database. The doctors and receptionists will be the users and operators of the application.
+
+The team Level Seven Crew are the acquirers, owners, developers, builders and testers of the application HealFolio. Dr. Terence van Zyl is a person of interest and will be evaluating as well as consult on the progress the team makes.
 
 # 1 Introduction
 
-The first section of the RAD is an Introduction. Its purpose is to provide a brief
-overview of the function of the system and the reasons for its development, its
-scope, and references to the development context (e.g., reference to the prob-
-lem statement written by the client, references to existing systems, feasibility
-studies). The introduction also includes the objectives and success criteria of
-the project.
+The team will be designing software (HealFolio) aimed at improving service delivery for all types of
+medical practitioners; specifically the filing system currently used by medical practitioners. This software
+will provide doctors with easier access to patient records and provide more security. It will also help
+them make more accurate diagnoses, provide better prescriptions and more as the software is further
+developed. Below is an outline of the problem and proposed solutions.
 
 ### 1.1 Purpose of the system
 
+Designing the application (HealFolio) aimed at improving service delivery for all types of medical practitioners; specifically the filing system currently used by medical practitioners. This software will provide doctors with easier access to patient records and provide more security. It will also help them make more accurate diagnoses, provide better prescriptions and more as the software is further developed. 
+
 ### 1.2 Scope of the system
 
+The team will be designing software (HealFolio) aimed at improving service delivery for all types of medical practitioners; specifically the filing system currently used by medical practitioners. This software will provide doctors with easier access to patient records and provide more security. It will also help them make more accurate diagnoses, provide better prescriptions and more as the software is further developed. 
+
 ### 1.3 Objectives and success criteria of the project
-
-### 1.4 Definitions, acronyms, and abbreviations
-
-### 1.5 References
-
-### 1.6 Overview
 
 # 2 Current system
 
@@ -74,7 +62,7 @@ of the new system.
 
 The overview presents a functional overview of the system.
 
-### 3.2 Functional requirements ("shall lists")
+### 3.2 Functional requirements
 
 Functional requirements describes the high-level functionality of the system.
 
@@ -86,18 +74,43 @@ Functional requirements describes the high-level functionality of the system.
 
 ### 3.3 Nonfunctional requirements
 
-Nonfunctional requirements describes user-level requirements that are not di-
-rectly related to functionality. This includes usability, reliability, performance,
-supportability, implementation, interface, operational, packaging, and legal re-
-quirements.
+Nonfunctional requirements describes user-level requirements that are not directly related to functionality. This includes usability, reliability, performance, supportability, implementation, interface, operational, packaging, and legal requirements.
 
 ##### 3.3.1 Usability
 
+Usability is the ease of use and learnability of a human-made object such as a tool or device. In software engineering, usability is the degree to which a software can be used by specified consumers to achieve quantified objectives with effectiveness, efficiency, and satisfaction in a quantified context of use.
+
 ##### 3.3.2 Reliability
+
+Reliability emphasizes dependability in the lifecycle management of a product. Dependability, or reliability, describes the ability of a system or component to function under stated conditions for a specified period of time. Reliability may also describe the ability to function at a specified moment or interval of time (Availability).
 
 ##### 3.3.3 Performance
 
+Computer performance is the amount of work accomplished by a computer system . Depending on the context, high computer performance may involve one or more of the following:
+* Short response time for a given piece of work.
+* High throughput (rate of processing work).
+* Low utilization of computing resource(s).
+* High availability of the computing system or application.
+* Fast (or highly compact) data compression and decompression.
+* High bandwidth.
+* Short data transmission time
+
 ##### 3.3.4 Supportability
+
+In software engineering and hardware engineering, serviceability (also known as supportability,) is one of the -ilities or aspects (from IBM's RAS(U) (Reliability, Availability, Serviceability, and Usability)). It refers to the ability of technical support personnel to install, configure, and monitor computer products, identify exceptions or faults, debug or isolate faults to root cause analysis, and provide hardware or software maintenance in pursuit of solving a problem and restoring the product into service. Incorporating serviceability facilitating features typically results in more efficient product maintenance and reduces operational costs and maintains business continuity.
+
+Examples of features that facilitate serviceability include:
+* Help desk notification of exceptional events (e.g., by electronic mail or by sending text to a pager).
+* Network monitoring.
+* Documentation.
+* Event logging / Tracing (software).
+* Logging of program state, such as.
+⋅⋅⋅* Execution path and/or local and global variables.
+⋅⋅⋅* Procedure entry and exit, optionally with incoming and return variable values (see: subroutine).
+⋅⋅⋅* Exception block entry, optionally with local state (see: exception handling).
+⋅⋅⋅* Software upgrade.
+* Graceful degradation, where the product is designed to allow recovery from exceptional events without intervention by       ⋅⋅⋅technical support staff.
+*Hardware replacement or upgrade planning, where the product is designed to allow efficient hardware upgrades with minimal    ⋅⋅⋅computer system downtime (e.g., hotswap components).
 
 ##### 3.3.5 Implementation
 
@@ -106,6 +119,8 @@ quirements.
 ##### 3.3.7 Packaging
 
 ##### 3.3.8 Legal
+
+In proprietary software, an end-user license agreement (EULA) or software license agreement is the contract between the licensor and purchaser, establishing the purchaser's right to use the software. The license may define ways under which the copy can be used, in addition to the automatic rights of the buyer including the first sale doctrine and 17 U.S.C. § 117 (freedom to use, archive, re-sale, and backup).
 
 ### 3.4 System models
 

@@ -2,9 +2,9 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
 
     $scope.login = {};
     $scope.login = {email:'',password:''};
-    $rootScope.authenticated = false;
+    $rootScope.hide_navbar = true;
 
-//    console.log(firebase.User);
+
     $scope.Auth = $firebaseAuth();
 
     $scope.doLogin = function (paramUser) {
@@ -15,8 +15,8 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
         )
             .then(function(user) {
                 // Success callback
-//                console.log('Authentication successful');
-                $rootScope.authenticated = true;
+                $rootScope.hide_navbar = false;
+                $rootScope.displayName = user.displayName;
                 $location.path("/");
 //
             }, function(error) {
@@ -54,28 +54,107 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
 
     };
 
+    $scope.select_doctor = function(){
+        $location.path("/doctor_signup");
+    };
+    $scope.select_patient = function(){
+        $location.path("/patient_signup");
+    };
+
+
+    //Sign up a new doctor
     $scope.doctor = {};
     $scope.doctor = {first_name:'',last_name:'',email:'',password:'',id_num:'',practice_number:'',practice_name:'',cell_phone:''};
-    $scope.doctorSignUp = function(paramDoctor){
-        $scope.doctor_email = "user1@healfolio.com";
-        $scope.doctor_password = "healfolio";
+    $scope.doctorSignUp = function(){
+//        $scope.doctor_email = "user1@healfolio.com";
+//        $scope.doctor_password = "healfolio";
 
-//        firebase.auth().createUserWithEmailAndPassword($scope.doctor_email, $scope.doctor_password).catch(function(error) {
-//            // Handle Errors here.
-//            console.log("Error Code: " + error.code);
-//            console.log("Error Message: " + error.message);
-//        });
-
-        firebase.auth().createUserWithEmailAndPassword($scope.doctor_email, $scope.doctor_password)
+        //Create a new user into the firebase authentication database object
+        firebase.auth().createUserWithEmailAndPassword($scope.doctor.email, $scope.doctor.password)
             .then(function(user){
+
+                //Update the users display name to their first name in the firebase authentication database object
+                user.updateProfile({
+                   displayName: $scope.doctor.first_name
+                }).then(function() {
+                    // Update successful.
+                }, function(error) {
+                    // An error happened.
+                });
+
+                var database = firebase.database();
+
+                //Add the new user (user id + account type) to the firebase auth db object
+                database.ref('users/'+user.uid).set({
+                    id_num: $scope.doctor.id_num,
+                    account_type: 'doctor'
+                });
+
+                //Add the new users' basic details to their respective db object
+                database.ref('doctors/'+$scope.doctor.id_num).set({
+                    first_name: $scope.doctor.first_name,
+                    last_name: $scope.doctor.last_name,
+                    email: user.email,
+                    cell_phone: $scope.doctor.cell_phone,
+                    practice_number: $scope.doctor.practice_number,
+                    practice_name: $scope.doctor.practice_name
+
+                });
+
                 console.log("Doctor added successfully!");
-                console.log(user);
+                $rootScope.authenticated = true;
+                $location.path("/");
+
             },function(error){
                 //Failure callback
                 console.log(error);
             });
 
 
+    };
+
+    $scope.patient = {};
+    $scope.patient = {id_num:'',first_name:'',last_name:'',email:'',password:'',date_of_birth:'',gender:''};
+
+    $scope.patientSignUp = function(){
+        //Create a new user into the firebase authentication database object
+        firebase.auth().createUserWithEmailAndPassword($scope.patient.email,$scope.patient.password)
+            .then(function(user){
+
+                //Update the users display name to their first name in the firebase authentication database object
+                user.updateProfile({
+                    displayName: $scope.patient.first_name
+                }).then(function() {
+                    // Update successful.
+                }, function(error) {
+                    // An error happened.
+                });
+
+                var database = firebase.database();
+
+                //Add the new user (user id + account type) to the firebase auth db object
+                database.ref('users/'+user.uid).set({
+                    id_num: $scope.patient.id_num,
+                    account_type: 'patient'
+                });
+
+                //Add the new users' basic details to their respective db object
+                database.ref('patients/'+$scope.patient.id_num).set({
+                    first_name: $scope.patient.first_name,
+                    last_name: $scope.patient.last_name,
+                    date_of_birth: $scope.patient.date_of_birth,
+                    gender: $scope.patient.gender,
+                    email: $scope.patient.email,
+                    cell_phone: $scope.patient.cell_phone
+                });
+
+                console.log("Patient added successfully!");
+                $rootScope.authenticated = true;
+                $location.path("/");
+            },function(error){
+                //Failure callback
+                console.log(error);
+            });
     };
 
 

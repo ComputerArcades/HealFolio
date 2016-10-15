@@ -12,15 +12,25 @@ app.config(['$routeProvider',
                 controller: 'dashboardCtrl',
                 role: 0
             }).
-            when('/patients',{
+            when('/patients/:doctorId',{
                 title: 'Patients',
                 templateUrl: 'partials/patients.html',
+                controller: 'doctorsCtrl'
+            }).
+            when('/doctors/:patientId',{
+                title: 'Doctors',
+                templateUrl: 'partials/patient_doctors.html',
                 controller: 'patientsCtrl'
             }).
             when('/patient_dashboard/:patientId',{
                 title: 'Patient Dashboard',
                 templateUrl: 'partials/patient_dashboard.html',
                 controller: 'patientsDashboardCtrl'
+            }).
+            when('/patient_doctor_requests',{
+                title: 'Patient\'s Doctor Requests',
+                templateUrl: 'partials/patient_doctor_requests.html',
+                controller: 'patientDoctorRequestsCtrl'
             }).
             when('/addpatient',{
                 title:'Add a Patient',
@@ -32,6 +42,11 @@ app.config(['$routeProvider',
                 templateUrl:'partials/doctor_signup.html',
                 controller: 'authCtrl'
             }).
+            when('/patient_signup',{
+                title: 'Patient Sign UP',
+                templateUrl: 'partials/patient_signup.html',
+                controller: 'authCtrl'
+            }).
             when('/login', {
                 title: 'Login',
                 templateUrl: 'partials/login.html',
@@ -41,8 +56,13 @@ app.config(['$routeProvider',
                 title: 'Sign Up',
                 templateUrl: 'partials/signup.html',
                 controller: 'authCtrl'
-            })
-            .otherwise({
+            }).
+			when('/patient_info/:patientId',{
+				title: 'Patient information',
+				templateUrl: 'partials/patient_info.html',
+				controller: 'patientsDashboardCtrl'
+			}).
+            otherwise({
                 redirectTo: '/'
             });
     }]);

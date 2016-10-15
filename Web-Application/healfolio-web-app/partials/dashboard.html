@@ -1,43 +1,98 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#/">Healfolio</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/">Dashboard</a></li>
-                <li><a href="">Profile</a></li>
-                <li><a href="" ng-click="doLogout()">Logout</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <li class="active"><a href="">Dashboard <span class="sr-only">(current)</span></a></li>
-                <li><a href="#/patients">Patients</a></li>
-            </ul>
-            <!--<ul class="nav nav-sidebar">-->
-                <!--<li><a href="">Nav item</a></li>-->
-                <!--<li><a href="">Nav item again</a></li>-->
-                <!--<li><a href="">Another nav item</a></li>-->
-                <!--<li><a href="">More navigation</a></li>-->
-            <!--</ul>-->
-
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Dashboard</h1>
-
-            <h4>Some information, buttons or links for Doctor to have access to here.</h4>
+        <div class="col-md-2 col-md-offset-5 text-center">
+            <div ng-hide="user_status" class="pre-loading-spinner">
+                <span><i class="fa fa-spinner fa-3x fa-spin"></i></span>
+            </div>
         </div>
     </div>
 </div>
+
+    <div ng-show="user_auth.account_type=='doctor'">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ul class="nav nav-sidebar">
+                        <li class="active"><a href="">Dashboard <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#/patients/{{user_auth.id_num}}">Patients</a></li>
+                    </ul>
+                    <!--<ul class="nav nav-sidebar">-->
+                    <!--<li><a href="">Nav item</a></li>-->
+                    <!--<li><a href="">Nav item again</a></li>-->
+                    <!--<li><a href="">Another nav item</a></li>-->
+                    <!--<li><a href="">More navigation</a></li>-->
+                    <!--</ul>-->
+
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h1 class="page-header">Dashboard</h1>
+
+                    <h4>Some information, buttons or links for Doctor to have access to here.</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div ng-show="user_auth.account_type=='patient'">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ul class="nav nav-sidebar">
+                        <li class="active"><a href="">Dashboard <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#/doctors/{{user_auth.id_num}}">Doctors</a></li>
+                        <li><a href="#/patient_doctor_requests">Doctor Requests</a></li>
+                    </ul>
+                    <!--<ul class="nav nav-sidebar">-->
+                    <!--<li><a href="">Nav item</a></li>-->
+                    <!--<li><a href="">Nav item again</a></li>-->
+                    <!--<li><a href="">Another nav item</a></li>-->
+                    <!--<li><a href="">More navigation</a></li>-->
+                    <!--</ul>-->
+
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <h1 class="page-header">Dashboard</h1>
+
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <!--<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">-->
+                                        <!--Consultations-->
+                                    <!--</a>-->
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="true" aria-controls="collapseTwo">
+                                        Consultations
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    List showing recent consultations...
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="true" aria-controls="collapseTwo">
+                                        Prescriptions
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                   List showing recent prescriptions...
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+

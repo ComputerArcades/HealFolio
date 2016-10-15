@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li ><a href="#/">Dashboard <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="#/patients">Patients</a></li>
+            </ul>
+        </div>
+		
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+
+            <h3>{{patient.first_name +" "+ patient.last_name}} </h3>
+            <h4>Id Num: {{patient.$id}}</h4>
+			<div class="panel panel-primary">
+				<div class="panel-heading">Patient Information</div>
+				
+				<ul class="list-group">
+					<span class="label label-info">Date of birth</span>
+					<li class="list-group-item">{{patient.date_of_birth}}</li>
+					<span class="label label-info">Gender</span>
+					<li class="list-group-item">{{patient.gender}}</li>
+				</ul>
+				
+				<div style="height: 10px;"></div>	<!-- Cosmetic !-->
+			</div>
+			
+			<div class="panel panel-primary">
+				<div class="panel-heading">Patient Contact Details</div>
+				
+				<ul class="list-group">
+					<span class="label label-info">Email</span>
+					<li class="list-group-item">{{patient.email}}</li>
+					<span class="label label-info">Cellphone</span>
+					<li class="list-group-item">{{patient.cell_phone}}</li>
+				</ul>
+				<div style="height: 10px;"></div>	<!-- Cosmetic !-->
+			</div>
+
+
+        </div>
+    </div>
+</div>
