@@ -93,28 +93,32 @@ app.controller('addDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth, $f
             title: $scope.diagnosis_info.title,
             notes: $scope.diagnosis_info.notes
         })
-            .then(function(data) {
-//                console.log("added record with id " + id);
-                $location.path('#/patient_dashboard/'+$routeParams.patientId);
+            .then(function(diag_data) {
+
+                //Adding a prescription after the diagnosis has been added
+//                console.log("added record with id " + diag_data.key);
+                var presc_ref = firebase.database().ref().child('prescriptions/'+ $routeParams.patientId);
+                var presc_info = $firebaseArray(presc_ref);
+                presc_info.$add({
+                    date_time: $scope.date_time,
+                    diagnosis_id: diag_data.key,
+                    practice_name: $scope.doctor.practice_name,
+                    doctor_name: $rootScope.displayName,
+                    title: $scope.diagnosis_info.title,
+                    prescription: $scope.diagnosis_info.prescription
+                })
+                    .then(function(presc_data){
+                       //success callback
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    });
+                $location.path('/patient_dashboard/'+$routeParams.patientId);
+
             })
             .catch(function(error){
                 console.log(error);
             });
-
-
-//        var database = firebase.database();
-//        //Add the new Diagnosis to firebase
-//        $scope.date_time = new Date().getTime();  //Retreiving the time in a universal format to store with firebase
-//        database.ref('diagnosis/' + $routeParams.patientId + '/'+ $scope.date_time).set({
-//            date_time: $scope.date_time,
-//            practice_name: $scope.doctor.practice_name,
-//            practice_number: $scope.doctor.practice_number,
-//            doctor_id: $rootScope.user_auth.id_num,
-//            doctor_name: $rootScope.displayName,
-//            title: $scope.diagnosis_info.title,
-//            notes: $scope.diagnosis_info.notes
-//        });
-
 
     }
 

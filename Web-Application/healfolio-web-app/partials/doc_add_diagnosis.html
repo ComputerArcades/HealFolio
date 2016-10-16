@@ -27,7 +27,20 @@
                     <div class="form-group">
                         <textarea class="form-control" ng-model="diagnosis_info.notes" placeholder="Notes" ></textarea>
                     </div>
-                    <!--<button class="" type="submit">Add Patient</button>-->
+
+                    <div class="form-group">
+                        <input type="checkbox" id="prescription" data-toggle="collapse" data-target="#collapsePrescription" aria-expanded="true" aria-controls="collapsePrescription">
+                        <label for="prescription">Prescription</label>
+                    </div>
+                    <div class="collapse" id="collapsePrescription">
+                        <div class="well">
+                            <div class="form-group">
+                                <textarea class="form-control" ng-model="diagnosis_info.prescription" placeholder="Add a Prescription" ></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-success" >Save</button>
                     </div>
