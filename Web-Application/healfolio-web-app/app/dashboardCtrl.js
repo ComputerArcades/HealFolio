@@ -1,5 +1,10 @@
 app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
 
+    //Javascript tag handling on patients dashboard
+    $('#myTabs a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
 
 //    This code below will go on the app's Routing function
     firebase.auth().onAuthStateChanged(function(user) {
@@ -22,10 +27,75 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
         var ref = firebase.database().ref("users").child(user.uid);
         // return it as a synchronized object
         $rootScope.user_auth = $firebaseObject(ref);
-        $scope.user_auth.$loaded()
+        $rootScope.user_auth.$loaded()
             .then(function(){
                 //success callback
                 $scope.user_status = true;
+
+                //FIX THIS LATER
+                if($rootScope.user_auth.account_type == 'patient'){
+
+                    $scope.patient = {};
+
+//    var ref = firebase.database().ref().child("patients/"+$routeParams.patientId);
+//    $scope.patient = $firebaseObject(ref.child($routeParams.patientId));
+
+                    var ref_patient = firebase.database().ref().child("patients");
+                    //  create a synchronized array
+                    //  FIX: Figure out how to maybe just retrieve a single record here to the client, this here retrieves the entire patients object
+                    var patient_info = $firebaseArray(ref_patient);
+
+                    //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
+                    patient_info.$loaded()
+                        .then(function(){
+                            $scope.patient = patient_info.$getRecord($rootScope.user_auth.id_num);
+                        })
+                        .catch(function(error){
+                            console.log(error);
+                        });
+
+
+
+                    //Display Diagnosis Records
+                    $scope.diagnosis = [];
+
+//    var ref_diag = firebase.database().ref().child("diagnosis");
+                    var ref_diag = firebase.database().ref().child("diagnosis/" + $rootScope.user_auth.id_num);
+
+//    var diag_info = $firebaseArray(ref_diag);
+                    $scope.diagnosis = $firebaseArray(ref_diag);
+
+//    diag_info.$loaded()
+//        .then(function(){
+//            $scope.diagnosis = diag_info.$getRecord($routeParams.patientId);
+////
+//        })
+//        .catch(function(error){
+//            console.log(error);
+//        });
+
+                    $scope.diag_columns = [
+                        {text:"Date",predicate:"id_num",sortable:true},
+                        {text:"Title/Summary",predicate:"title",sortable:true},
+                        {text:"Practice",predicate:"practice_name",sortable:true},
+                        {text:"Doctor",predicate:"doctor_name",sortable:true}
+                    ];
+
+                    //Display Prescription Records
+                    $scope.prescriptions = [];
+                    var presc_ref = firebase.database().ref().child("prescriptions/" + $rootScope.user_auth.id_num);
+                    $scope.prescriptions = $firebaseArray(presc_ref);
+
+                    $scope.presc_columns = [
+                        {text:"Date",predicate:"id_num",sortable:true},
+                        {text:"Diagnosis Summary",predicate:"title",sortable:true},
+                        {text:"Practice",predicate:"practice_name",sortable:true},
+                        {text:"Doctor",predicate:"doctor_name",sortable:true}
+                    ];
+
+
+                }
+
             })
             .catch(function(error){
                 //Failure callback

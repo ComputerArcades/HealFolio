@@ -9,90 +9,144 @@
     </div>
 </div>
 
-    <div ng-show="user_auth.account_type=='doctor'">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-3 col-md-2 sidebar">
-                    <ul class="nav nav-sidebar">
-                        <li class="active"><a href="">Dashboard <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#/patients/{{user_auth.id_num}}">Patients</a></li>
-                    </ul>
-                    <!--<ul class="nav nav-sidebar">-->
-                    <!--<li><a href="">Nav item</a></li>-->
-                    <!--<li><a href="">Nav item again</a></li>-->
-                    <!--<li><a href="">Another nav item</a></li>-->
-                    <!--<li><a href="">More navigation</a></li>-->
-                    <!--</ul>-->
+<div ng-show="user_auth.account_type=='doctor'">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="">Dashboard <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#/patients/{{user_auth.id_num}}">Patients</a></li>
+                </ul>
+                <!--<ul class="nav nav-sidebar">-->
+                <!--<li><a href="">Nav item</a></li>-->
+                <!--<li><a href="">Nav item again</a></li>-->
+                <!--<li><a href="">Another nav item</a></li>-->
+                <!--<li><a href="">More navigation</a></li>-->
+                <!--</ul>-->
 
-                </div>
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                    <h1 class="page-header">Dashboard</h1>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h1 class="page-header">Dashboard</h1>
 
-                    <h4>Some information, buttons or links for Doctor to have access to here.</h4>
-                </div>
+                <h4>Some information, buttons or links for Doctor to have access to here.</h4>
             </div>
         </div>
     </div>
+</div>
 
 
 
-    <div ng-show="user_auth.account_type=='patient'">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-3 col-md-2 sidebar">
-                    <ul class="nav nav-sidebar">
-                        <li class="active"><a href="">Dashboard <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#/doctors/{{user_auth.id_num}}">Doctors</a></li>
-                        <li><a href="#/patient_doctor_requests">Doctor Requests</a></li>
+<div ng-show="user_auth.account_type=='patient'">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="">Dashboard <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#/doctors/{{user_auth.id_num}}">Doctors</a></li>
+                    <li><a href="#/patient_doctor_requests">Doctor Requests</a></li>
+                </ul>
+                <!--<ul class="nav nav-sidebar">-->
+                <!--<li><a href="">Nav item</a></li>-->
+                <!--<li><a href="">Nav item again</a></li>-->
+                <!--<li><a href="">Another nav item</a></li>-->
+                <!--<li><a href="">More navigation</a></li>-->
+                <!--</ul>-->
+
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h1 class="page-header">Patient Dashboard</h1>
+
+                <h3>{{patient.last_name +", "+ patient.first_name}} </h3>
+                <h4>Id Num: {{patient.$id}}</h4>
+                <a class="btn btn-warning" href="#/patient_info/{{patient.$id}}" role="button">View My Information</a>
+
+                </br>
+                </br>
+
+                <div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist" id="myTabs">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Diagnosis</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Prescriptions</a></li>
                     </ul>
-                    <!--<ul class="nav nav-sidebar">-->
-                    <!--<li><a href="">Nav item</a></li>-->
-                    <!--<li><a href="">Nav item again</a></li>-->
-                    <!--<li><a href="">Another nav item</a></li>-->
-                    <!--<li><a href="">More navigation</a></li>-->
-                    <!--</ul>-->
 
-                </div>
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                    <h1 class="page-header">Dashboard</h1>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
 
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingOne">
-                                <h4 class="panel-title">
-                                    <!--<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">-->
-                                        <!--Consultations-->
-                                    <!--</a>-->
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="true" aria-controls="collapseTwo">
-                                        Consultations
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body">
-                                    List showing recent consultations...
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingTwo">
-                                <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="" aria-expanded="true" aria-controls="collapseTwo">
-                                        Prescriptions
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="panel-body">
-                                   List showing recent prescriptions...
+                        <!-- Diagnosis Content -->
+                        <div role="tabpanel" class="tab-pane active" id="home">
+
+                            </br>
+                            <div class="table-responsive">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">History
+                                        <!--<div class="sw-search" >-->
+                                            <!--<div class="nav-search" id="nav-search">Filter:-->
+                                                <!--<span class="input-icon">-->
+                                                    <!--<input placeholder="Filter diagnosis list ..." class="nav-search-input" autocomplete="off" type="text" style="width:300px;" focus>-->
+                                                    <!--&lt;!&ndash;<input placeholder="Filter diagnosis list ..." class="nav-search-input" autocomplete="off" type="text" style="width:300px;" focus>&ndash;&gt;-->
+                                                    <!--<i class="search-icon fa fa-search nav-search-icon"></i>-->
+                                                <!--</span>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="panel-body">
+                                        <table class="table table-striped">
+                                            <tr ng-show="diagnosis.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
+
+                                            <tr><th ng-repeat="diag in diag_columns">{{diag.text}}</th></tr>
+
+                                            <!--<tr ng-repeat="diag in diagnosis | filter:filterDiagnosis | orderBy:'id'" id="{{diag.date_time}}" animate-on-change='diag.title' ng-animate="'animate'">-->
+                                            <tr ng-repeat="diag in diagnosis" animate-on-change='diag.title' ng-animate="'animate'">
+                                                <a href="#/"><td>{{diag.date_time | date:'yyyy-MM-dd' }}</td><td>{{diag.title}}</td><td>{{diag.practice_name}}</td><td>{{diag.doctor_name}}</td></a>
+
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Prescriptions Content -->
+                        <div role="tabpanel" class="tab-pane" id="profile">
+
+                            </br>
+                            <div class="table-responsive">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">Prescriptions
+                                        <!--<div class="sw-search" >-->
+                                            <!--<div class="nav-search" id="nav-search">Filter:-->
+                                                <!--<span class="input-icon">-->
+                                                    <!--<input placeholder="Filter prescriptions list ..." class="nav-search-input" autocomplete="off" type="text" style="width:300px;" focus>-->
+                                                    <!--&lt;!&ndash;<input placeholder="Filter diagnosis list ..." class="nav-search-input" autocomplete="off" type="text" style="width:300px;" focus>&ndash;&gt;-->
+                                                    <!--<i class="search-icon fa fa-search nav-search-icon"></i>-->
+                                                <!--</span>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="panel-body">
+                                        <table class="table table-striped">
+                                            <tr ng-show="prescriptions.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
+
+                                            <tr><th ng-repeat="presc in presc_columns">{{presc.text}}</th></tr>
+
+                                            <!--<tr ng-repeat="diag in diagnosis | filter:filterDiagnosis | orderBy:'id'" id="{{diag.date_time}}" animate-on-change='diag.title' ng-animate="'animate'">-->
+                                            <tr ng-repeat="presc in prescriptions" animate-on-change='presc.title' ng-animate="'animate'">
+                                                <td>{{presc.date_time | date:'yyyy-MM-dd' }}</td><td>{{presc.title}}</td><td>{{presc.practice_name}}</td><td>{{presc.doctor_name}}</td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
-
     </div>
+
+</div>
 
