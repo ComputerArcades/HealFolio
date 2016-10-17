@@ -5,7 +5,8 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
     $rootScope.hide_navbar = true;
 
     //DELELTE IN PRODUCTION (Debugging only!!!!)
-    $scope.login = {email:'doctor.joe@healfolio.com',password:'healfolio'};
+//    $scope.login = {email:'doctor.joe@healfolio.com',password:'healfolio'};
+    $scope.login = {email:'patient.alice@healfolio.com',password:'healfolio'};
 
 
 
