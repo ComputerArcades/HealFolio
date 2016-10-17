@@ -66,12 +66,6 @@ The overview presents a functional overview of the system.
 
 Functional requirements describes the high-level functionality of the system.
 
-##### 3.2.1 -
-
-##### 3.2.2 -
-
-##### 3.2.3 -
-
 ### 3.3 Nonfunctional requirements
 
 Nonfunctional requirements describes user-level requirements that are not directly related to functionality. This includes usability, reliability, performance, supportability, implementation, interface, operational, packaging, and legal requirements.

@@ -1,0 +1,1047 @@
+\documentclass[a4paper]{article}
+
+\usepackage{fullpage}
+\usepackage{parskip}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{placeins}
+\usepackage{caption}
+
+\hypersetup{colorlinks = true, linkcolor = blue, filecolor = magenta, urlcolor = cyan}
+ 
+\urlstyle{same}
+
+\begin{document}
+
+\begin{titlepage}
+
+\centering
+
+\vfill
+
+\includegraphics[width=10cm]{Wits-logo1.jpg}
+
+\vskip 0.1cm
+
+\center 
+
+\textsc{\LARGE University of the Witwatersrand}\\[0.5cm] 
+
+\textsc{\Large Requirements Analysis Document} \\[0.5cm] 
+
+\begin{minipage}{0.4\textwidth}
+
+\begin{center} \large
+
+\textbf{Team Name:} \\[0.3cm]
+
+\textsc{Level Seven Crew} \\[0.3cm]
+
+\end{center}
+
+\begin{center} \large
+
+\textbf{Product Name:} \\[0.3cm]
+
+\textsc{HealFolio} \\[0.3cm]
+
+\end{center}
+
+\begin{flushleft} \large
+
+\textbf{Team Members:} \\[0.3cm]
+
+Jan \textsc{Badenhorst} \\
+Adam \textsc{Lerumo} \\
+Tumbone \textsc{Asukile} \\
+Daniel da \textsc{Silva} \\
+
+\end{flushleft}
+
+\end{minipage} \\[0.7cm]
+
+\begin{minipage}{0.4\textwidth}
+
+\begin{flushright} \large
+
+\textbf{Senior Lecturer:} \\[0.3cm]
+
+Dr. Terence van \textsc{Zyl} \\
+
+\end{flushright}
+
+\end{minipage} \\[1cm]
+
+{\large August 14, 2016} 
+    
+\end{titlepage}
+
+\setlength\parindent{24pt}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+\subsection{\textit{Purpose of the System}}
+
+The software \emph{(HealFolio)} is aimed at improving service delivery for all types of medical practitioners; specifically the filing system currently used by medical practitioners. This software will provide doctors with easier access to patient records and can provide more security. It will also help them make more accurate diagnoses, leading to better prescriptions and more, when the software is further developed. 
+		
+\subsection{\textit{Scope of the System}}
+
+The software will be use by doctors, assistants and even patients themselves. By using a web based application the each of the following users of the software can easily get to and use the information by accessing the user friendly interface. This will make it possible for both the service provider and receiver to give accurate diagnosis and critical feedback
+
+\subsection{\textit{Objectives and Success Criteria of the Project}}
+
+\emph{Objectives:}
+
+\begin{itemize} 
+
+\item To make the precious minutes count in an emergency and avoid any long term complications.
+
+\item Take away the unnecessary revisiting or come backs to doctors to a minimal.
+
+\item Get accurate diagnosis at the first visit for recurring problems.
+
+\item Taking the admin work away for patients, especially for the elderly.
+
+\end{itemize}
+
+\emph{Success:}
+
+\begin{itemize} 
+
+\item Making the software easy to use and understand.
+
+\item Open to adaptations and future upgrades.
+
+\item Robust and workable on most platforms. \emph{(Mobile friendly, Linux)}
+
+\item Having the system to be alert in failure to connect to server, which makes it virtually impossible to lose information. 
+
+\end{itemize}
+		
+\subsection{\textit{References}}
+
+\href{ https://cle.wits.ac.za/access/content/group/COMS3009_2016/book-SE_marsic.pdf}{Software Engineering}
+		
+\subsection{\textit{Overview}}
+
+Utilizing the resources available and time to create the optimal running application that will incorporate every feature desired by the clients. Keeping in mind future growth in user numbers by keeping efficiency to the maximum.
+
+\section{Current System}
+\subsection{\textit{Private Practices}}
+Most practices keep electronic records of basic patient information, including but not limited to:
+\begin{itemize}
+	\item ID number
+	\item Name
+	\item Visitations
+	\item Medical aid number
+	\item Medical aid scheme
+	\item Prescriptions
+\end{itemize}
+These systems are largely primitive in nature and have only the bare minimum information required to operate. They don't have a lot of functionality in terms of interactive notifications. For example, it is a common problem that some patients get treatment on another patient's medical aid.
+
+It is also important to note that these systems are practice-specific. A patient's file would have to be formally requested by another practice if the patient goes elsewhere. This is critical because some medications interact poorly with eachother and can be \emph{fatal}.
+
+A large concern for a centralized system is \emph{security}. The idea of having everyone's medical history saved to a server and accessed by any doctor is dangerous ground, security would be paramount to ensure legal compliance, for example-legally-a person has sole discretion on whether to disclose their HIV status or not.
+
+Another concern is \emph{ease of use}. A standard consultation with a GP is ten to fifteen minutes long. The current system has been streamlined to a great proportion due to the time taken to enter the information. The age-old add-age \emph{time is money} applies; especially in a profession as highly incentivised as this.
+
+\subsection{\textit{Government Practices}}
+Government practices, at least in the Ekhuruleni Municipality, share a centralized database of patient information. It is currently unknown what information is kept however this is largely irrelevant due to the fact that the system is not commonly used to it's full potential. This is mainly due to the high volume of patients at government hospitals as a result of external factors like poverty in the country.
+
+This re-iterates the importance of \emph{ease of use} in that doctors can not be spending large proportions of their time capturing data.
+
+The concerns in the \emph{Private Practices} sector above generalize to government practices. In summary, the only differences are:
+\begin{itemize}
+	\item Government practices already have a central system
+	\item This system is not well used and likely not easy to operate
+\end{itemize}
+	
+\newpage
+
+\section{Proposed system}
+\subsection{\textit{Overview}}
+The proposed system aims to address issues with the current two systems (Private \emph{and} Government practices) while also connecting the two and making patient history ultra portable. Secondary to these tasks is enabling patients to view their own history as well as practice information. This \emph{may} be integrated into the main application later.
+		
+\subsection{\textit{Functional Requirements}}
+The functional requirements are generalized as follows:
+\begin{itemize}
+	\item All information on patients must be kept in a database accessible to the application at all times
+	\item Doctor able to view patient information including but not limited to:
+		\begin{itemize}
+			\item ID number
+			\item Name
+			\item Allergies
+			\item Date of birth
+			\item Age (calculated)
+			\item Gender
+			\item Race
+			\item Medical aid provider
+			\item Medical aid scheme
+			\item Medical aid number
+			\item Main member ID number
+			\item Main member name
+			\item Main member medical aid number
+		\end{itemize}
+	\item Doctor able to view patient medical records which consists of the following:
+		\begin{itemize}
+			\item Visitations
+			\item Diagnoses
+			\item Prescriptions
+		\end{itemize}
+	\item Doctor able to view reports such as:
+		\begin{itemize}
+			\item Chronic conditions
+			\item Critical information (eg Allergies, gender, diagnoses etc)
+			\item Family medical history?
+		\end{itemize}
+	\item Doctor able to add information for an existing patient such as a new visitation, diagnoses, prescriptions.
+	\item Doctor able to add new patients.
+\end{itemize}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Requirements}
+\label{ReqTable}
+\begin{tabular}{lllll}
+\cline{1-3}
+
+\multicolumn{1}{|c|}{Identifier} & \multicolumn{1}{c|}{Priority} & \multicolumn{1}{c|}{Requirement} &  &  \\ \cline{1-3}
+
+\multicolumn{1}{|c|}{REQ1} & \multicolumn{1}{c|}{Done} & \multicolumn{1}{l|}{Doctor be able to view own added patient information.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ2} & \multicolumn{1}{c|}{Done} & \multicolumn{1}{l|}{Doctor able to view patient information.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ3} & \multicolumn{1}{c|}{Discuss} & \multicolumn{1}{l|}{Doctor able to view various reports.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ4} & \multicolumn{1}{c|}{Done} & \multicolumn{1}{l|}{Doctor able to add new patients.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ5} & \multicolumn{1}{c|}{Done} & \multicolumn{1}{l|}{Doctor able to log in to system.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ6} & \multicolumn{1}{c|}{Discuss} & \multicolumn{1}{l|}{Doctor able to update patient information.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ7} & \multicolumn{1}{c|}{Done} & \multicolumn{1}{l|}{Administrator adding doctor.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ8} & \multicolumn{1}{c|}{Done} & \multicolumn{1}{l|}{Doctor able to sign-up.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ9} & \multicolumn{1}{c|}{Done} & \multicolumn{1}{l|}{Patient able to sign-up.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ10} & \multicolumn{1}{c|}{Done} & \multicolumn{1}{l|}{Doctor able to view information from referred patient.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ11} & \multicolumn{1}{c|}{4} & \multicolumn{1}{l|}{Add verification for doctor to view referred patient information.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ12} & \multicolumn{1}{c|}{5} & \multicolumn{1}{l|}{Patient able to update patient information.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ13} & \multicolumn{1}{c|}{3} & \multicolumn{1}{l|}{Patient able to remove doctors that has privileges to view the patients information.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ14} & \multicolumn{1}{c|}{Done} & \multicolumn{1}{l|}{Doctor able to add practice information.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ15} & \multicolumn{1}{c|}{1} & \multicolumn{1}{l|}{Add automatic verification for doctor of successful sign-up.} &  &  \\ 
+
+\multicolumn{1}{|c|}{REQ16} & \multicolumn{1}{c|}{2} & \multicolumn{1}{l|}{Add input verification for sign-up.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ17} & \multicolumn{1}{c|}{2} & \multicolumn{1}{l|}{Add input verification for log-in.} &  &  \\ 
+
+\multicolumn{1}{|c|}{REQ18} & \multicolumn{1}{c|}{Done} & \multicolumn{1}{l|}{Patient able to log in to system.} &  &  \\ 
+
+\multicolumn{1}{|c|}{REQ19} & \multicolumn{1}{c|}{5} & \multicolumn{1}{l|}{Doctor able to update practice details.} &  &  \\ 
+
+\multicolumn{1}{|c|}{REQ20} & \multicolumn{1}{c|}{Done} & \multicolumn{1}{l|}{Doctor able to add diagnosis.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ21} & \multicolumn{1}{c|}{Done} & \multicolumn{1}{l|}{Doctor able to add prescription.} &  &  \\
+
+\multicolumn{1}{|c|}{REQ22} & \multicolumn{1}{c|}{Done} & \multicolumn{1}{l|}{Application loading screen on log-in.} &  &  \\ \cline{1-3}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+		
+\subsection{\textit{Nonfunctional Requirements}}
+Nonfunctional requirements identified by the shortfalls of the current system and general knowledge of the field are as follows:
+	\subsubsection{\textit{Usability and Interface}}
+	Usability and Interface are two key elements in the success of the project. They are important in ensuring a doctor's time is used effectively and not wasted on capturing data. They are also key in ensuring the system is actually used, especially in high volume scenarios such as government hospitals.
+	
+	\subsubsection{\textit{Reliability}}
+	The system needs to be reliable to ensure that there are no gaps in the patient's history which could result in medication clashes and other undesirable circumstances. A likely solution would be to cache data entered locally if the server is down and then send it to the server once it is restored. Likewise the data for patients who regularly attend a given practice can be cached at the practice in case the systems go down. This would minimize the impact of downtime on the doctors and patients.
+	
+	\subsubsection{\textit{Performance}}
+	Performance is important in that a doctor cannot wait long periods of time for a patient's file to load. Caching data for patients who attend a particular practice can help with this, however if the patient is new to the practice performance and reliability could be at stake.
+	
+	\subsubsection{\textit{Supportability}}
+    
+    In software engineering and hardware engineering, serviceability (also known as supportability,) is one of the -ilities or aspects (from IBM's RAS(U) (Reliability, Availability, Serviceability, and Usability)). It refers to the ability of technical support personnel to install, configure, and monitor computer products, identify exceptions or faults, debug or isolate faults to root cause analysis, and provide hardware or software maintenance in pursuit of solving a problem and restoring the product into service. Incorporating serviceability facilitating features typically results in more efficient product maintenance and reduces operational costs and maintains business continuity.
+	
+	\subsubsection{\textit{Implementation}}
+	The implementation needs to be easy as a patient might switch from a practice using the system to a practice that isn't yet. In this case the patient may insist on the new practice using the system at least for them. The doctor would need to be able to pull the patient's records without having to download an application or sit through an extended sign up process.
+	
+	\subsubsection{\textit{Legal}}
+	The system would have to adhere to many regulations and laws in place such as the privacy of a patient's HIV status. A decision has to be made as to whether something is declared the doctor's responsibility or the application is made more secure. A good example would be whether or not any doctor can access any patient's information. The responsibility could either be placed on doctors to not use the database for personal reasons or it could be made secure by only allowing doctors access to a patient's information when a patient grants it to them.
+
+\subsection{\textit{System Models}}
+
+\subsubsection{\textit{Scenarios}}
+
+\begin{itemize}
+\item The doctor needs to sign-up for the application to recognize and verify the particular practice number.
+\end{itemize}
+
+
+\subsubsection{\textit{Use Case Model}}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Use cases}
+\label{UseCases}
+\begin{tabular}{lllll}
+\cline{1-3}
+\multicolumn{1}{|c|}{Actor} & \multicolumn{1}{c|}{Actor's goal} & \multicolumn{1}{c|}{Use case name} &  &  \\ \cline{1-3}
+
+\multicolumn{1}{|c|}{Doctor} & \multicolumn{1}{l|}{Doctor able to sign-up and add practice details.} & \multicolumn{1}{c|}{DocSign(UC1)} &  &  \\
+
+\multicolumn{1}{|l|}{Doctor} & \multicolumn{1}{l|}{Doctor able to log-in and add a patient.} & \multicolumn{1}{c|}{DocLog(UC2)} &  &  \\
+
+\multicolumn{1}{|c|}{Patient} & \multicolumn{1}{l|}{Patient able to sign-up and add personal details.} & \multicolumn{1}{c|}{PatSign(UC3)} &  &  \\
+
+\multicolumn{1}{|c|}{Doctor} & \multicolumn{1}{l|}{Doctor able to able to view patients information.} & \multicolumn{1}{c|}{DocView(UC4)} &  &  \\
+
+\multicolumn{1}{|c|}{Doctor} & \multicolumn{1}{l|}{Doctor able to able to view referred patients information.} & \multicolumn{1}{c|}{DocRef(UC5)} &  &  \\ 
+
+\multicolumn{1}{|c|}{Doctor} & \multicolumn{1}{l|}{Doctor able to log-in, view patient list and add diagnosis to relevant} & \multicolumn{1}{c|}{DocDiag(UC6)} &  &  \\ 
+
+\multicolumn{1}{|c|}{} & \multicolumn{1}{l|}{patient.} & \multicolumn{1}{c|}{} &  &  \\
+
+\multicolumn{1}{|c|}{Doctor} & \multicolumn{1}{l|}{Doctor able to log-in, view patient list and add prescription to} & \multicolumn{1}{c|}{DocScript(UC7)} &  &  \\ 
+
+\multicolumn{1}{|c|}{} & \multicolumn{1}{l|}{relevant diagnosis.} & \multicolumn{1}{c|}{} &  &  \\ \cline{1-3}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Detailed Use Case 1}
+\label{DetailedUC1}
+\begin{tabular}{|c|llll}
+\cline{1-1}
+\multicolumn{1}{|l|}{\textbf{Use Case:} UC1 \textbf{Name/Identifier:} DocSign(UC1)} &  &  &  &  \\ \cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Related Requirements:} REQ5, REQ8, REQ14} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Initiating Actor:} Doctor} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Actor’s Goal:} Doctor able to sign-up and add practice details.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Participating Actors:} Admin will check to see if the practice is registered for the doctor to} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{sign-up.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Preconditions:} That the application has no practice of the same description.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Post-conditions:} That the application has registered the practice and the doctor is able to add the} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{practice information.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Main Success Scenario:}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ The doctor finds the home page and clicks the sign-up button.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the sign-up page.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ After entering the sign-up page, the practice details are inserted.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ Admin checks if the practice is registered and adds the doctor to the database.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ If the practice is registered the doctor will be able to add patients by pressing the add patient } &  &  &  &  \\
+
+\multicolumn{1}{|l|}{button.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the add patient page where the doctors patients are added.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Extensions (Alternate Scenarios):}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ If the practice is not registered.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ Admin will send an email to the client to of unsuccessful sign-up.} &  &  &  &  \\ \cline{1-1}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Detailed Use Case 2}
+\label{DetailedUC2}
+\begin{tabular}{|c|llll}
+\cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Use Case:} UC2 \textbf{Name/Identifier:} DocLog(UC2)} &  &  &  &  \\ \cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Related Requirements:} REQ1, REQ4, REQ5} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Initiating Actor:} Doctor} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Actor’s Goal:} Doctor able to log-in and add a patient.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Preconditions:} That the applicant has to be signed-up to be able to log-in and add patient.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Post-conditions:} Patient details can be added to the practice records.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Main Success Scenario:}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ The doctor finds the home page and clicks the log-in button.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the log-in page.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ After entering logging-in, the practice details can be viewed, as well as the add patient button.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ Clicking the add patient button takes the client to corresponding page and the patient details can } &  &  &  &  \\
+
+\multicolumn{1}{|l|}{be added.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Extensions (Alternate Scenarios):}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ If the incorrect log-in details are entered, the client won't be able to proceed.} &  &  &  &  \\ \cline{1-1}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Detailed Use Case 3}
+\label{DetailedUC4}
+\begin{tabular}{|c|llll}
+\cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Use Case:} UC3 \textbf{Name/Identifier:} PatSign(UC3)} &  &  &  &  \\ \cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Related Requirements:} REQ9} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Initiating Actor:} Patient} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Actor’s Goal:} Patient able to sign-up and add personal details.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Preconditions:} That the application has no patient of the same description.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Post-conditions:} That the application has registered the patient and save the client information.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Main Success Scenario:}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ The patient finds the home page and clicks the sign-up button.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the sign-up page.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ Client adds personal details and presses the save button.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $  The client is taken to the patient's page. } &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Extensions (Alternate Scenarios):}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ If the incorrect sign-up details are entered, the client won't be able to proceed.} &  &  &  &  \\ \cline{1-1}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Detailed Use Case 4}
+\label{DetailedUC2}
+\begin{tabular}{|c|llll}
+\cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Use Case:} UC4 \textbf{Name/Identifier:} DocView(UC4)} &  &  &  &  \\ \cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Related Requirements:} REQ2, REQ5} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Initiating Actor:} Doctor} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Actor’s Goal:} Doctor able to able to view patients information.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Preconditions:} That the applicant has to be logged-in and patient information available.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Post-conditions:} Patient saved information can be viewed.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Main Success Scenario:}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ The doctor logs-in.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the doctor's page page.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ Client clicks on the patients page.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ View of all patients can be seen, client proceeds to click on relevant patient. } &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ Relevant patient information is displayed.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{can be added.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Extensions (Alternate Scenarios):}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ If the relevant patient is not on the database or authenticated then no information is displayed.} &  &  &  &  \\ \cline{1-1}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Detailed Use Case 5}
+\label{DetailedUC2}
+\begin{tabular}{|c|llll}
+\cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Use Case:} UC5 \textbf{Name/Identifier:} DocRef(UC5)} &  &  &  &  \\ \cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Related Requirements:} REQ5, REQ10} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Initiating Actor:} Doctor} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Actor’s Goal:} Doctor able to able to view referred patients information.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Preconditions:} That the applicant and patient has to be registered as well as patient} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{authentication given.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Post-conditions:} Patient saved information can be viewed.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Main Success Scenario:}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ The doctor logs-in.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the doctor's page page.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ Client clicks on the add patients page.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ Referred patient is added and verification is sent to patient.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ Patient receives verification and accepts.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ Client can now see referred patient information.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Extensions (Alternate Scenarios):}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ If referred patient does not verify, doctor won't be able to see information.} &  &  &  &  \\ \cline{1-1}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Detailed Use Case 5}
+\label{DetailedUC2}
+\begin{tabular}{|c|llll}
+\cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Use Case:} UC5 \textbf{Name/Identifier:} DocRef(UC5)} &  &  &  &  \\ \cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Related Requirements:} REQ5, REQ10} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Initiating Actor:} Doctor} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Actor’s Goal:} Doctor able to able to view referred patients information.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Preconditions:} That the applicant and patient has to be registered as well as patient authentication} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{given.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Post-conditions:} Patient saved information can be viewed.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Main Success Scenario:}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ The doctor logs-in.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the doctor's page page.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ Client clicks on the add patients page.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ Referred patient is added and verification is sent to patient.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ Patient receives verification and accepts.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ Client can now see referred patient information.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Extensions (Alternate Scenarios):}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ If referred patient does not verify, doctor won't be able to see information.} &  &  &  &  \\ \cline{1-1}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Detailed Use Case 6}
+\label{DetailedUC2}
+\begin{tabular}{|c|llll}
+\cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Use Case:} UC6 \textbf{Name/Identifier:} DocDiag(UC6)} &  &  &  &  \\ \cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Related Requirements:} REQ2, REQ5, REQ20} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Initiating Actor:} Doctor} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Actor’s Goal:} Doctor able to log-in, view patient list and add diagnosis to relevant patient.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Preconditions:} That the applicant and patient has to be registered.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Post-conditions:} Patient will be saved by application.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Main Success Scenario:}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ From the patient page the client clicks on relevant patient.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the patient information page page.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ Client clicks on the add diagnosis button.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ The diagnosis page is displayed, filled in and saved.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Extensions (Alternate Scenarios):}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ No diagnosis can be given if the patient does not exist.} &  &  &  &  \\ \cline{1-1}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Detailed Use Case 7}
+\label{DetailedUC2}
+\begin{tabular}{|c|llll}
+\cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Use Case:} UC7 \textbf{Name/Identifier:} DocScript(UC7)} &  &  &  &  \\ \cline{1-1}
+
+\multicolumn{1}{|l|}{\textbf{Related Requirements:} REQ5, REQ20, REQ21} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Initiating Actor:} Doctor} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Actor’s Goal:} Doctor able to log-in, view patient list and add prescription to relevant diagnosis.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Preconditions:} The patient has to have a diagnosis.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Post-conditions:} Prescription will be saved by application.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Main Success Scenario:}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ From the patient page the client clicks on relevant patient.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the patient information page page.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ Client clicks on the add diagnosis button.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ The diagnosis page is displayed, filled in and clicks on the prescription button.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ The prescription box is opened.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \leftarrow $ Prescription is filled in and saved.} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{\textbf{Flow of Events for Extensions (Alternate Scenarios):}} &  &  &  &  \\
+
+\multicolumn{1}{|l|}{ $ \rightarrow $ No prescription can be given if the patient does not have a diagnosis.} &  &  &  &  \\ \cline{1-1}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{figure}[h!]
+\caption*{Use case diagram}
+\label{UCDiag1}
+\centering
+\includegraphics[width=18cm]{Use-Case-Diagram.png}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{\textit{Object model}}
+
+Object modeling is an object-oriented analysis and design technique. The goal of object modeling is to create a model comprising:
+
+\begin{itemize}
+\item A set of related object type definitions representing concepts from the 'real world' (problem domain) that are needed in the system.
+\item Descriptions of how objects of those types interact with each other to form the functions of the system.
+\end{itemize}
+
+\FloatBarrier
+
+\begin{figure}[h!]
+\caption*{\textbf{Object Model}}
+\label{ObjMdl}
+\centering 
+\includegraphics[width=10cm]{Object-Model.png}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{\textit{Dynamic model}}
+
+A dynamic model represents the behavior of an object over time. It is used where the object's behavior is best described as a set of states that occur in a defined sequence. The components of the dynamic model are:
+
+\begin{itemize}
+\item \textbf{States} 
+\item \textbf{State transitions}, are modeled as being instantaneous.
+\item \textbf{Events}, events trigger state transitions.
+\item \textbf{Actions}, occur on state transitions.
+\item \textbf{Activities}, is performed while an object is in a specific state.
+\end{itemize}
+
+\FloatBarrier
+
+\begin{figure}[h!]
+\caption*{\textbf{Dynamic Model}}
+\label{DncMdl}
+\centering 
+\includegraphics[width=10cm]{Dynamic-Model.png}
+\end{figure}
+
+\FloatBarrier
+
+\subsubsection{\textit{User interfaces}}
+
+Navigational paths and screen mock-ups:
+
+\subsection{\textit{Test Driven Development}}
+
+\subsubsection{\textit{Acceptance Tests for Requirements}}
+
+Acceptance Test Case (\textbf{ATC1}) for REQ1:
+
+\begin{itemize}
+\item Ensure app is connected to Firebase and doctor is logged in, select "Patients" (pass: list of patients displayed).
+\item Ensure app is connected to Firebase and doctor is logged in, select a patient from list (pass: Basic patient information is displayed).
+\item Ensure app is connected to Firebase and doctor is logged in, viewing basic patient info, click "View Patient Information" (pass: Patient information is displayed).
+\end{itemize}
+
+\textbf{ATC4} for REQ4:
+
+\begin{itemize}
+\item Add ID of patient in database and select "Request" (pass: Request is displayed to patient when s/he logs in).
+\item Patient selects "accept" (pass: Patient appears in aforementioned doctor's list of patients).
+\end{itemize}
+
+\textbf{ATC5} for REQ5:
+
+\begin{itemize}
+\item Doctor enters valid user-name and password combination and selects "log-in" (pass: Doctor is taken to landing page).
+\item Doctor enters invalid user-name and password combination (pass: Access is denied).
+\end{itemize}
+
+\textbf{ATC8} for REQ8:
+
+\begin{itemize}
+\item Click "sign-up" then "doctor" (pass: Taken to page requesting information).
+\item Enter all required details and click "sign-up" (pass: Information successfully added to Firebase for review).
+\end{itemize}
+
+\textbf{ATC9} for REQ9:
+
+\begin{itemize}
+\item Click "sign-up" then "patient" (pass: Taken to page requesting information).
+\item Enter all required details and click "sign-up" (pass: Information successfully added to Firebase).
+\end{itemize}
+
+\subsubsection{\textit{Acceptance Tests for Uses Cases}}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Test Case for UC1}
+\label{TC1}
+\begin{tabular}{lllll}
+\cline{1-2}
+
+\multicolumn{2}{|l|}{\textbf{Test-case Identifier}: TC1}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Use Case Tested}: UC1 Doctor able to sign-up and add practice details.}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Pass/Fail Criteria}: Doctor able to register and add practice details, otherwise test fails.}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Input Data}: Practice number.}  &  &  &  \\
+
+\cline{1-2}
+
+\multicolumn{1}{|l|}{\textbf{Test Procedure}:} & \multicolumn{1}{l|}{\textbf{Expected Result}:} &  &  &  \\ 
+
+\cline{1-2}
+
+\multicolumn{1}{|l|}{Set up: Client goes to home page.} & \multicolumn{1}{l|}{} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 1: Client clicks on sign-up button.} & \multicolumn{1}{l|}{Sign-up page opens.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 2: Client fills in practice details.} & \multicolumn{1}{l|}{Application admin checks if practice number is} &  &  &  \\
+
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{valid, client details saved.} &  &  &  \\
+
+\cline{1-2}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Test Case for UC2}
+\label{TC2}
+\begin{tabular}{lllll}
+\cline{1-2}
+
+\multicolumn{2}{|l|}{\textbf{Test-case Identifier}: TC2}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Use Case Tested}: UC2 Doctor able to log-in and add a patient.}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Pass/Fail Criteria}: Correct details have to be entered to proceed to adding a patient,}  &  &  &  \\
+
+\multicolumn{2}{|l|}{otherwise test fails.}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Input Data}: Log-in details and patient information.}  &  &  &  \\
+
+\cline{1-2}
+
+\multicolumn{1}{|l|}{\textbf{Test Procedure}:} & \multicolumn{1}{l|}{\textbf{Expected Result}:} &  &  &  \\ 
+
+\cline{1-2}
+
+\multicolumn{1}{|l|}{Set up: Client goes to home page.} & \multicolumn{1}{l|}{} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 1: Client clicks on log-in button.} & \multicolumn{1}{l|}{Log-in page opens.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 2: Client fills in log-in details.} & \multicolumn{1}{l|}{Doctor page opens.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 3: Client clicks on add new patient button.} & \multicolumn{1}{l|}{Add new patient page opens.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 4: Client adds new patient details.} & \multicolumn{1}{l|}{Application saves data.} &  &  &  \\
+
+\cline{1-2}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Test Case for UC3}
+\label{TC3}
+\begin{tabular}{lllll}
+\cline{1-2}
+
+\multicolumn{2}{|l|}{\textbf{Test-case Identifier}: TC3}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Use Case Tested}: UC3 Patient able to sign-up and add personal details.}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Pass/Fail Criteria}: Patient able to register details, otherwise test fails.}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Input Data}: Log-in details.}  &  &  &  \\
+
+\cline{1-2}
+
+\multicolumn{1}{|l|}{\textbf{Test Procedure}:} & \multicolumn{1}{l|}{\textbf{Expected Result}:} &  &  &  \\ 
+
+\cline{1-2}
+
+\multicolumn{1}{|l|}{Set up: Client goes to home page.} & \multicolumn{1}{l|}{} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 1: Client clicks on sign-up button.} & \multicolumn{1}{l|}{Sign-up page opens.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 2: Client fills in details.} & \multicolumn{1}{l|}{Application checks if data entered is correct,} &  &  &  \\
+
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{client details saved.} &  &  &  \\
+
+\cline{1-2}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Test Case for UC4}
+\label{TC4}
+\begin{tabular}{lllll}
+\cline{1-2}
+
+\multicolumn{2}{|l|}{\textbf{Test-case Identifier}: TC4}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Use Case Tested}: UC4 Doctor able to able to view patients information.}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Pass/Fail Criteria}: After entering patient data, the details will appear in clients patient page,}  &  &  &  \\
+
+\multicolumn{2}{|l|}{otherwise test fails.}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Input Data}: Log-in details.}  &  &  &  \\
+
+\cline{1-2}
+
+\multicolumn{1}{|l|}{\textbf{Test Procedure}:} & \multicolumn{1}{l|}{\textbf{Expected Result}:} &  &  &  \\ 
+
+\cline{1-2}
+
+\multicolumn{1}{|l|}{Set up: Client goes to doctor's page.} & \multicolumn{1}{l|}{} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 1: Client clicks on patients button.} & \multicolumn{1}{l|}{Patients page opens.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 2: Client clicks on relevant patient.} & \multicolumn{1}{l|}{Patient information is displayed.} &  &  &  \\
+
+\cline{1-2}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Test Case for UC5}
+\label{TC5}
+\begin{tabular}{lllll}
+\cline{1-2}
+
+\multicolumn{2}{|l|}{\textbf{Test-case Identifier}: TC5}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Use Case Tested}: UC5 Doctor able to able to view referred patients information.}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Pass/Fail Criteria}: Referred patient data will be displayed after patient validation.}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Input Data}: Referred patient details.}  &  &  &  \\
+
+\cline{1-2}
+
+\multicolumn{1}{|l|}{\textbf{Test Procedure}:} & \multicolumn{1}{l|}{\textbf{Expected Result}:} &  &  &  \\ 
+
+\cline{1-2}
+
+\multicolumn{1}{|l|}{Set up: Client goes to doctor's page.} & \multicolumn{1}{l|}{} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 1: Client clicks on add new patients button.} & \multicolumn{1}{l|}{Add new patients page opens.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 2: Enters referred patient's details.} & \multicolumn{1}{l|}{Patient receives validation request.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 3: Referred patient validates request.} & \multicolumn{1}{l|}{Doctor is able to see referred patient's information.} &  &  &  \\
+
+\cline{1-2}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Test Case for UC6}
+\label{TC6}
+\begin{tabular}{lllll}
+\cline{1-2}
+
+\multicolumn{2}{|l|}{\textbf{Test-case Identifier}: TC6}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Use Case Tested}: UC6 Doctor able to log-in, view patient list and add diagnosis to relevant patient.}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Pass/Fail Criteria}: Doctor able to add diagnosis to patient, otherwise test fails.}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Input Data}: Diagnosis for relevant patient.}  &  &  &  \\
+
+\cline{1-2}
+
+\multicolumn{1}{|l|}{\textbf{Test Procedure}:} & \multicolumn{1}{l|}{\textbf{Expected Result}:} &  &  &  \\ 
+
+\cline{1-2}
+
+\multicolumn{1}{|l|}{Set up: Client goes to doctor's page.} & \multicolumn{1}{l|}{} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 1: Client clicks patients button.} & \multicolumn{1}{l|}{Patients page opens.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 2: Client clicks on relevant patient.} & \multicolumn{1}{l|}{Patient information is displayed.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 3: Client clicks on add diagnosis.} & \multicolumn{1}{l|}{Diagnosis page is opened.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 4: Client adds diagnosis of patient.} & \multicolumn{1}{l|}{Application saves diagnosis of patient and is displayed on} &  &  &  \\
+
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{patient page.} &  &  &  \\
+
+\cline{1-2}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\begin{table}[h!]
+\centering
+\caption*{Test Case for UC7}
+\label{TC7}
+\begin{tabular}{lllll}
+\cline{1-2}
+
+\multicolumn{2}{|l|}{\textbf{Test-case Identifier}: TC7}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Use Case Tested}: UC7 Doctor able to log-in, view patient list and add prescription to relevant}  &  &  &  \\
+
+\multicolumn{2}{|l|}{diagnosis.}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Pass/Fail Criteria}: Doctor able to add prescription to relevant diagnosis, otherwise test fails.}  &  &  &  \\
+
+\multicolumn{2}{|l|}{\textbf{Input Data}: Prescription for relevant diagnosis.}  &  &  &  \\
+
+\cline{1-2}
+
+\multicolumn{1}{|l|}{\textbf{Test Procedure}:} & \multicolumn{1}{l|}{\textbf{Expected Result}:} &  &  &  \\ 
+
+\cline{1-2}
+
+\multicolumn{1}{|l|}{Set up: Client goes to doctor's page.} & \multicolumn{1}{l|}{} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 1: Client clicks patients button.} & \multicolumn{1}{l|}{Patients page opens.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 2: Client clicks on relevant patient.} & \multicolumn{1}{l|}{Patient information is displayed.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 3: Client clicks on add diagnosis.} & \multicolumn{1}{l|}{Diagnosis page is opened.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 4: Client adds diagnosis of patient or if diagnosis} & \multicolumn{1}{l|}{The prescription block opens.} &  &  &  \\
+
+\multicolumn{1}{|l|}{already present, click the prescription button.} & \multicolumn{1}{l|}{The prescription block opens.} &  &  &  \\
+
+\multicolumn{1}{|l|}{Step 5: Client adds prescription for the diagnosis.} & \multicolumn{1}{l|}{Application saves prescription of patient and} &  &  &  \\
+
+\multicolumn{1}{|l|}{} & \multicolumn{1}{l|}{is displayed on patient page.} &  &  &  \\
+
+\cline{1-2}
+
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\end{document}
