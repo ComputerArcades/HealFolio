@@ -1,0 +1,56 @@
+<div ng-show="user_auth.account_type=='doctor'">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h3>Doctor</h3>
+                <input type="checkbox"  ng-model="chkbx_edit_profile" id="chkbx_edit_profile">
+                <label for="chkbx_edit_profile">Edit</label>
+
+
+                <div ng-hide="chkbx_edit_profile">
+                <div>
+                    <p>First Name: {{doctor.first_name}}</p>
+                    <p>Last Name: {{doctor.last_name}}</p>
+                    <p>Email: {{doctor.email}}</p>
+                    <p>Cell phone: {{doctor.cell_phone}}</p>
+                    <p>Id Number: {{doctor_id_num}}</p>
+                    <p>Practice Name: {{doctor.practice_name}}</p>
+                    <p>Practice Number: {{doctor.practice_number}}</p>
+                </div>
+                </div>
+
+                <div ng-show="chkbx_edit_profile">
+                <!--<form ng-submit="doctor.$save(doctor)">-->
+                <form ng-submit="doctor.$save(doctor)">
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="doctor.first_name" placeholder="First Name"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="doctor.last_name" placeholder="Last Name"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" ng-model="doctor.email" placeholder="Email" disabled/>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" ng-model="doctor.id_num" placeholder="{{doctor_id_num}}" disabled/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="doctor.practice_number" placeholder="Practice number"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="doctor.practice_name" placeholder="Practice Name"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" ng-model="doctor.cell_phone" placeholder="Cell Phone"/>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" >Update</button>
+                    </div>
+                </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

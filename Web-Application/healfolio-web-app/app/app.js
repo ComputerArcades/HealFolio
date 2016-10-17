@@ -62,6 +62,11 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/signup.html',
                 controller: 'authCtrl'
             }).
+            when('/user_profile/:userId',{
+                title: 'User Profile',
+                templateUrl: 'partials/user_profile.html',
+                controller: 'userProfileCtrl'
+            }).
 			when('/patient_info/:patientId',{
 				title: 'Patient information',
 				templateUrl: 'partials/patient_info.html',

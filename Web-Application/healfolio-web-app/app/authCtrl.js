@@ -6,7 +6,7 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
 
     //DELELTE IN PRODUCTION (Debugging only!!!!)
 //    $scope.login = {email:'doctor.joe@healfolio.com',password:'healfolio'};
-    $scope.login = {email:'patient.alice@healfolio.com',password:'healfolio'};
+//    $scope.login = {email:'patient.alice@healfolio.com',password:'healfolio'};
 
 
 
@@ -165,3 +165,43 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
 
 });
 
+
+app.controller('userProfileCtrl',function($scope, $rootScope, $firebaseAuth, $firebaseArray, $routeParams, $location){
+
+    //Show list of Doctor's patients
+
+    $scope.doctor = {};
+    $scope.doctor_id_num = "";
+    $scope.patients = [];
+
+
+    if($rootScope.user_auth.account_type == 'doctor'){
+        $scope.doctor_id_num = $routeParams.userId; //This here will come from some form of current User variable
+        var ref_doctors = firebase.database().ref().child("doctors");
+        //  create a synchronized array
+        //  FIX: Figure out how to maybe just retrieve a single record here to the client, this here retrieves the entire doctors object
+        var doctor_info = $firebaseArray(ref_doctors);
+        //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
+        doctor_info.$loaded()
+            .then(function(){
+                $scope.doctor = doctor_info.$getRecord($scope.doctor_id_num);
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+    }
+
+    if($rootScope.user_auth.account_type == 'patient') {
+        $scope.patient_id_num = $routeParams.userId; //This here will come from some form of current User variable
+        var ref_patients = firebase.database().ref().child("patients");
+        var patient_info = $firebaseArray(ref_patients);
+        patient_info.$loaded()
+            .then(function () {
+                $scope.patients.patient_info.$getRecord(patient_id_num);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+});

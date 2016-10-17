@@ -81,11 +81,19 @@ app.controller('patientsDashboardCtrl', function ($scope, $firebaseArray, $fireb
         });
 
 
-    //Javascript tag handling on patients dashboard
+    //Javascript tab handling on patients dashboard
     $('#myTabs a').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
     });
+
+    //Javascript modal element
+    $scope.modal_diag = {};
+    $scope.openDiag = function(paramDiag){
+        $scope.modal_diag = paramDiag;
+        $('#diagModal').modal('show');
+    };
+    $scope.chkbx_edit_diag = false;
 
     //Display Diagnosis Records
     $scope.diagnosis = [];
