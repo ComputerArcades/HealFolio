@@ -5,7 +5,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li><a href="#/">Dashboard <span class="sr-only">(current)</span></a></li>
-                <li><a href="#/doctors/{{user_auth.id_num}}">Doctors</a></li>
+                <li><a href="#/patient_doctors/{{user_auth.id_num}}">Doctors</a></li>
                 <li class="active"><a href="#/patient_doctor_requests">Doctor Requests</a></li>
             </ul>
             <!--<ul class="nav nav-sidebar">-->
@@ -17,11 +17,11 @@
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">Dashboard</h1>
+            <h1 class="page-header">Doctor Requests</h1>
 
             <div class="table-responsive">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Doctor Requests
+                    <div class="panel-heading">List of Requests
                         <div class="sw-search" >
                             <div class="nav-search" id="nav-search">
                                 Filter: <span class="input-icon">

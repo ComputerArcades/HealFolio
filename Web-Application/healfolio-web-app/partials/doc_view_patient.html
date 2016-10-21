@@ -1,0 +1,185 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li ><a href="#/">Dashboard <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="#/doc_view_patient/{{user_auth.id_num}}">&gt; View Patient</a></li>
+            </ul>
+            <!--<ul class="nav nav-sidebar">-->
+            <!--<li><a href="">Nav item</a></li>-->
+            <!--<li><a href="">Nav item again</a></li>-->
+            <!--<li><a href="">Another nav item</a></li>-->
+            <!--<li><a href="">More navigation</a></li>-->
+            <!--</ul>-->
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Patient</h1>
+
+            <h3>{{patient.last_name +", "+ patient.first_name}} </h3>
+            <h4>Id Num: {{patient.$id}}</h4>
+            <a class="btn btn-primary" href="#/patient_info/{{patient.$id}}" role="button">View Patient Information</a>
+
+            </br>
+            </br>
+
+            <div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist" id="myTabs">
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Diagnosis</a></li>
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Prescriptions</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+
+                    <!-- Diagnosis Content -->
+                    <div role="tabpanel" class="tab-pane active" id="home">
+
+                        </br>
+                        <a class="btn btn-success" href="#/doc_add_diagnosis/{{patient.$id}}" role="button">New Diagnosis</a>
+
+                        <div class="table-responsive">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">History
+                                    <!--<div class="sw-search" >-->
+                                    <!--<div class="nav-search" id="nav-search">Filter:-->
+                                    <!--<span class="input-icon">-->
+                                    <!--<input placeholder="Filter diagnosis list ..." class="nav-search-input" autocomplete="off" type="text" style="width:300px;" focus>-->
+                                    <!--&lt;!&ndash;<input placeholder="Filter diagnosis list ..." class="nav-search-input" autocomplete="off" type="text" style="width:300px;" focus>&ndash;&gt;-->
+                                    <!--<i class="search-icon fa fa-search nav-search-icon"></i>-->
+                                    <!--</span>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table table-striped">
+                                        <tr ng-show="diagnosis.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
+
+                                        <tr><th ng-repeat="diag in diag_columns">{{diag.text}}</th></tr>
+
+                                        <!--<tr ng-repeat="diag in diagnosis | filter:filterDiagnosis | orderBy:'id'" id="{{diag.date_time}}" animate-on-change='diag.title' ng-animate="'animate'">-->
+                                        <tr ng-repeat="diag in diagnosis" animate-on-change='diag.title' ng-animate="'animate'">
+                                            <!--<td><a href="" data-toggle="modal" data-target="#myModal" ng-click="openDiag()">{{diag.date_time | date:'yyyy-MM-dd' }}</a></td><td>{{diag.title}}</td><td>{{diag.practice_name}}</td><td>{{diag.doctor_name}}</td>-->
+                                            <td><a href="" ng-click="openDiag(diag)">{{diag.date_time | date:'yyyy-MM-dd' }}</a></td><td>{{diag.title}}</td><td>{{diag.practice_name}}</td><td>{{diag.doctor_name}}</td>
+                                            <td style="width:100px">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="diagnosis.$remove(diag)"></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="diagModal" tabindex="-1" role="dialog" aria-labelledby="myDiagModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Diagnosis</h4>
+                                    </div>
+
+                                    </br>
+                                    <div class="modal-body">
+                                        <input type="checkbox" ng-click="toggleEditDiag()" ng-model="chkbx_edit_diag" id="chkbx_edit_diag">
+                                        <label for="chkbx_edit_diag">Edit</label>
+                                    </div>
+
+                                    <div ng-show="chkbx_edit_diag">
+                                        <form ng-submit="updateDiagnosis()">
+                                            <div class="modal-body">
+                                                <p>Date: {{modal_diag.date_time | date:'yyyy-M-dd'}}</p>
+                                                <p>Practice Name: {{modal_diag.practice_name}}</p>
+                                                <p>Practice Number: {{modal_diag.practice_number}}</p>
+                                                <p>Doctor: {{diag.doctor_name}}</p>
+                                                <p>Doctor Id: {{modal_diag.doctor_id}}</p>
+                                                </br>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" ng-model="modal_diag.title" placeholder="{{modal_diag.title}}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea class="form-control" ng-model="modal_diag.notes" placeholder="modal_diag.notes"></textarea>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Update Changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+
+                                    <div ng-hide="chkbx_edit_diag">
+                                        <div class="modal-body">
+                                            <p>Date: {{modal_diag.date_time | date:'yyyy-M-dd'}}</p>
+                                            <p>Practice Name: {{modal_diag.practice_name}}</p>
+                                            <p>Practice Number: {{modal_diag.practice_number}}</p>
+                                            <p>Doctor: {{modal_diag.doctor_name}}</p>
+                                            <p>Doctor Id: {{modal_diag.doctor_id}}</p>
+                                            </br>
+
+                                            <p>Title: {{modal_diag.title}}</p>
+                                            <p>Notes: {{modal_diag.notes}}</p>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!-- Prescriptions Content -->
+                    <div role="tabpanel" class="tab-pane" id="profile">
+
+                        </br>
+                        <div class="table-responsive">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Prescriptions
+                                    <!--<div class="sw-search" >-->
+                                    <!--<div class="nav-search" id="nav-search">Filter:-->
+                                    <!--<span class="input-icon">-->
+                                    <!--<input placeholder="Filter prescriptions list ..." class="nav-search-input" autocomplete="off" type="text" style="width:300px;" focus>-->
+                                    <!--&lt;!&ndash;<input placeholder="Filter diagnosis list ..." class="nav-search-input" autocomplete="off" type="text" style="width:300px;" focus>&ndash;&gt;-->
+                                    <!--<i class="search-icon fa fa-search nav-search-icon"></i>-->
+                                    <!--</span>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table table-striped">
+                                        <tr ng-show="prescriptions.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
+
+                                        <tr><th ng-repeat="presc in presc_columns">{{presc.text}}</th></tr>
+
+                                        <!--<tr ng-repeat="diag in diagnosis | filter:filterDiagnosis | orderBy:'id'" id="{{diag.date_time}}" animate-on-change='diag.title' ng-animate="'animate'">-->
+                                        <tr ng-repeat="presc in prescriptions" animate-on-change='presc.title' ng-animate="'animate'">
+                                            <td><a href="#/patient_dashboard/{{diag.$id}}">{{presc.date_time | date:'yyyy-MM-dd' }}</a></td><td>{{presc.title}}</td><td>{{presc.practice_name}}</td><td>{{presc.doctor_name}}</td>
+                                            <td style="width:100px">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="prescriptions.$remove(presc)"></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

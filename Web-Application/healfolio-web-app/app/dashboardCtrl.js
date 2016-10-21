@@ -32,7 +32,63 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
                 //success callback
                 $scope.user_status = true;
 
-                //FIX THIS LATER
+
+                if ($rootScope.user_auth.account_type == 'doctor'){
+
+                    //Show list of Doctor's patients
+                    $scope.doctor = {};
+                    $scope.patients = [];
+
+                    $scope.doctor_id_num = $rootScope.user_auth.id_num; //This here will come from some form of current User variable
+                    var ref_doctors = firebase.database().ref().child("doctors");
+                    var ref_patients = firebase.database().ref().child("patients");
+
+                    //  create a synchronized array
+                    //  FIX: Figure out how to maybe just retrieve a single record here to the client, this here retrieves the entire doctors object
+                    var doctor_info = $firebaseArray(ref_doctors);
+                    var doc_patient_info = $firebaseArray(ref_patients);
+
+
+                    //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
+                    doctor_info.$loaded()
+                        .then(function(){
+                            $scope.doctor = doctor_info.$getRecord($scope.doctor_id_num);
+
+                            doc_patient_info.$loaded()
+                                .then(function(){
+//                    console.log(patient_info.$getRecord(patient_id_num));
+
+                                    //iterating over an object in javascript, you need to the ".hasOwnProperty" attribute
+                                    for (var patient_id_num in $scope.doctor.patients) {
+                                        if (!$scope.doctor.patients.hasOwnProperty(patient_id_num)) {
+                                            //The current property is not a direct property of $scope.doctor.patients
+                                            continue;
+                                        }
+                                        //Add the record to the $scope.patients array
+                                        $scope.patients.push(doc_patient_info.$getRecord(patient_id_num));
+                                    }
+//                    console.log($scope.patients[0]);
+                                })
+                                .catch(function(error){
+                                    console.log(error);
+                                });
+
+                        })
+                        .catch(function(error){
+                            console.log(error);
+                        });
+
+                    $scope.columns = [
+                        {text:"ID",predicate:"id_num",sortable:true,dataType:"number"},
+                        {text:"First Name",predicate:"first_name",sortable:true},
+                        {text:"Last Name",predicate:"lastname",sortable:true},
+                        {text:"Date of Birth",predicate:"date_of_birth",sortable:true,dataType:"number"},
+                        {text:"Gender",predicate:"gender",sortable:true},
+                        {text:"Action",predicate:"",sortable:false}
+                    ];
+
+                }
+                //FIX this later
                 if($rootScope.user_auth.account_type == 'patient'){
 
                     $scope.patient = {};
@@ -95,6 +151,7 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
 
 
                 }
+
 
             })
             .catch(function(error){

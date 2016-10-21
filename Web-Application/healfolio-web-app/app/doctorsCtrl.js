@@ -1,65 +1,9 @@
 /**
  * Created by pcc on 08-Sep-16.
  */
-app.controller('doctorsCtrl',function($scope, $rootScope, $firebaseAuth, $firebaseArray, $routeParams, $location){
-
-    //Show list of Doctor's patients
-
-    $scope.doctor = {};
-    $scope.patients = [];
-
-    $scope.doctor_id_num = $routeParams.doctorId; //This here will come from some form of current User variable
-    var ref_doctors = firebase.database().ref().child("doctors");
-    var ref_patients = firebase.database().ref().child("patients");
-
-    //  create a synchronized array
-    //  FIX: Figure out how to maybe just retrieve a single record here to the client, this here retrieves the entire doctors object
-    var doctor_info = $firebaseArray(ref_doctors);
-    var patient_info = $firebaseArray(ref_patients);
 
 
-    //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
-    doctor_info.$loaded()
-        .then(function(){
-            $scope.doctor = doctor_info.$getRecord($scope.doctor_id_num);
-
-            patient_info.$loaded()
-                .then(function(){
-//                    console.log(patient_info.$getRecord(patient_id_num));
-
-                    //iterating over an object in javascript, you need to the ".hasOwnProperty" attribute
-                    for (var patient_id_num in $scope.doctor.patients) {
-                        if (!$scope.doctor.patients.hasOwnProperty(patient_id_num)) {
-                            //The current property is not a direct property of $scope.doctor.patients
-                            continue;
-                        }
-                        //Add the record to the $scope.patients array
-                        $scope.patients.push(patient_info.$getRecord(patient_id_num));
-                    }
-//                    console.log($scope.patients[0]);
-                })
-                .catch(function(error){
-                    console.log(error);
-                });
-
-        })
-        .catch(function(error){
-            console.log(error);
-        });
-
-    $scope.columns = [
-        {text:"ID",predicate:"id_num",sortable:true,dataType:"number"},
-        {text:"First Name",predicate:"first_name",sortable:true},
-        {text:"Last Name",predicate:"lastname",sortable:true},
-        {text:"Date of Birth",predicate:"date_of_birth",sortable:true,dataType:"number"},
-        {text:"Gender",predicate:"gender",sortable:true},
-        {text:"Action",predicate:"",sortable:false}
-    ];
-
-});
-
-
-app.controller('addDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth, $firebaseArray, $routeParams, $location){
+app.controller('docAddDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth, $firebaseArray, $routeParams, $location){
     $scope.diagnosis_info = {};
     $scope.diagnosis_info = {practice_name: '',practice_number:'',doctor_id:'',doctor_name:'',title:'',notes:''};
     $scope.doctor = {};
@@ -125,29 +69,47 @@ app.controller('addDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth, $f
 });
 
 
-app.controller("addPatientCtrl", function($scope, $rootScope, $firebaseArray, $location, $routeParams) {
+app.controller("docAddPatientCtrl", function($scope, $rootScope, $firebaseArray, $location, $routeParams) {
 
-    var ref = firebase.database().ref().child("patients");
+    // var patient_ref = firebase.database().ref().child("patients");
+    // var patient_ref = firebase.database().ref().child("patients");
     // create a synchronized array
-    $scope.patients = $firebaseArray(ref);
+    // $scope.patient = $firebaseArray(patient_ref);
 
-//    $scope.message = true;
-    var database = firebase.database();
+    // $scope.patients = $firebaseArray(ref);
+    // var database = firebase.database();
 
-    $scope.addPatientId = function(paramDoctorIdnum){
-        var key = $rootScope.user_auth.id_num;
-        var doc_obj = {};
-        doc_obj[key] = true;
+    $scope.addDoctorId = function(paramPatientIdnum){
 
-        database.ref('patients').child($scope.patient_id_num).child('doctor_requests').set(doc_obj)
+        var patient_doctors_ref = firebase.database().ref().child("patients/"+paramPatientIdnum+"/doctors");
+        $scope.patient_doctors = $firebaseArray(patient_doctors_ref);
+
+        $scope.patient_doctors.$loaded()
             .then(function(){
-                //Success Callback
-//                console.log("Request sent successfully!");
-                alert("Patient request sent successfully!");
+                console.log($scope.patient_doctors);
+                var doctor_obj = {};
+                var key = $rootScope.user_auth.id_num;
+                doctor_obj[key] = true;
+                $scope.patient_doctors.$add($rootScope.user_auth.id_num);
             })
             .catch(function(error){
-                alert(error);
+                console.log(error);
             });
+
+        // console.log(paramPatientIdnum);
+
+        // var key = $rootScope.user_auth.id_num;
+        // var doc_obj = {};
+        // doc_obj[key] = true;
+//         database.ref('patients').child($scope.patient_id_num).child('doctor_requests').set(doc_obj)
+//             .then(function(){
+//                 //Success Callback
+// //                console.log("Request sent successfully!");
+//                 alert("Patient request sent successfully!");
+//             })
+//             .catch(function(error){
+//                 alert(error);
+//             });
     };
 
     $scope.addPatientDetails = function() {

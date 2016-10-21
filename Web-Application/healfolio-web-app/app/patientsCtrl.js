@@ -60,7 +60,7 @@ app.controller('patientsCtrl', function ($scope, $firebaseArray, $firebaseAuth, 
     ];
 });
 
-app.controller('patientsDashboardCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
+app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
     $scope.patient = {};
 
 //    var ref = firebase.database().ref().child("patients/"+$routeParams.patientId);

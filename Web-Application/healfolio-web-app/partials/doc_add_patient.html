@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li ><a href="#/">Dashboard <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="#/doc_add_patient">&gt; Add a Patient</a></li>
+            </ul>
+            <!--<ul class="nav nav-sidebar">-->
+            <!--<li><a href="">Nav item</a></li>-->
+            <!--<li><a href="">Nav item again</a></li>-->
+            <!--<li><a href="">Another nav item</a></li>-->
+            <!--<li><a href="">More navigation</a></li>-->
+            <!--</ul>-->
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Add a Patient</h1>
+
+            <!-- Add Patient using their id number -->
+            <div class="row">
+                <div class="col-md-6">
+                    <form ng-submit="addDoctorId(patient_id_num)">
+                        <div class="form-group">
+                            <input type="number" class="form-control" placeholder="ID Number" name="id_num" ng-model="patient_id_num" required focus/>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-lg btn-success" >
+                                Send Request
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

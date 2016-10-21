@@ -12,43 +12,46 @@ app.config(['$routeProvider',
                 controller: 'dashboardCtrl',
                 role: 0
             }).
-            when('/patients/:doctorId',{
-                title: 'Patients',
-                templateUrl: 'partials/patients.html',
-                controller: 'doctorsCtrl'
+            //DOCTOR
+            when('/doc_view_patient/:patientId',{
+                title: 'Patient View',
+                templateUrl: 'partials/doc_view_patient.html',
+                controller: 'viewPatientCtrl'
             }).
-            when('/doctors/:patientId',{
+            when('/doc_add_patient',{
+                title:'Add a Patient',
+                templateUrl:'partials/doc_add_patient.html',
+                controller:'docAddPatientCtrl'
+            }).
+            when('/doc_add_diagnosis/:patientId',{
+                title: 'Add New Diagnosis',
+                templateUrl: 'partials/doc_add_diagnosis.html',
+                controller: 'docAddDiagnosisCtrl'
+            }).
+            //PATIENT
+            when('/patient_info/:patientId',{
+                title: 'Patient Information',
+                templateUrl: 'partials/patient_info.html',
+                controller: 'viewPatientCtrl'
+            }).
+            when('/patient_doctors/:patientId',{
                 title: 'Doctors',
                 templateUrl: 'partials/patient_doctors.html',
                 controller: 'patientsCtrl'
-            }).
-            when('/patient_dashboard/:patientId',{
-                title: 'Patient Dashboard',
-                templateUrl: 'partials/patient_dashboard.html',
-                controller: 'patientsDashboardCtrl'
             }).
             when('/patient_doctor_requests',{
                 title: 'Patient\'s Doctor Requests',
                 templateUrl: 'partials/patient_doctor_requests.html',
                 controller: 'patientDoctorRequestsCtrl'
             }).
-            when('/addpatient',{
-                title:'Add a Patient',
-                templateUrl:'partials/add_patient.html',
-                controller:'addPatientCtrl'
-            }).
-            when('/doc_add_diagnosis/:patientId',{
-                title: 'Add New Diagnosis',
-                templateUrl: 'partials/doc_add_diagnosis.html',
-                controller: 'addDiagnosisCtrl'
-            }).
+            //AUTHENTICATION
             when('/doctor_signup',{
                 title: 'Doctor Sign Up',
                 templateUrl:'partials/doctor_signup.html',
                 controller: 'authCtrl'
             }).
             when('/patient_signup',{
-                title: 'Patient Sign UP',
+                title: 'Patient Sign Up',
                 templateUrl: 'partials/patient_signup.html',
                 controller: 'authCtrl'
             }).
@@ -62,16 +65,12 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/signup.html',
                 controller: 'authCtrl'
             }).
+            //USER PROFILE
             when('/user_profile/:userId',{
                 title: 'User Profile',
                 templateUrl: 'partials/user_profile.html',
                 controller: 'userProfileCtrl'
             }).
-			when('/patient_info/:patientId',{
-				title: 'Patient information',
-				templateUrl: 'partials/patient_info.html',
-				controller: 'patientsDashboardCtrl'
-			}).
             otherwise({
                 redirectTo: '/'
             });
