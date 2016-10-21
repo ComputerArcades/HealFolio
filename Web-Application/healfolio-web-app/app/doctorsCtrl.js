@@ -58,7 +58,7 @@ app.controller('doctorsCtrl',function($scope, $rootScope, $firebaseAuth, $fireba
 });
 
 
-app.controller('addDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth, $firebaseArray, $routeParams, $location){
+app.controller('docAddDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth, $firebaseArray, $routeParams, $location){
     $scope.diagnosis_info = {};
     $scope.diagnosis_info = {practice_name: '',practice_number:'',doctor_id:'',doctor_name:'',title:'',notes:''};
     $scope.doctor = {};
@@ -124,7 +124,7 @@ app.controller('addDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth, $f
 });
 
 
-app.controller("addPatientCtrl", function($scope, $rootScope, $firebaseArray, $location, $routeParams) {
+app.controller("docAddPatientCtrl", function($scope, $rootScope, $firebaseArray, $location, $routeParams) {
 
     var ref = firebase.database().ref().child("patients");
     // create a synchronized array
