@@ -15,7 +15,6 @@
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
                     <li class="active"><a href="">Dashboard <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#/patients/{{user_auth.id_num}}">Patients</a></li>
                 </ul>
                 <!--<ul class="nav nav-sidebar">-->
                 <!--<li><a href="">Nav item</a></li>-->
@@ -26,9 +25,42 @@
 
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h1 class="page-header">Dashboard</h1>
+                <h1 class="page-header">Patients</h1>
 
-                <h4>Some information, buttons or links for Doctor to have access to here.</h4>
+                <a class="btn btn-success fa fa-plus" href="#/addpatient" role="button">Add New Patient</a>
+
+                <div class="table-responsive">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">List of Patients
+                            <div class="sw-search" >
+                                <div class="nav-search" id="nav-search">
+                                    Filter: <span class="input-icon">
+                                <input placeholder="Filter patients list ..." class="nav-search-input" ng-model="filterPatient" ng-change="resetLimit();"  autocomplete="off" type="text" style="width:300px;" focus>
+                                <i class="search-icon fa fa-search nav-search-icon"></i>
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-striped">
+                                <tr ng-show="patients.length==0"><td style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
+                                <tr ng-hide="patients.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading</td></tr>
+
+                                <tr><th ng-repeat="p in columns">{{p.text}}</th></tr>
+
+                                <tr ng-repeat="p in patients | filter:filterPatient | orderBy:'id'" id="{{p.id_num}}" animate-on-change='p.age' ng-animate="'animate'">
+                                    <td><a href="#/patient_dashboard/{{p.$id}}">{{p.$id}}</a></td><td>{{p.first_name}}</td><td>{{p.last_name}}</td><td>{{p.date_of_birth}}</td><td>{{p.gender}}</td>
+                                    <td style="width:100px">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default fa fa-edit" ng-click="open(p);"></button>
+                                            <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="patients.$remove(p)"></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

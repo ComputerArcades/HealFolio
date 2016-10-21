@@ -4,7 +4,6 @@
 app.controller('doctorsCtrl',function($scope, $rootScope, $firebaseAuth, $firebaseArray, $routeParams, $location){
 
     //Show list of Doctor's patients
-
     $scope.doctor = {};
     $scope.patients = [];
 
