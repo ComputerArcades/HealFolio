@@ -51,7 +51,7 @@ app.config(['$routeProvider',
                 controller: 'authCtrl'
             }).
             when('/patient_signup',{
-                title: 'Patient Sign UP',
+                title: 'Patient Sign Up',
                 templateUrl: 'partials/patient_signup.html',
                 controller: 'authCtrl'
             }).
