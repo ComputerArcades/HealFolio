@@ -1,42 +1,22 @@
 /**
  * Created by tumbone on 03-Sep-16.
  */
-app.controller('patientViewDoctorsCtrl', function ($scope, $firebaseArray, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
-    $scope.patient = {};
+app.controller('patientViewDoctorsCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
     $scope.doctors = [];
 
-    $scope.patient_id_num = $routeParams.patientId;
-    var ref_doctors = firebase.database().ref().child("doctors");
-    var ref_patients = firebase.database().ref().child("patients");
-
+    var patient_id_num = $rootScope.user_auth.id_num;
+    var ref_patients = firebase.database().ref().child("patients").child(patient_id_num).child("doctors");
     //  create a synchronized array
-    //  FIX: Figure out how to maybe just retrieve a single record here to the client, this here retrieves the entire doctors object
-    var doctor_info = $firebaseArray(ref_doctors);
-    var patient_info = $firebaseArray(ref_patients);
-
-
-    //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
-    patient_info.$loaded()
+    var patient_doctors = $firebaseArray(ref_patients);
+    patient_doctors.$loaded()
         .then(function(){
-            $scope.patient = patient_info.$getRecord($scope.patient_id_num);
 
-            doctor_info.$loaded()
-                .then(function(){
-
-                    //iterating over an object in javascript, you need to the ".hasOwnProperty" attribute
-                    for (var doctor_id_num in $scope.patient.doctors) {
-                        if (!$scope.patient.doctors.hasOwnProperty(doctor_id_num)) {
-                            //The current property is not a direct property of $scope.doctor.patients
-                            continue;
-                        }
-                        //Do your logic with the property here
-//                        console.log(patient_id_num);
-                        $scope.doctors.push(doctor_info.$getRecord(doctor_id_num));
-                    }
-                })
-                .catch(function(error){
-                    console.log(error);
-                });
+            for (var i = 0; i < patient_doctors.length; i++){//
+                var doc_id_num = patient_doctors[i].$value;
+                var doc_ref = firebase.database().ref().child('doctors/'+doc_id_num);
+                var doc_obj = $firebaseObject(doc_ref);
+                $scope.doctors.push(doc_obj);
+            }
 
         })
         .catch(function(error){
@@ -55,22 +35,18 @@ app.controller('patientViewDoctorsCtrl', function ($scope, $firebaseArray, $fire
 app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
     $scope.patient = {};
 
-//    var ref = firebase.database().ref().child("patients/"+$routeParams.patientId);
-//    $scope.patient = $firebaseObject(ref.child($routeParams.patientId));
-
-    var ref_patient = firebase.database().ref().child("patients");
+    var ref_patient = firebase.database().ref().child("patients/"+$routeParams.patientId);
     //  create a synchronized array
-    //  FIX: Figure out how to maybe just retrieve a single record here to the client, this here retrieves the entire patients object
-    var patient_info = $firebaseArray(ref_patient);
+    var patient_info = $firebaseObject(ref_patient);
 
-    //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
     patient_info.$loaded()
         .then(function(){
-            $scope.patient = patient_info.$getRecord($routeParams.patientId);
+            $scope.patient = patient_info;
         })
         .catch(function(error){
-            console.log(error);
+            console.log(error)
         });
+
 
 
     //Javascript tab handling on patients dashboard

@@ -3,18 +3,18 @@
  */
 
 
-app.controller('docAddDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth, $firebaseArray, $routeParams, $location){
+app.controller('docAddDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth, $firebaseArray, $firebaseObject, $routeParams, $location){
     $scope.diagnosis_info = {};
     $scope.diagnosis_info = {practice_name: '',practice_number:'',doctor_id:'',doctor_name:'',title:'',notes:''};
     $scope.doctor = {};
 
-        var ref = firebase.database().ref().child("doctors");
+        var ref = firebase.database().ref().child("doctors/" + $rootScope.user_auth.id_num);
         // return it as a synchronized object
-        var doctor_info = $firebaseArray(ref);
+        var doctor_info = $firebaseObject(ref);
         doctor_info.$loaded()
             .then(function(){
                 //success callback
-                $scope.doctor = doctor_info.$getRecord($rootScope.user_auth.id_num);
+                $scope.doctor = doctor_info;
             })
             .catch(function(error){
                 //Failure callback
