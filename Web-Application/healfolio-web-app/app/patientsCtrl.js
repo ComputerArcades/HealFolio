@@ -1,14 +1,7 @@
 /**
  * Created by tumbone on 03-Sep-16.
  */
-app.controller('patientsCtrl', function ($scope, $firebaseArray, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
-//    $scope.patients = {};
-
-//    var ref = firebase.database().ref().child("patients");
-
-    // create a synchronized array
-//    $scope.patients = $firebaseArray(ref);
-
+app.controller('patientViewDoctorsCtrl', function ($scope, $firebaseArray, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
     $scope.patient = {};
     $scope.doctors = [];
 

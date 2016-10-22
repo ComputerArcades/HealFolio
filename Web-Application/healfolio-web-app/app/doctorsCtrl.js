@@ -86,9 +86,9 @@ app.controller("docAddPatientCtrl", function($scope, $rootScope, $firebaseArray,
 
         $scope.patient_doctors.$loaded()
             .then(function(){
-                var doctor_obj = {};
-                var key = $rootScope.user_auth.id_num;
-                doctor_obj[key] = true;
+//                var doctor_obj = {};
+//                var key = $rootScope.user_auth.id_num;
+//                doctor_obj[key] = true;
                 $scope.patient_doctors.$add($rootScope.user_auth.id_num);
             })
             .catch(function(error){
