@@ -43,7 +43,6 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
                     //  create a synchronized array
                     var doc_patients = $firebaseArray(ref_doctors);
 
-
                     //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
                     doc_patients.$loaded()
                         .then(function(){
@@ -72,43 +71,25 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
                 if($rootScope.user_auth.account_type == 'patient'){
 
                     $scope.patient = {};
-
-//    var ref = firebase.database().ref().child("patients/"+$routeParams.patientId);
-//    $scope.patient = $firebaseObject(ref.child($routeParams.patientId));
-
-                    var ref_patient = firebase.database().ref().child("patients");
+                    var ref_patient = firebase.database().ref().child("patients/"+$rootScope.user_auth.id_num);
                     //  create a synchronized array
-                    //  FIX: Figure out how to maybe just retrieve a single record here to the client, this here retrieves the entire patients object
-                    var patient_info = $firebaseArray(ref_patient);
+                    var patient_info = $firebaseObject(ref_patient);
 
                     //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
                     patient_info.$loaded()
                         .then(function(){
-                            $scope.patient = patient_info.$getRecord($rootScope.user_auth.id_num);
+                            $scope.patient = patient_info;
                         })
                         .catch(function(error){
                             console.log(error);
                         });
-
-
-
-                    //Display Diagnosis Records
+                   //Display Diagnosis Records
                     $scope.diagnosis = [];
 
-//    var ref_diag = firebase.database().ref().child("diagnosis");
                     var ref_diag = firebase.database().ref().child("diagnosis/" + $rootScope.user_auth.id_num);
-
-//    var diag_info = $firebaseArray(ref_diag);
                     $scope.diagnosis = $firebaseArray(ref_diag);
 
-//    diag_info.$loaded()
-//        .then(function(){
-//            $scope.diagnosis = diag_info.$getRecord($routeParams.patientId);
-////
-//        })
-//        .catch(function(error){
-//            console.log(error);
-//        });
+//
 
                     $scope.diag_columns = [
                         {text:"Date",predicate:"id_num",sortable:true},
