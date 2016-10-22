@@ -38,7 +38,7 @@
 
                             <tr><th ng-repeat="dr in columns">{{dr.text}}</th></tr>
 
-                            <tr ng-repeat="dr in doctor_requests | filter:filterDoctorRequests | orderBy:'id'" id="{{dr.id_num}}" animate-on-change='dr.status' ng-animate="'animate'">
+                            <tr ng-repeat="dr in doctor_requests | filter:filterDoctorRequests | orderBy:'id'" id="{{dr.$id}}" animate-on-change='dr.status' ng-animate="'animate'">
                                 <td>{{dr.first_name}}</td>
                                 <td>{{dr.$id}}</td>
                                 <td>{{dr.practice_name}}</td>

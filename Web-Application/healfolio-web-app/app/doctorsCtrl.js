@@ -1,5 +1,5 @@
 /**
- * Created by pcc on 08-Sep-16.
+ * Created by tumbone on 08-Sep-16.
  */
 
 
@@ -81,12 +81,11 @@ app.controller("docAddPatientCtrl", function($scope, $rootScope, $firebaseArray,
 
     $scope.addDoctorId = function(paramPatientIdnum){
 
-        var patient_doctors_ref = firebase.database().ref().child("patients/"+paramPatientIdnum+"/doctors");
+        var patient_doctors_ref = firebase.database().ref().child("patients/"+paramPatientIdnum+"/doctor_requests");
         $scope.patient_doctors = $firebaseArray(patient_doctors_ref);
 
         $scope.patient_doctors.$loaded()
             .then(function(){
-                console.log($scope.patient_doctors);
                 var doctor_obj = {};
                 var key = $rootScope.user_auth.id_num;
                 doctor_obj[key] = true;
