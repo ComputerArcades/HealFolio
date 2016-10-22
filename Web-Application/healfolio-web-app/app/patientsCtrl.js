@@ -12,7 +12,6 @@ app.controller('patientsCtrl', function ($scope, $firebaseArray, $firebaseAuth, 
     $scope.patient = {};
     $scope.doctors = [];
 
-//    $scope.doctor_id_num = 123456789; //This here will come from some form of current User variable
     $scope.patient_id_num = $routeParams.patientId;
     var ref_doctors = firebase.database().ref().child("doctors");
     var ref_patients = firebase.database().ref().child("patients");
@@ -139,11 +138,12 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
 
 app.controller('patientDoctorRequestsCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
     $scope.doctor_requests = [];
+    var patient_id = $rootScope.user_auth.id_num;
 
 
 //    var ref = firebase.database().ref().child("patients/"+$routeParams.patientId);
 //    $scope.patient = $firebaseObject(ref.child($routeParams.patientId));
-    var patient_id = 4654511666648;
+//    var patient_id = 4654511666648;
 //    var ref = firebase.database().ref().child("patients").child($rootScope.user_auth.id_num).child('doctor_requests');
     var ref = firebase.database().ref().child("patients").child(patient_id).child('doctor_requests');
     //  create a synchronized array
@@ -160,7 +160,6 @@ app.controller('patientDoctorRequestsCtrl', function ($scope, $firebaseArray, $f
                 var doc_ref = firebase.database().ref().child('doctors/'+doc_id_num);
                 var doc_obj = $firebaseObject(doc_ref);
                 doc_obj.$key = doc_requests[i].$id;
-//                $scope.doctor_requests.push($firebaseObject(doc_ref));
                 $scope.doctor_requests.push(doc_obj);
             }
         })
@@ -168,54 +167,33 @@ app.controller('patientDoctorRequestsCtrl', function ($scope, $firebaseArray, $f
             console.log(error);
         });
 
-    var database = firebase.database();
     $scope.doctorAccept = function(paramDoctor){
 
-        var patient_id = 4654511666648;
-//    var ref = firebase.database().ref().child("patients").child($rootScope.user_auth.id_num).child('doctor_requests');
-        var ref = firebase.database().ref().child("patients").child(patient_id).child('doctors');
-        //  create a synchronized array
-//    $scope.doctor_requests = $firebaseArray(ref);
-        var doctors = $firebaseArray(ref);
-        doctors.$loaded()
+        var doctors_ref = firebase.database().ref('doctors').child(paramDoctor.$id).child('patients');
+        var doctor_patients = $firebaseArray(doctors_ref);
+        doctor_patients.$loaded()
             .then(function(){
-//                doctors.$add(paramDoctor.$id);
-                doc_requests.$remove(doc_requests.$getRecord(paramDoctor.$key));
-//                $scope.doctor_requests.$remove(paramDoctor);
-                alert("Doctor request has been accepted!");
-//                console.log(doc_requests.$getRecord(paramDoctor.$key));
+                doctor_patients.$add(patient_id);
+                var patients_ref = firebase.database().ref().child("patients").child(patient_id).child('doctors');
+                //  create a synchronized array
+                var patient_doctors = $firebaseArray(patients_ref);
+                patient_doctors.$loaded()
+                    .then(function(){
+                        patient_doctors.$add(paramDoctor.$id);
+                        doc_requests.$remove(doc_requests.$getRecord(paramDoctor.$key));
+                        alert("Doctor request has been accepted!");
+                        //FIX: Data binding by using $scope.doctor_requests.pop(paramDoctor.$id) doesn't work here
+                        //the Doctor Id was repeated for whichever object was selected first.
+                        //Reloading the page doesn't work either.
+                    })
+                    .catch(function(error){
+                        console.log(error)
+                    });
             })
             .catch(function(error){
                 console.log(error)
             });
 
-
-//        var key = $rootScope.user_auth.id_num;
-//        var doc_obj = {};
-//        doc_obj[key] = true;
-
-
-//        database.ref('doctors').child(paramDoctor.$id).child('patients').set(doc_obj)
-//            .then(function(){
-//                //Success Callback
-//
-//                var key = paramDoctor.$id;
-//                var pat_obj = {};
-//                pat_obj[key] = true;
-//                database.ref('patients').child($rootScope.user_auth.id_num).child('doctors').set(pat_obj)
-//                    .then(function(){
-//                        //Success Callback
-//
-//                        alert("Doctor request has been accepted!");
-//                        $scope.doctor_requests.$remove(paramDoctor);
-//                    })
-//                    .catch(function(error){
-//                        console.log(error);
-//                    });
-//            })
-//            .catch(function(error){
-//                console.log(error);
-//            });
     };
 
 
