@@ -53,11 +53,12 @@ app.controller('docAddDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth,
                 })
                     .then(function(presc_data){
                        //success callback
+                        $location.path('/doc_view_patient/'+$routeParams.patientId);
                     })
                     .catch(function(error){
                         console.log(error);
                     });
-                $location.path('/patient_dashboard/'+$routeParams.patientId);
+
 
             })
             .catch(function(error){
