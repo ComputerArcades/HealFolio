@@ -11,7 +11,7 @@ app.controller('patientViewDoctorsCtrl', function ($scope, $firebaseArray, $fire
     patient_doctors.$loaded()
         .then(function(){
 
-            for (var i = 0; i < patient_doctors.length; i++){//
+            for (var i = 0; i < patient_doctors.length; i++){
                 var doc_id_num = patient_doctors[i].$value;
                 var doc_ref = firebase.database().ref().child('doctors/'+doc_id_num);
                 var doc_obj = $firebaseObject(doc_ref);
@@ -33,6 +33,7 @@ app.controller('patientViewDoctorsCtrl', function ($scope, $firebaseArray, $fire
 });
 
 app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
+    $scope.chkbx_edit_diag = false;
     $scope.patient = {};
 
     var ref_patient = firebase.database().ref().child("patients/"+$routeParams.patientId);
@@ -48,38 +49,10 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
         });
 
 
-
-    //Javascript tab handling on patients dashboard
-    $('#myTabs a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-    });
-
-    //Javascript modal element
-    $scope.modal_diag = {};
-    $scope.openDiag = function(paramDiag){
-        $scope.modal_diag = paramDiag;
-        $('#diagModal').modal('show');
-    };
-    $scope.chkbx_edit_diag = false;
-
     //Display Diagnosis Records
     $scope.diagnosis = [];
-
-//    var ref_diag = firebase.database().ref().child("diagnosis");
     var ref_diag = firebase.database().ref().child("diagnosis/" + $routeParams.patientId);
-
-//    var diag_info = $firebaseArray(ref_diag);
     $scope.diagnosis = $firebaseArray(ref_diag);
-
-//    diag_info.$loaded()
-//        .then(function(){
-//            $scope.diagnosis = diag_info.$getRecord($routeParams.patientId);
-////
-//        })
-//        .catch(function(error){
-//            console.log(error);
-//        });
 
     $scope.diag_columns = [
         {text:"Date",predicate:"id_num",sortable:true},
@@ -103,24 +76,33 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
     ];
 
 
+    //Javascript tab handling on patients dashboard
+    $('#myTabs a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+    //Javascript modal element
+    $scope.modal_diag = {};
+    $scope.openDiag = function(paramDiag){
+        $scope.modal_diag = paramDiag;
+        $('#diagModal').modal('show');
+    };
+
+
 });
 
 app.controller('patientDoctorRequestsCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
     $scope.doctor_requests = [];
     var patient_id = $rootScope.user_auth.id_num;
 
-
-//    var ref = firebase.database().ref().child("patients/"+$routeParams.patientId);
-//    $scope.patient = $firebaseObject(ref.child($routeParams.patientId));
-//    var patient_id = 4654511666648;
-//    var ref = firebase.database().ref().child("patients").child($rootScope.user_auth.id_num).child('doctor_requests');
     var ref = firebase.database().ref().child("patients").child(patient_id).child('doctor_requests');
     //  create a synchronized array
     //  FIX: Figure out how to maybe just retrieve a single record here to the client, this here retrieves the entire patients object
 //    $scope.doctor_requests = $firebaseArray(ref);
     var doc_requests = $firebaseArray(ref);
 
-    //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
+    //Asynchronous function,  use a promise("$loaded") to before manipulating data
     doc_requests.$loaded()
         .then(function(){
 
@@ -154,6 +136,7 @@ app.controller('patientDoctorRequestsCtrl', function ($scope, $firebaseArray, $f
                         //FIX: Data binding by using $scope.doctor_requests.pop(paramDoctor.$id) doesn't work here
                         //the Doctor Id was repeated for whichever object was selected first.
                         //Reloading the page doesn't work either.
+                        //Try convert "doc_requests.$loaded" int a function that can be called here to reload "$scope.doctor_requests"
                     })
                     .catch(function(error){
                         console.log(error)

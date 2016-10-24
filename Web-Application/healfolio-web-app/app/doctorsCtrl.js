@@ -96,7 +96,8 @@ app.controller("docAddPatientCtrl", function($scope, $rootScope, $firebaseArray,
                 console.log(error);
             });
 
-        // console.log(paramPatientIdnum);
+
+        //CHECK: Before deleting this code below, confirm that it creates a detrimental effect by overwriting existing data at the ref location
 
         // var key = $rootScope.user_auth.id_num;
         // var doc_obj = {};
@@ -110,6 +111,7 @@ app.controller("docAddPatientCtrl", function($scope, $rootScope, $firebaseArray,
 //             .catch(function(error){
 //                 alert(error);
 //             });
+
     };
 
     $scope.addPatientDetails = function() {

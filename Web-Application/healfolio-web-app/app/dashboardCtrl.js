@@ -43,7 +43,6 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
                     //  create a synchronized array
                     var doc_patients = $firebaseArray(ref_doctors);
 
-                    //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
                     doc_patients.$loaded()
                         .then(function(){
                             for (var i = 0; i < doc_patients.length; i++){
@@ -75,7 +74,6 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
                     //  create a synchronized array
                     var patient_info = $firebaseObject(ref_patient);
 
-                    //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
                     patient_info.$loaded()
                         .then(function(){
                             $scope.patient = patient_info;
@@ -88,8 +86,6 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
 
                     var ref_diag = firebase.database().ref().child("diagnosis/" + $rootScope.user_auth.id_num);
                     $scope.diagnosis = $firebaseArray(ref_diag);
-
-//
 
                     $scope.diag_columns = [
                         {text:"Date",predicate:"id_num",sortable:true},
