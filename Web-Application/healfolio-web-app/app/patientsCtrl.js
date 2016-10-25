@@ -83,6 +83,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
     //Javascript modal element
     $scope.modal_diag = {};
     $scope.show_update_diag_success = false;
+
     $scope.openDiag = function(paramDiag){
         $scope.modal_diag = paramDiag;
         $('#diagModal').modal('show');
@@ -99,6 +100,12 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
     //Hide Alert that displays success message when Diagnosis has been updated successfully.
     $scope.hide_update_diag_success = function(){
         $scope.show_update_diag_success = false;
+    };
+
+    $scope.modal_presc = {};
+    $scope.openPresc = function(paramPresc){
+        $scope.modal_presc = paramPresc;
+        $('#prescModal').modal('show');
     };
 
 

@@ -47,6 +47,8 @@ app.controller('docAddDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth,
                     date_time: $scope.date_time,
                     diagnosis_id: diag_data.key,
                     practice_name: $scope.doctor.practice_name,
+                    practice_number: $scope.doctor.practice_number,
+                    doctor_id: $rootScope.user_auth.id_num,
                     doctor_name: $rootScope.displayName,
                     title: $scope.diagnosis_info.title,
                     prescription: $scope.diagnosis_info.prescription

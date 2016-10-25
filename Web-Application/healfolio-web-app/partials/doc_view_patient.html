@@ -62,7 +62,7 @@
                                         <!--<tr ng-repeat="diag in diagnosis | filter:filterDiagnosis | orderBy:'id'" id="{{diag.date_time}}" animate-on-change='diag.title' ng-animate="'animate'">-->
                                         <tr ng-repeat="diag in diagnosis" animate-on-change='diag.title' ng-animate="'animate'">
                                             <!--<td><a href="" data-toggle="modal" data-target="#myModal" ng-click="openDiag()">{{diag.date_time | date:'yyyy-MM-dd' }}</a></td><td>{{diag.title}}</td><td>{{diag.practice_name}}</td><td>{{diag.doctor_name}}</td>-->
-                                            <td><a href="" ng-click="openDiag(diag)">{{diag.date_time | date:'yyyy-MM-dd' }}</a></td><td>{{diag.title}}</td><td>{{diag.practice_name}}</td><td>{{diag.doctor_name}}</td>
+                                            <td><a href="" ng-click="openDiag(diag)">{{diag.date_time | date:'medium' }}</a></td><td>{{diag.title}}</td><td>{{diag.practice_name}}</td><td>{{diag.doctor_name}}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -84,11 +84,10 @@
                                         <label for="chkbx_edit_diag">Edit</label>
                                     </div>
 
-
                                     <div ng-show="chkbx_edit_diag">
                                         <form ng-submit="updateDiagnosis(modal_diag)">
                                             <div class="modal-body">
-                                                <p>Date: {{modal_diag.date_time | date:'yyyy-M-dd'}}</p>
+                                                <p>Date: {{modal_diag.date_time | date:'medium'}}</p>
                                                 <p>Practice Name: {{modal_diag.practice_name}}</p>
                                                 <p>Practice Number: {{modal_diag.practice_number}}</p>
                                                 <p>Doctor: {{modal_diag.doctor_name}}</p>
@@ -100,10 +99,7 @@
                                                 <div class="form-group">
                                                     <textarea class="form-control" ng-model="modal_diag.notes" placeholder="modal_diag.notes"></textarea>
                                                 </div>
-
-
                                             </div>
-
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-primary">Update Changes</button>
@@ -114,7 +110,7 @@
 
                                     <div ng-hide="chkbx_edit_diag">
                                         <div class="modal-body">
-                                            <p>Date: {{modal_diag.date_time | date:'yyyy-M-dd'}}</p>
+                                            <p>Date: {{modal_diag.date_time | date:'medium'}}</p>
                                             <p>Practice Name: {{modal_diag.practice_name}}</p>
                                             <p>Practice Number: {{modal_diag.practice_number}}</p>
                                             <p>Doctor: {{modal_diag.doctor_name}}</p>
@@ -128,7 +124,6 @@
                                                 <button type="button" class="close" aria-label="Close"><span aria-hidden="true" ng-click="hide_update_diag_success()">&times;</span></button>
                                                 Diagnosis information updated successfully!
                                             </div>
-
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -137,8 +132,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
 
                     <!-- Prescriptions Content -->
@@ -166,17 +159,40 @@
 
                                         <!--<tr ng-repeat="diag in diagnosis | filter:filterDiagnosis | orderBy:'id'" id="{{diag.date_time}}" animate-on-change='diag.title' ng-animate="'animate'">-->
                                         <tr ng-repeat="presc in prescriptions" animate-on-change='presc.title' ng-animate="'animate'">
-                                            <td><a href="#/patient_dashboard/{{diag.$id}}">{{presc.date_time | date:'yyyy-MM-dd' }}</a></td><td>{{presc.title}}</td><td>{{presc.practice_name}}</td><td>{{presc.doctor_name}}</td>
-                                            <td style="width:100px">
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="prescriptions.$remove(presc)"></button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                            <td><a href="" ng-click="openPresc(presc)">{{presc.date_time | date:'medium' }}</a></td><td>{{presc.title}}</td><td>{{presc.practice_name}}</td><td>{{presc.doctor_name}}</td>
                                     </table>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="prescModal" tabindex="-1" role="dialog" aria-labelledby="myPrescModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myPrescModalLabel">Prescription</h4>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <p>Date: {{modal_presc.date_time | date:'medium'}}</p>
+                                        <p>Practice Name: {{modal_presc.practice_name}}</p>
+                                        <p>Practice Number: {{modal_presc.practice_number}}</p>
+                                        <p>Doctor: {{modal_presc.doctor_name}}</p>
+                                        <p>Doctor Id: {{modal_presc.doctor_id}}</p>
+                                        </br>
+
+                                        <p>Title: {{modal_presc.title}}</p>
+                                        <p>Prescription: {{modal_presc.prescription}}</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
