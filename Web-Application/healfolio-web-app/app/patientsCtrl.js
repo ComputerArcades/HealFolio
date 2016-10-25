@@ -58,8 +58,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
         {text:"Date",predicate:"id_num",sortable:true},
         {text:"Title/Summary",predicate:"title",sortable:true},
         {text:"Practice",predicate:"practice_name",sortable:true},
-        {text:"Doctor",predicate:"doctor_name",sortable:true},
-        {text:"Action",predicate:"",sortable:false}
+        {text:"Doctor",predicate:"doctor_name",sortable:true}
     ];
 
     //Display Prescription Records
@@ -71,8 +70,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
         {text:"Date",predicate:"id_num",sortable:true},
         {text:"Diagnosis Summary",predicate:"title",sortable:true},
         {text:"Practice",predicate:"practice_name",sortable:true},
-        {text:"Doctor",predicate:"doctor_name",sortable:true},
-        {text:"Action",predicate:"",sortable:false}
+        {text:"Doctor",predicate:"doctor_name",sortable:true}
     ];
 
 
@@ -84,9 +82,23 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
 
     //Javascript modal element
     $scope.modal_diag = {};
+    $scope.show_update_diag_success = false;
     $scope.openDiag = function(paramDiag){
         $scope.modal_diag = paramDiag;
         $('#diagModal').modal('show');
+    };
+
+    $scope.updateDiagnosis = function(paramModalDiag){
+//        console.log(paramModalDiag);
+        $scope.diagnosis.$save(paramModalDiag);
+        console.log("Diagnosis information updated successfully!");
+        $scope.show_update_diag_success = true;
+        $scope.chkbx_edit_diag = false;
+    };
+
+    //Hide Alert that displays success message when Diagnosis has been updated successfully.
+    $scope.hide_update_diag_success = function(){
+        $scope.show_update_diag_success = false;
     };
 
 

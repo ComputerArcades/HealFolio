@@ -63,11 +63,6 @@
                                         <tr ng-repeat="diag in diagnosis" animate-on-change='diag.title' ng-animate="'animate'">
                                             <!--<td><a href="" data-toggle="modal" data-target="#myModal" ng-click="openDiag()">{{diag.date_time | date:'yyyy-MM-dd' }}</a></td><td>{{diag.title}}</td><td>{{diag.practice_name}}</td><td>{{diag.doctor_name}}</td>-->
                                             <td><a href="" ng-click="openDiag(diag)">{{diag.date_time | date:'yyyy-MM-dd' }}</a></td><td>{{diag.title}}</td><td>{{diag.practice_name}}</td><td>{{diag.doctor_name}}</td>
-                                            <td style="width:100px">
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="diagnosis.$remove(diag)"></button>
-                                                </div>
-                                            </td>
                                         </tr>
                                     </table>
                                 </div>
@@ -85,17 +80,18 @@
 
                                     </br>
                                     <div class="modal-body">
-                                        <input type="checkbox" ng-click="toggleEditDiag()" ng-model="chkbx_edit_diag" id="chkbx_edit_diag">
+                                        <input type="checkbox" ng-model="chkbx_edit_diag" id="chkbx_edit_diag">
                                         <label for="chkbx_edit_diag">Edit</label>
                                     </div>
 
+
                                     <div ng-show="chkbx_edit_diag">
-                                        <form ng-submit="updateDiagnosis()">
+                                        <form ng-submit="updateDiagnosis(modal_diag)">
                                             <div class="modal-body">
                                                 <p>Date: {{modal_diag.date_time | date:'yyyy-M-dd'}}</p>
                                                 <p>Practice Name: {{modal_diag.practice_name}}</p>
                                                 <p>Practice Number: {{modal_diag.practice_number}}</p>
-                                                <p>Doctor: {{diag.doctor_name}}</p>
+                                                <p>Doctor: {{modal_diag.doctor_name}}</p>
                                                 <p>Doctor Id: {{modal_diag.doctor_id}}</p>
                                                 </br>
                                                 <div class="form-group">
@@ -104,6 +100,7 @@
                                                 <div class="form-group">
                                                     <textarea class="form-control" ng-model="modal_diag.notes" placeholder="modal_diag.notes"></textarea>
                                                 </div>
+
 
                                             </div>
 
@@ -126,6 +123,11 @@
 
                                             <p>Title: {{modal_diag.title}}</p>
                                             <p>Notes: {{modal_diag.notes}}</p>
+                                            </br>
+                                            <div ng-show="show_update_diag_success" class="alert alert-success" role="alert" id="myAlert">
+                                                <button type="button" class="close" aria-label="Close"><span aria-hidden="true" ng-click="hide_update_diag_success()">&times;</span></button>
+                                                Diagnosis information updated successfully!
+                                            </div>
 
                                         </div>
                                         <div class="modal-footer">
