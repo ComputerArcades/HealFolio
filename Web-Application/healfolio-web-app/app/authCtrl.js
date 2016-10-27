@@ -7,7 +7,7 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
 
     //DELELTE IN PRODUCTION (Debugging only!!!!)
 //   $scope.login = {email:'doctor.joe@healfolio.com',password:'healfolio'};
-//   $scope.login = {email:'doctor.paul@healfolio.com',password:'healfolio'};
+   $scope.login = {email:'doctor.paul@healfolio.com',password:'healfolio'};
    // $scope.login = {email:'patient.alice@healfolio.com',password:'healfolio'};
 
     $scope.hide_login_error = function(){

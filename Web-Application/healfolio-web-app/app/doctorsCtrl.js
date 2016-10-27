@@ -74,47 +74,47 @@ app.controller('docAddDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth,
 
 
 app.controller("docAddPatientCtrl", function($scope, $rootScope, $firebaseArray, $location, $routeParams) {
-
-    // var patient_ref = firebase.database().ref().child("patients");
-    // var patient_ref = firebase.database().ref().child("patients");
-    // create a synchronized array
-    // $scope.patient = $firebaseArray(patient_ref);
-
-    // $scope.patients = $firebaseArray(ref);
-    // var database = firebase.database();
+    $scope.add_patient_success = false;
+    $scope.add_patient_error = false;
+    $scope.hide_add_patient_success = function(){
+        $scope.add_patient_success = false;
+    };
+    $scope.hide_add_patient_error = function(){
+        $scope.add_patient_error = false;
+    };
 
     $scope.addDoctorId = function(paramPatientIdnum){
+        $scope.add_patient_success = false;
+        $scope.add_patient_error = false;
 
-        var patient_doctors_ref = firebase.database().ref().child("patients/"+paramPatientIdnum+"/doctor_requests");
-        $scope.patient_doctors = $firebaseArray(patient_doctors_ref);
-
-        $scope.patient_doctors.$loaded()
+        var patients_ref = firebase.database().ref().child('patients');
+        var patients_list = $firebaseArray(patients_ref);
+        patients_list.$loaded()
             .then(function(){
-//                var doctor_obj = {};
-//                var key = $rootScope.user_auth.id_num;
-//                doctor_obj[key] = true;
-                $scope.patient_doctors.$add($rootScope.user_auth.id_num);
+                if(patients_list.$indexFor(paramPatientIdnum) == -1){
+                    $scope.add_patient_error = true;
+                }else{
+
+                    var patient_doctors_ref = firebase.database().ref().child("patients/"+paramPatientIdnum+"/doctor_requests");
+                    $scope.patient_doctors = $firebaseArray(patient_doctors_ref);
+
+                    $scope.patient_doctors.$loaded()
+                        .then(function(){
+                            $scope.patient_doctors.$add($rootScope.user_auth.id_num);
+                            $scope.add_patient_success = true;
+                        })
+                        .catch(function(error){
+                            //  console.log(error);
+                            $scope.add_patient_error = true;
+                        });
+                }
             })
             .catch(function(error){
                 console.log(error);
             });
 
 
-        //CHECK: Before deleting this code below, confirm that it creates a detrimental effect by overwriting existing data at the ref location
-
-        // var key = $rootScope.user_auth.id_num;
-        // var doc_obj = {};
-        // doc_obj[key] = true;
-//         database.ref('patients').child($scope.patient_id_num).child('doctor_requests').set(doc_obj)
-//             .then(function(){
-//                 //Success Callback
-// //                console.log("Request sent successfully!");
-//                 alert("Patient request sent successfully!");
-//             })
-//             .catch(function(error){
-//                 alert(error);
-//             });
-
+//
     };
 
     $scope.addPatientDetails = function() {
