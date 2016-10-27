@@ -48,6 +48,9 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
             console.log(error)
         });
 
+    //Load Doctor Information
+
+
 
     //Display Diagnosis Records
     $scope.diagnosis = [];
@@ -121,7 +124,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
 
 
 
-    //Reset add_follo_up_success alert
+    //Reset add_follow_up_success alert
     $('#followUpDiagModal').on('hidden.bs.modal', function(e){
         $scope.add_follow_up_diag_success = false;
         $('#collapsePrescription').collapse('hide');
@@ -145,8 +148,8 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
         var diag_info = $firebaseArray(ref);
         diag_info.$add({
             date_time: $scope.date_time,
-            practice_name: $scope.follow_up_diag_info.practice_name,
-            practice_number: $scope.follow_up_diag_info.practice_number,
+            practice_name: $scope.doctor.practice_name,
+            practice_number: $scope.doctor.practice_number,
             doctor_id: $rootScope.user_auth.id_num,
             doctor_name: $rootScope.displayName,
             orgl_diagnosis_id: $scope.original_diag_key,
