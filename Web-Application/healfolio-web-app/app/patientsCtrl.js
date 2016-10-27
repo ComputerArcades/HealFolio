@@ -92,7 +92,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
     $scope.updateDiagnosis = function(paramModalDiag){
 //        console.log(paramModalDiag);
         $scope.diagnosis.$save(paramModalDiag);
-        console.log("Diagnosis information updated successfully!");
+//        console.log("Diagnosis information updated successfully!");
         $scope.show_update_diag_success = true;
         $scope.chkbx_edit_diag = false;
     };
