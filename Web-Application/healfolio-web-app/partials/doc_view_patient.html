@@ -62,14 +62,14 @@
                                         <!--<tr ng-repeat="diag in diagnosis | filter:filterDiagnosis | orderBy:'id'" id="{{diag.date_time}}" animate-on-change='diag.title' ng-animate="'animate'">-->
                                         <tr ng-repeat="diag in diagnosis" animate-on-change='diag.title' ng-animate="'animate'">
                                             <!--<td><a href="" data-toggle="modal" data-target="#myModal" ng-click="openDiag()">{{diag.date_time | date:'yyyy-MM-dd' }}</a></td><td>{{diag.title}}</td><td>{{diag.practice_name}}</td><td>{{diag.doctor_name}}</td>-->
-                                            <td><a href="" ng-click="openDiag(diag)">{{diag.date_time | date:'medium' }}</a></td><td>{{diag.title}}</td><td>{{diag.practice_name}}</td><td>{{diag.doctor_name}}</td>
+                                            <td><a href="" ng-click="openDiag(diag)">{{diag.date_time | date:'medium' }}</a></td><td>{{diag.title}}</td><td>{{diag.practice_name}}</td><td>{{diag.doctor_name}}</td><td>{{diag.tag}}</td>
                                         </tr>
                                     </table>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Modal -->
+                        <!-- Diagnosis Modal -->
                         <div class="modal fade" id="diagModal" tabindex="-1" role="dialog" aria-labelledby="myDiagModalLabel">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -110,6 +110,7 @@
 
                                     <div ng-hide="chkbx_edit_diag">
                                         <div class="modal-body">
+                                            <button type="button" class="btn btn-warning" ng-click="openFollowUpDiag(modal_diag)">Follow Up</button>
                                             <p>Date: {{modal_diag.date_time | date:'medium'}}</p>
                                             <p>Practice Name: {{modal_diag.practice_name}}</p>
                                             <p>Practice Number: {{modal_diag.practice_number}}</p>
@@ -132,6 +133,57 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Follow Up Diagnosis Modal -->
+                        <div class="modal fade" id="followUpDiagModal" tabindex="-1" role="dialog" aria-labelledby="myFollowUpDiagModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myFollowUpDiagModalLabel">New Follow Up Diagnosis</h4>
+                                    </div>
+
+                                    <form ng-submit="addFollowUpDiagnosis(modal_follow_up_diag)">
+                                        <div class="modal-body">
+                                            <p>Practice Name: {{modal_follow_up_diag.practice_name}}</p>
+                                            <p>Practice Number: {{modal_follow_up_diag.practice_number}}</p>
+                                            <p>Doctor: {{modal_follow_up_diag.doctor_name}}</p>
+                                            <p>Doctor Id: {{modal_follow_up_diag.doctor_id}}</p>
+                                            </br>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" ng-model="modal_follow_up_diag.follow_up_title" placeholder="Title"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea class="form-control" ng-model="modal_follow_up_diag.follow_up_notes" placeholder="Notes" ></textarea>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="checkbox" id="prescription" data-toggle="collapse" data-target="#collapsePrescription" aria-expanded="true" aria-controls="collapsePrescription">
+                                                <label for="prescription">Prescription</label>
+                                            </div>
+                                            <div class="collapse" id="collapsePrescription">
+                                                <div class="well">
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" ng-model="modal_follow_up_diag.prescription" placeholder="Add a Prescription" ></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div ng-show="add_follow_up_diag_success" class="alert alert-success" role="alert" id="myAlert">
+                                                <button type="button" class="close" aria-label="Close"><span aria-hidden="true" ng-click="hide_add_follow_up_diag_success()">&times;</span></button>
+                                                Follow Up Diagnosis information added successfully!
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success" >Save</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
 
                     <!-- Prescriptions Content -->
@@ -159,7 +211,7 @@
 
                                         <!--<tr ng-repeat="diag in diagnosis | filter:filterDiagnosis | orderBy:'id'" id="{{diag.date_time}}" animate-on-change='diag.title' ng-animate="'animate'">-->
                                         <tr ng-repeat="presc in prescriptions" animate-on-change='presc.title' ng-animate="'animate'">
-                                            <td><a href="" ng-click="openPresc(presc)">{{presc.date_time | date:'medium' }}</a></td><td>{{presc.title}}</td><td>{{presc.practice_name}}</td><td>{{presc.doctor_name}}</td>
+                                            <td><a href="" ng-click="openPresc(presc)">{{presc.date_time | date:'medium' }}</a></td><td>{{presc.title}}</td><td>{{presc.practice_name}}</td><td>{{presc.doctor_name}}</td><td>{{presc.tag}}</td>
                                     </table>
                                 </div>
                             </div>

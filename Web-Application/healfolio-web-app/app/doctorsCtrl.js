@@ -35,7 +35,8 @@ app.controller('docAddDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth,
             doctor_id: $rootScope.user_auth.id_num,
             doctor_name: $rootScope.displayName,
             title: $scope.diagnosis_info.title,
-            notes: $scope.diagnosis_info.notes
+            notes: $scope.diagnosis_info.notes,
+            tag: 'orgl'
         })
             .then(function(diag_data) {
 

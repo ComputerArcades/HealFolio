@@ -58,7 +58,8 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
         {text:"Date",predicate:"id_num",sortable:true},
         {text:"Title/Summary",predicate:"title",sortable:true},
         {text:"Practice",predicate:"practice_name",sortable:true},
-        {text:"Doctor",predicate:"doctor_name",sortable:true}
+        {text:"Doctor",predicate:"doctor_name",sortable:true},
+        {text:"Tag",predicate:"tag",sortable:true}
     ];
 
     //Display Prescription Records
@@ -70,7 +71,8 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
         {text:"Date",predicate:"id_num",sortable:true},
         {text:"Diagnosis Summary",predicate:"title",sortable:true},
         {text:"Practice",predicate:"practice_name",sortable:true},
-        {text:"Doctor",predicate:"doctor_name",sortable:true}
+        {text:"Doctor",predicate:"doctor_name",sortable:true},
+        {text:"Tag",predicate:"tag",sortable:true}
     ];
 
 
@@ -82,13 +84,18 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
 
     //Javascript modal element
     $scope.modal_diag = {};
+    $scope.modal_diag = {practice_name: '',practice_number:'',doctor_id:'',doctor_name:'',title:'',notes:''};
+    $scope.modal_follow_up_diag = {};
+    $scope.follow_up_diag_info = {};
     $scope.show_update_diag_success = false;
+    $scope.add_follow_up_diag_success = false;
 
     $scope.openDiag = function(paramDiag){
         $scope.modal_diag = paramDiag;
         $('#diagModal').modal('show');
     };
 
+    //Diagnosis Info update
     $scope.updateDiagnosis = function(paramModalDiag){
 //        console.log(paramModalDiag);
         $scope.diagnosis.$save(paramModalDiag);
@@ -96,12 +103,103 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
         $scope.show_update_diag_success = true;
         $scope.chkbx_edit_diag = false;
     };
-
     //Hide Alert that displays success message when Diagnosis has been updated successfully.
     $scope.hide_update_diag_success = function(){
         $scope.show_update_diag_success = false;
     };
 
+    //Create Follow Up Diagnosis
+    $scope.openFollowUpDiag = function(paramModalDiag){
+        $scope.modal_follow_up_diag = paramModalDiag;
+        $('#diagModal').modal('hide');
+        $('#followUpDiagModal').modal('show');
+    };
+
+    $scope.addFollowUpDiagnosis = function(paramFollowUpDiag){
+
+        $rootScope.user_auth = {};
+        $rootScope.user_auth.id_num = 4446422744464;
+        $rootScope.displayName = "Joe";
+
+        $scope.original_diag_key = paramFollowUpDiag.$id;
+        $scope.follow_up_diag_info = paramFollowUpDiag;
+        $scope.temp_var = "";
+
+//        console.log("Follow Up 1: " + $scope.follow_up_diag_info);
+//        console.log("Practice Name: " + $scope.follow_up_diag_info.practice_name);
+//        console.log("Title: " + $scope.follow_up_diag_info.follow_up_title);
+
+
+        $scope.date_time = new Date().getTime();  //Retreiving the time in a universal format to store with firebase
+
+        var ref = firebase.database().ref().child('diagnosis/' + $routeParams.patientId);
+        var diag_info = $firebaseArray(ref);
+        diag_info.$add({
+            date_time: $scope.date_time,
+            practice_name: $scope.follow_up_diag_info.practice_name,
+            practice_number: $scope.follow_up_diag_info.practice_number,
+            doctor_id: $rootScope.user_auth.id_num,
+            doctor_name: $rootScope.displayName,
+            title: $scope.follow_up_diag_info.follow_up_title,
+            notes: $scope.follow_up_diag_info.follow_up_notes,
+            tag: 'fw-up'
+        })
+            .then(function(diag_data) {
+
+                //The following variables need to be created for the 'title' and 'prescription' as $scope.follow_up_diag_info 'title' and 'prescription'
+                // // variables break after adding original diagnosis
+                $scope.follow_up_diag_title = $scope.follow_up_diag_info.follow_up_title;
+                $scope.follow_up_diag_prescription = $scope.follow_up_diag_info.follow_up_title;
+
+
+                //Adding the new follow up key to the original Diagnosis
+                var org_diag_ref = firebase.database().ref().child('diagnosis/'+ $routeParams.patientId +'/' + $scope.original_diag_key +'/follow_up_diagnoses');
+                var org_diag_info = $firebaseArray(org_diag_ref);
+                org_diag_info.$add(diag_data.key);
+
+                //Adding a prescription after the diagnosis has been added
+                var presc_ref = firebase.database().ref().child('prescriptions/'+ $routeParams.patientId);
+                var presc_info = $firebaseArray(presc_ref);
+
+                presc_info.$add({
+                    date_time: $scope.date_time,
+                    diagnosis_id: diag_data.key,
+                    org_diagnosis_id: $scope.original_diag_key,
+                    practice_name: paramFollowUpDiag.practice_name,
+                    practice_number: paramFollowUpDiag.practice_number,
+                    doctor_id: $rootScope.user_auth.id_num,
+                    doctor_name: $rootScope.displayName,
+                    title: $scope.follow_up_diag_title,
+                    prescription: $scope.follow_up_diag_prescription,
+                    tag: 'fw-up'
+                })
+                    .then(function(presc_data){
+//                        console.log("Added Successfuly!");
+                        $scope.add_follow_up_diag_success = true;
+                        // success callback
+                        //$location.path('/doc_view_patient/'+$routeParams.patientId);
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    });
+
+
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+
+        $scope.hide_add_follow_up_diag_success = function(){
+            $scope.add_follow_up_diag_success = false;
+        };
+
+    };
+
+
+
+
+
+    //Prescription Tab
     $scope.modal_presc = {};
     $scope.openPresc = function(paramPresc){
         $scope.modal_presc = paramPresc;
@@ -125,7 +223,7 @@ app.controller('patientDoctorRequestsCtrl', function ($scope, $firebaseArray, $f
     doc_requests.$loaded()
         .then(function(){
 
-            for (var i = 0; i < doc_requests.length; i++){//
+            for (var i = 0; i < doc_requests.length; i++){
                 var doc_id_num = doc_requests[i].$value;
                 var doc_ref = firebase.database().ref().child('doctors/'+doc_id_num);
                 var doc_obj = $firebaseObject(doc_ref);
