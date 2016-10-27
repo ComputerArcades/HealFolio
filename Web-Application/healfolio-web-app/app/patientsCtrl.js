@@ -123,14 +123,26 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
         $scope.show_update_diag_success = true;
         $scope.chkbx_edit_diag = false;
     };
-    //Hide Alert that displays success message when Diagnosis has been updated successfully.
+    //Hide Alert that displays success message when a diagnosis has been updated successfully.
     $scope.hide_update_diag_success = function(){
         $scope.show_update_diag_success = false;
     };
+    $('#diagModal').on('hidden.bs.modal', function(e){
+        $scope.hide_update_diag_success();
+    });
 
+    //Hide Alert that displays success message when a follow up diagnosis has been added successfully.
     $scope.hide_add_follow_up_diag_success = function(){
         $scope.add_follow_up_diag_success = false;
     };
+    $('#followUpDiagModal').on('hidden.bs.modal', function(e){
+        $scope.hide_add_follow_up_diag_success();
+        $('#collapsePrescription').collapse('hide');
+    });
+
+
+
+
 
     //Create Follow Up Diagnosis
     $scope.modal_follow_up_diag = {};
@@ -159,12 +171,6 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
         $('#followUpDiagModal').modal('show');
     };
 
-
-    //Reset add_follow_up_success alert
-    $('#followUpDiagModal').on('hidden.bs.modal', function(e){
-        $scope.add_follow_up_diag_success = false;
-        $('#collapsePrescription').collapse('hide');
-    });
 
     $scope.addFollowUpDiagnosis = function(paramFollowUpDiag){
 
