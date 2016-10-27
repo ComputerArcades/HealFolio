@@ -267,7 +267,7 @@ app.controller('patientDoctorRequestsCtrl', function ($scope, $firebaseArray, $f
 
             for (var i = 0; i < doc_requests.length; i++){
                 var doc_id_num = doc_requests[i].$value;
-                var doc_ref = firebase.database().ref().child('doctors/'+doc_id_num);
+                var doc_ref = firebase.database().ref().child('doctors/' + doc_id_num);
                 var doc_obj = $firebaseObject(doc_ref);
                 doc_obj.$key = doc_requests[i].$id;
                 $scope.doctor_requests.push(doc_obj);
