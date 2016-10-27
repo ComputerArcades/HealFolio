@@ -108,6 +108,10 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
         $scope.show_update_diag_success = false;
     };
 
+    $scope.hide_add_follow_up_diag_success = function(){
+        $scope.add_follow_up_diag_success = false;
+    };
+
     //Create Follow Up Diagnosis
     $scope.openFollowUpDiag = function(paramModalDiag){
         $scope.modal_follow_up_diag = paramModalDiag;
@@ -125,7 +129,14 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
 
     $scope.addFollowUpDiagnosis = function(paramFollowUpDiag){
 
-        $scope.original_diag_key = paramFollowUpDiag.$id;
+        if(paramFollowUpDiag.tag == 'orgl'){
+            $scope.original_diag_key = paramFollowUpDiag.$id;
+        }else if (paramFollowUpDiag.tag == 'fw-up'){
+            $scope.original_diag_key = paramFollowUpDiag.orgl_diagnosis_id;
+        }
+
+        console.log($scope.original_diag_key);
+
         $scope.follow_up_diag_info = paramFollowUpDiag;
 
         $scope.date_time = new Date().getTime();  //Retreiving the time in a universal format to store with firebase
@@ -138,7 +149,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
             practice_number: $scope.follow_up_diag_info.practice_number,
             doctor_id: $rootScope.user_auth.id_num,
             doctor_name: $rootScope.displayName,
-            org_diagnosis_id: $scope.original_diag_key,
+            orgl_diagnosis_id: $scope.original_diag_key,
             title: $scope.follow_up_diag_info.follow_up_title,
             notes: $scope.follow_up_diag_info.follow_up_notes,
             tag: 'fw-up'
@@ -163,7 +174,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
                 presc_info.$add({
                     date_time: $scope.date_time,
                     diagnosis_id: diag_data.key,
-                    org_diagnosis_id: $scope.original_diag_key,
+                    orgl_diagnosis_id: $scope.original_diag_key,
                     practice_name: paramFollowUpDiag.practice_name,
                     doctor_name: $rootScope.displayName,
                     title: $scope.follow_up_diag_title,
@@ -186,9 +197,6 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
                 console.log(error);
             });
 
-        $scope.hide_add_follow_up_diag_success = function(){
-            $scope.add_follow_up_diag_success = false;
-        };
 
     };
 

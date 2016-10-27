@@ -61,8 +61,7 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
                         {text:"First Name",predicate:"first_name",sortable:true},
                         {text:"Last Name",predicate:"lastname",sortable:true},
                         {text:"Date of Birth",predicate:"date_of_birth",sortable:true,dataType:"number"},
-                        {text:"Gender",predicate:"gender",sortable:true},
-                        {text:"Action",predicate:"",sortable:false}
+                        {text:"Gender",predicate:"gender",sortable:true}
                     ];
 
                 }

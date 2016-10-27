@@ -50,12 +50,6 @@
 
                                 <tr ng-repeat="p in patients | filter:filterPatient | orderBy:'id'" id="{{p.id_num}}" animate-on-change='p.age' ng-animate="'animate'">
                                     <td><a href="#/doc_view_patient/{{p.$id}}">{{p.$id}}</a></td><td>{{p.first_name}}</td><td>{{p.last_name}}</td><td>{{p.date_of_birth}}</td><td>{{p.gender}}</td>
-                                    <td style="width:100px">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default fa fa-edit" ng-click="open(p);"></button>
-                                            <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="patients.$remove(p)"></button>
-                                        </div>
-                                    </td>
                                 </tr>
                             </table>
                         </div>

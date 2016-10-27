@@ -41,8 +41,7 @@
                                 <td>{{doc.first_name+ ' '+doc.last_name}}</td><td>{{doc.$id}}</td><td>{{doc.practice_name}}</td><td>{{doc.practice_number}}</td>
                                 <td style="width:100px">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default fa fa-edit" ng-click="open(p);"></button>
-                                        <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="patients.$remove(p)"></button>
+                                        <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="patients.$remove(doc)"></button>
                                     </div>
                                 </td>
                             </tr>
