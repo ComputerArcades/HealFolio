@@ -36,6 +36,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
     $scope.chkbx_edit_diag = false;
     $scope.patient = {};
 
+    //Load Patient Information
     var ref_patient = firebase.database().ref().child("patients/"+$routeParams.patientId);
     //  create a synchronized array
     var patient_info = $firebaseObject(ref_patient);
@@ -48,7 +49,23 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
             console.log(error)
         });
 
-    //Load Doctor Information
+    //Load Doctor Information, Initialise new diagnosis info input fields
+    $scope.diagnosis_info = {};
+    $scope.diagnosis_info = {practice_name: '',practice_number:'',doctor_id:'',doctor_name:'',title:'',notes:''};
+    $scope.doctor = {};
+
+    var ref = firebase.database().ref().child("doctors/" + $rootScope.user_auth.id_num);
+    // return it as a synchronized object
+    var doctor_info = $firebaseObject(ref);
+    doctor_info.$loaded()
+        .then(function(){
+            //success callback
+            $scope.doctor = doctor_info;
+        })
+        .catch(function(error){
+            //Failure callback
+            console.log(error);
+        });
 
 
 
@@ -116,12 +133,31 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
     };
 
     //Create Follow Up Diagnosis
+    $scope.modal_follow_up_diag = {};
+    $scope.modal_follow_up_diag = {practice_name:'',practice_number:'',doctor_id:'',doctor_name:'',orgl_diagnosis_key:'',follow_up_title:'',follow_up_notes:''};
+
+
     $scope.openFollowUpDiag = function(paramModalDiag){
-        $scope.modal_follow_up_diag = paramModalDiag;
+        $scope.modal_follow_up_diag_obj = paramModalDiag;
+        if(paramModalDiag.tag == 'orgl'){
+            $scope.orgl_diagnosis_key = paramModalDiag.$id;
+        }else if (paramModalDiag.tag == 'fw-up'){
+            $scope.orgl_diagnosis_key = paramModalDiag.orgl_diagnosis_id;
+        }
+
+        $scope.modal_follow_up_diag = {
+            practice_name: $scope.doctor.practice_name,
+            practice_number: $scope.doctor.practice_number,
+            doctor_id: $rootScope.user_auth.id_num,
+            doctor_name: $rootScope.displayName,
+            orgl_diagnosis_key: $scope.orgl_diagnosis_key,
+            follow_up_title:'',
+            follow_up_notes:''
+        };
+
         $('#diagModal').modal('hide');
         $('#followUpDiagModal').modal('show');
     };
-
 
 
     //Reset add_follow_up_success alert
@@ -131,14 +167,6 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
     });
 
     $scope.addFollowUpDiagnosis = function(paramFollowUpDiag){
-
-        if(paramFollowUpDiag.tag == 'orgl'){
-            $scope.original_diag_key = paramFollowUpDiag.$id;
-        }else if (paramFollowUpDiag.tag == 'fw-up'){
-            $scope.original_diag_key = paramFollowUpDiag.orgl_diagnosis_id;
-        }
-
-        console.log($scope.original_diag_key);
 
         $scope.follow_up_diag_info = paramFollowUpDiag;
 
@@ -152,7 +180,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
             practice_number: $scope.doctor.practice_number,
             doctor_id: $rootScope.user_auth.id_num,
             doctor_name: $rootScope.displayName,
-            orgl_diagnosis_id: $scope.original_diag_key,
+            orgl_diagnosis_id: $scope.follow_up_diag_info.orgl_diagnosis_key,
             title: $scope.follow_up_diag_info.follow_up_title,
             notes: $scope.follow_up_diag_info.follow_up_notes,
             tag: 'fw-up'
@@ -166,7 +194,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
 
 
                 //Adding the new follow up key to the original Diagnosis
-                var org_diag_ref = firebase.database().ref().child('diagnosis/'+ $routeParams.patientId +'/' + $scope.original_diag_key +'/follow_up_diagnoses');
+                var org_diag_ref = firebase.database().ref().child('diagnosis/'+ $routeParams.patientId +'/' + paramFollowUpDiag.orgl_diagnosis_key +'/follow_up_diagnoses');
                 var org_diag_info = $firebaseArray(org_diag_ref);
                 org_diag_info.$add(diag_data.key);
 
@@ -177,7 +205,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
                 presc_info.$add({
                     date_time: $scope.date_time,
                     diagnosis_id: diag_data.key,
-                    orgl_diagnosis_id: $scope.original_diag_key,
+                    orgl_diagnosis_key: paramFollowUpDiag.orgl_diagnosis_key,
                     practice_name: paramFollowUpDiag.practice_name,
                     doctor_name: $rootScope.displayName,
                     title: $scope.follow_up_diag_title,
