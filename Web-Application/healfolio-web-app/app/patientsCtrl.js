@@ -125,17 +125,8 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
 
     $scope.addFollowUpDiagnosis = function(paramFollowUpDiag){
 
-//        $rootScope.user_auth = {};
-//        $rootScope.user_auth.id_num = 4446422744464;
-//        $rootScope.displayName = "Joe";
-
         $scope.original_diag_key = paramFollowUpDiag.$id;
         $scope.follow_up_diag_info = paramFollowUpDiag;
-
-//        console.log("Follow Up 1: " + $scope.follow_up_diag_info);
-//        console.log("Practice Name: " + $scope.follow_up_diag_info.practice_name);
-//        console.log("Title: " + $scope.follow_up_diag_info.follow_up_title);
-
 
         $scope.date_time = new Date().getTime();  //Retreiving the time in a universal format to store with firebase
 
@@ -147,6 +138,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
             practice_number: $scope.follow_up_diag_info.practice_number,
             doctor_id: $rootScope.user_auth.id_num,
             doctor_name: $rootScope.displayName,
+            org_diagnosis_id: $scope.original_diag_key,
             title: $scope.follow_up_diag_info.follow_up_title,
             notes: $scope.follow_up_diag_info.follow_up_notes,
             tag: 'fw-up'
