@@ -115,15 +115,22 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
         $('#followUpDiagModal').modal('show');
     };
 
+
+
+    //Reset add_follo_up_success alert
+    $('#followUpDiagModal').on('hidden.bs.modal', function(e){
+        $scope.add_follow_up_diag_success = false;
+        $('#collapsePrescription').collapse('hide');
+    });
+
     $scope.addFollowUpDiagnosis = function(paramFollowUpDiag){
 
-        $rootScope.user_auth = {};
-        $rootScope.user_auth.id_num = 4446422744464;
-        $rootScope.displayName = "Joe";
+//        $rootScope.user_auth = {};
+//        $rootScope.user_auth.id_num = 4446422744464;
+//        $rootScope.displayName = "Joe";
 
         $scope.original_diag_key = paramFollowUpDiag.$id;
         $scope.follow_up_diag_info = paramFollowUpDiag;
-        $scope.temp_var = "";
 
 //        console.log("Follow Up 1: " + $scope.follow_up_diag_info);
 //        console.log("Practice Name: " + $scope.follow_up_diag_info.practice_name);
@@ -149,7 +156,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
                 //The following variables need to be created for the 'title' and 'prescription' as $scope.follow_up_diag_info 'title' and 'prescription'
                 // // variables break after adding original diagnosis
                 $scope.follow_up_diag_title = $scope.follow_up_diag_info.follow_up_title;
-                $scope.follow_up_diag_prescription = $scope.follow_up_diag_info.follow_up_title;
+                $scope.follow_up_diag_prescription = $scope.follow_up_diag_info.prescription;
 
 
                 //Adding the new follow up key to the original Diagnosis
@@ -166,8 +173,6 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
                     diagnosis_id: diag_data.key,
                     org_diagnosis_id: $scope.original_diag_key,
                     practice_name: paramFollowUpDiag.practice_name,
-                    practice_number: paramFollowUpDiag.practice_number,
-                    doctor_id: $rootScope.user_auth.id_num,
                     doctor_name: $rootScope.displayName,
                     title: $scope.follow_up_diag_title,
                     prescription: $scope.follow_up_diag_prescription,
