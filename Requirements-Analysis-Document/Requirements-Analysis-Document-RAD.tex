@@ -487,7 +487,7 @@ Nonfunctional requirements identified by the shortfalls of the current system an
 
 \multicolumn{1}{|l|}{ $ \rightarrow $ The doctor logs-in.} &  &  &  &  \\
 
-\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the doctor's page page.} &  &  &  &  \\
+\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the doctor's page.} &  &  &  &  \\
 
 \multicolumn{1}{|l|}{ $ \rightarrow $ Client clicks on the patients page.} &  &  &  &  \\
 
@@ -531,51 +531,7 @@ Nonfunctional requirements identified by the shortfalls of the current system an
 
 \multicolumn{1}{|l|}{ $ \rightarrow $ The doctor logs-in.} &  &  &  &  \\
 
-\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the doctor's page page.} &  &  &  &  \\
-
-\multicolumn{1}{|l|}{ $ \rightarrow $ Client clicks on the add patients page.} &  &  &  &  \\
-
-\multicolumn{1}{|l|}{ $ \leftarrow $ Referred patient is added and verification is sent to patient.} &  &  &  &  \\
-
-\multicolumn{1}{|l|}{ $ \rightarrow $ Patient receives verification and accepts.} &  &  &  &  \\
-
-\multicolumn{1}{|l|}{ $ \leftarrow $ Client can now see referred patient information.} &  &  &  &  \\
-
-\multicolumn{1}{|l|}{\textbf{Flow of Events for Extensions (Alternate Scenarios):}} &  &  &  &  \\
-
-\multicolumn{1}{|l|}{ $ \rightarrow $ If referred patient does not verify, doctor won't be able to see information.} &  &  &  &  \\ \cline{1-1}
-
-\end{tabular}
-\end{table}
-
-\FloatBarrier
-
-\begin{table}[h!]
-\centering
-\caption*{Detailed Use Case 5}
-\label{DetailedUC2}
-\begin{tabular}{|c|llll}
-\cline{1-1}
-
-\multicolumn{1}{|l|}{\textbf{Use Case:} UC5 \textbf{Name/Identifier:} DocRef(UC5)} &  &  &  &  \\ \cline{1-1}
-
-\multicolumn{1}{|l|}{\textbf{Related Requirements:} REQ5, REQ10} &  &  &  &  \\
-
-\multicolumn{1}{|l|}{\textbf{Initiating Actor:} Doctor} &  &  &  &  \\
-
-\multicolumn{1}{|l|}{\textbf{Actor’s Goal:} Doctor able to able to view referred patients information.} &  &  &  &  \\
-
-\multicolumn{1}{|l|}{\textbf{Preconditions:} That the applicant and patient has to be registered as well as patient authentication} &  &  &  &  \\
-
-\multicolumn{1}{|l|}{given.} &  &  &  &  \\
-
-\multicolumn{1}{|l|}{\textbf{Post-conditions:} Patient saved information can be viewed.} &  &  &  &  \\
-
-\multicolumn{1}{|l|}{\textbf{Flow of Events for Main Success Scenario:}} &  &  &  &  \\
-
-\multicolumn{1}{|l|}{ $ \rightarrow $ The doctor logs-in.} &  &  &  &  \\
-
-\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the doctor's page page.} &  &  &  &  \\
+\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the doctor's page.} &  &  &  &  \\
 
 \multicolumn{1}{|l|}{ $ \rightarrow $ Client clicks on the add patients page.} &  &  &  &  \\
 
@@ -617,7 +573,7 @@ Nonfunctional requirements identified by the shortfalls of the current system an
 
 \multicolumn{1}{|l|}{ $ \rightarrow $ From the patient page the client clicks on relevant patient.} &  &  &  &  \\
 
-\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the patient information page page.} &  &  &  &  \\
+\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the patient information page.} &  &  &  &  \\
 
 \multicolumn{1}{|l|}{ $ \rightarrow $ Client clicks on the add diagnosis button.} &  &  &  &  \\
 
@@ -655,7 +611,7 @@ Nonfunctional requirements identified by the shortfalls of the current system an
 
 \multicolumn{1}{|l|}{ $ \rightarrow $ From the patient page the client clicks on relevant patient.} &  &  &  &  \\
 
-\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the patient information page page.} &  &  &  &  \\
+\multicolumn{1}{|l|}{ $ \leftarrow $ The client is taken to the patient information page.} &  &  &  &  \\
 
 \multicolumn{1}{|l|}{ $ \rightarrow $ Client clicks on the add diagnosis button.} &  &  &  &  \\
 
@@ -675,10 +631,27 @@ Nonfunctional requirements identified by the shortfalls of the current system an
 \FloatBarrier
 
 \begin{figure}[h!]
-\caption*{Use case diagram}
-\label{UCDiag1}
+\caption{Use case diagram (Account management)}
 \centering
-\includegraphics[width=18cm]{Use-Case-Diagram.png}
+\includegraphics[width=18cm]{UCD_Account_management.png}
+\end{figure}
+
+\begin{figure}[h!]
+\caption{Use case diagram (Referral)}
+\centering
+\includegraphics[width=18cm]{UCD_Referral.png}
+\end{figure}
+
+\begin{figure}[h!]
+\caption{Use case diagram (Doctor add information)}
+\centering
+\includegraphics[width=18cm]{UCD_Doctor_add_information.png}
+\end{figure}
+
+\begin{figure}[h!]
+\caption{Use case diagram (View patient information)}
+\centering
+\includegraphics[width=18cm]{UCD_View_patient.png}
 \end{figure}
 
 \FloatBarrier

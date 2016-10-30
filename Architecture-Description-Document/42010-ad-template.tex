@@ -191,44 +191,73 @@ Another consideration with the layered architecture pattern is that it tends to 
 \chapter{Stakeholders and concerns}\label{sec:snc}
 %%%%%%%%%%
 
-This chapter contains information items for stakeholders of the 
-architecture, the stakeholders' concerns for that architecture, and
-the trace-ability of concerns to stakeholders. See also:~\std{5.3}
+This chapter is intended to identify and outline the various stakeholders and concerns associated with the product. It provides a traceability matrix to determine who key choices in the architecture will affect.
 
 %%%%%%%%%%
 \section{Stakeholders}\label{ad:stakeholders}
 %%%%%%%%%%
 
-A stakeholder is an individual, team, or organization with interests in, or concerns related to, the system-to-be. Generally, the system-to-be has several types of stakeholders: customers, end users, business analysts, systems architects and developers, testing and quality assurance engineers, project managers, the future maintenance organization, owners of other systems that will interact with the system-to-be.
+The stakeholders are divided into two main categories below. These two categories are divided based on the activity of the stake holders namely using the product and providing the product.
  
  \begin{itemize}
 
 \item \textbf{Customers and end users}
+The application will interact with people in the medical field, such as GPs and specialists. Patients are also secondary users in that they generate the information.
 \begin{itemize}
-\item The application will interact with people is the medical field, private practices, where doctors would be able to use relevant information from not only their past experience but a collective of as many practitioners that use the application. Where previous they had a to look a hard copy of patient and similar cases that would might be overlooked or very time consuming will now be able to call various report to there device from a vast database. The doctors and receptionists will be the users and operators of the application.
+	\item \emph{Medical practitioners}
+	\item \emph{Patients}
 \end{itemize}
+
+
 \item \textbf{Systems architects and developers}
+This section includes people involved in the development, deployment and continuance of the system. We (Level Seven Crew) currently consider ourselves as the development team.
 \begin{itemize}
-\item The team Level Seven Crew the acquirers, owners, developers, builders and testers of the application HealFolio. 
-\item Dr. Terence van Zyl is a person of interest and will be evaluating as well as consult on the progress the team makes.
+	\item \emph{Organization providing the system}
+	\item \emph{System administrator}
+	\item \emph{Maintenance team}
+	\item \emph{Development team}
 \end{itemize}
+
 \end{itemize}
 
 %%%%%%%%%%
 \section{Concerns}\label{ad:concerns}
 %%%%%%%%%%
 
+This section aims at answering critical questions as an aid to identifying the concerns as listed in 2.3.1.
+
 \begin{itemize}
-\item \textbf{What are the purpose(s) of the system-of-interest?} \\
-Making referencing of information that would be otherwise too much of an ordeal, therefore streamlining the service giving by medical practitioners.
+\item \textbf{What are/is the purpose(s) of the system-of-interest?} \\
+Providing (often sensitive) information about patients to doctors allowing them to make well-informed diagnoses/prescriptions etc.
+
 \item \textbf{What is the suitability of the architecture for achieving the system-of-interest's purpose(s)?} \\
-Layered Architecture
+The layered architecture is suitable in that it allows easy maintenance for things such as updating business rules, new information requirements etc.
+
 \item \textbf{How feasible is it to construct and deploy the system-of-interest?} \\
-With the opens source tools available, the direction of the course instructor and the time allocated makes tackling this project possible.
+Given the time allowance, the open source tools at our disposal and the guidance of Dr. Terence van Zyl, constructing the system is entirely feasible. The deployment would involve paying a hosting service which we consider outside the scope of the course. The application will be hosted locally during development while firebase is hosted for free by google. We are still, however, mindful of providing a system that can be easily deployed.
+
 \item \textbf{What are the potential risks and impacts of the system-of-interest to its stakeholders throughout its life cycle?} \\
-The sharing or leakage of confidential information can be an issue that has to addressed continuously thought-out the development and improvement of the application. The stakeholders might feel sharing diagnosis would be violating doctor patient privileges, and this needs to be pressed that security is key the application's development. 
+There are multiple legal and social implications of a system like this. Most of these are related to security and as such can be remedied with consideration for this. The lists below outline a few of the risk factors involved in the system.
+\begin{itemize}
+	\item \textbf{Social}
+		Some of these may fall out of scope of the system as it is exceedingly difficult to write software 
+		\begin{itemize}
+			\item Unauthorized entities accessing sensitive information on patients.
+			\item Doctors mis-using the system for personal reasons. (eg accessing information on a spouse without permission)
+			\item Doctors sharing information with people who the patient did not authorize.
+		\end{itemize}
+	\item \textbf{Legal}
+		These relate to net neutrality laws. This is a key concern in the development of this system, as we may find laws regarding medical practices clashing with net neutrality laws.
+		\begin{itemize}
+			\item Users need to have access to the data stored about them.
+			\item Users need to be able to update data stored about them.
+			\item Users need to be able to remove data stored about them.
+			\item Users need to be able to determine who views there information.
+		\end{itemize}
+\end{itemize}
+
 \item \textbf{How is the system-of-interest to be maintained and evolved?} \\
-With an eye on future the application will start of as a layered architecture and keeping in mind to migrate the application toward micro-services architecture with future improvement and growth.
+The system needs to be flexible in order to adapt to ever-changing laws regarding net neutrality and privacy. The medical field is also rapidly changing with new diagnostics and treatments being invented all the time, the system needs to be able to provide facilities which would provide user-value should the need arrive. This relates to changing business values and the decision to use a layered architecture model.
 \end{itemize}
 
 %%%%%%%%%%
@@ -237,29 +266,55 @@ With an eye on future the application will start of as a layered architecture an
 
 \subsection{List of concerns:}
 
-\begin{enumerate}
-\item \textbf{Concern 1} - Sharing or leakage of confidential information
-\item \textbf{Concern 2} - Doctor patient confidentiality. 
-\item \textbf{Concern 3} - Future growth and expansion. 
-\end{enumerate}
+\begin{itemize}
+\item \textbf{Concern 1} - Security\\
+	Security is a major concern as the information stored is highly sensitive. This refers mainly to cyber attacks with the aim of stealing information.
+\item \textbf{Concern 2} - Doctor patient confidentiality\\
+	Doctor patient confidentiality ties into security but is the more specific case of the doctor's ability to share patient profiles.
+\item \textbf{Concern 3} - Future growth and expansion\\
+	The system needs to be able to grow in multiple directions e.g. New functionalities as well as new patient information.
+\item \textbf{Concern 4} - Doctors mis-using the information\\
+	Doctors should not be allowed to look up patients' information where the patient hasn't approved.
+\item \textbf{Concern 5} - Network latency and loading times\\
+	The doctor should not have to wait exorbitant amounts of time for loading, consults generally last maximum 15 minutes.
+\item \textbf{Concern 6} - Ease of use\\
+	The layout should be logical and easy to navigate.
+\item \textbf{Concern 7} - Deployment\\
+	Deployment needs to be done in a way that provides access to multiple areas in South Africa to reduce instances of missing information.
+\item \textbf{Concern 8} - Changing business rules\\
+	Ties in to Future growth and expansion.
+\item \textbf{Concern 9} - Debugging\\
+	The product needs to be able to be debugged with a minimal amount of effort.
+\item \textbf{Concern 10} - Net neutrality\\
+	Users need to be able to access, update and remove their information at will.
+\end{itemize}
 
 \subsection{List of Stakeholders}
 
-\begin{enumerate}
-\item \textbf{Stakeholder 1} - Medical Practitioners
-\item \textbf{Stakeholder 2} - Team Level Seven Crew 
-\item \textbf{Stakeholder 3} - Lecturer 
-\end{enumerate}
+\begin{itemize}
+\item \textbf{Stakeholder 1} - Medical practitioners
+\item \textbf{Stakeholder 2} - Patients
+\item \textbf{Stakeholder 3} - Organization providing the system
+\item \textbf{Stakeholder 4} - System administrator
+\item \textbf{Stakeholder 5} - Maintenance team
+\item \textbf{Stakeholder 6} - Development team
+\end{itemize}
 
 \begin{table}[h]
 \caption{Showing association of stakeholders to concerns in an AD}\label{stakeholders concerns}
-\begin{tabular}{ l | c | c | c | c }
-& \textsf{Stakeholder~1} & \textsf{Stakeholder~2} & \textsf{Stakeholder~3} & \\
+\begin{tabular}{ l | c | c | c | c | c | c }
+				&\textsf{S.holder~1}	&\textsf{S.holder~2}	&\textsf{S.holder~3}	&\textsf{S.holder~4}	&\textsf{S.holder~5}	&\textsf{S.holder~6}	\\
 \hline
-\textsf{Concern~1} & \textbf{x} & \textbf{x} & - & \\
-\textsf{Concern~2} & \textbf{x} & \textbf{x} & \textbf{x} & \\
-\textsf{Concern~3} &  &  & \textbf{x} & \\
-\hline
+\textsf{Concern~1}	&	\textbf{X}		&	\textbf{X}		&	\textbf{X}		& 				&				&				\\
+\textsf{Concern~2}	&				&	\textbf{X}		& 				& 				&				&				\\
+\textsf{Concern~3}	&				&				&	\textbf{X}		& 	\textbf{X}		&	\textbf{X}		&				\\
+\textsf{Concern~4}	&				&	\textbf{X}		&	\textbf{X}		& 				&				&				\\
+\textsf{Concern~5}	&	\textbf{X}		&	\textbf{X}		& 				& 				&				&				\\
+\textsf{Concern~6}	&	\textbf{X}		&	\textbf{X}		& 				& 				&				&				\\
+\textsf{Concern~7}	&	\textbf{X}		&	\textbf{X}		&	\textbf{X}		&	\textbf{X}		&				&				\\
+\textsf{Concern~8}	&				& 				&	\textbf{X}		& 	\textbf{X}		&	\textbf{X}		&				\\
+\textsf{Concern~9}	&				&				& 				& 				&	\textbf{X}		&	\textbf{X}		\\
+\textsf{Concern~10}	&	\textbf{X}		&	\textbf{X}		&	\textbf{X}		& 				&				&				\\
 \end{tabular}
 \end{table}
 
