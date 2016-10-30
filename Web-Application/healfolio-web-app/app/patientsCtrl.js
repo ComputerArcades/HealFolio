@@ -30,6 +30,13 @@ app.controller('patientViewDoctorsCtrl', function ($scope, $firebaseArray, $fire
         {text:"Practice Number",predicate:"date_of_birth",sortable:true,dataType:"number"},
         {text:"Action",predicate:"",sortable:false}
     ];
+
+    $scope.modal_doc_obj = {};
+    $scope.confirmDelete = function(paramDoctor) {
+        $scope.modal_doc_obj = paramDoctor;
+        $('#confirmDeleteModal').modal('show');
+    }
+
 });
 
 app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {

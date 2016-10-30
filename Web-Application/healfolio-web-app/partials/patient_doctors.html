@@ -41,7 +41,7 @@
                                 <td>{{doc.first_name+ ' '+doc.last_name}}</td><td>{{doc.$id}}</td><td>{{doc.practice_name}}</td><td>{{doc.practice_number}}</td>
                                 <td style="width:100px">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="patients.$remove(doc)"></button>
+                                        <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="confirmDelete(doc)"></button>
                                     </div>
                                 </td>
                             </tr>
@@ -49,6 +49,31 @@
                     </div>
                 </div>
             </div>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                        </div>
+                        <div class="modal-body">
+                            {{modal_doc_obj}}
+                            Are you sure you want to remove this doctor from your list of Doctors?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" ng-click="patients.$remove(modal_doc_obj)">Yes</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
 
     </div>
