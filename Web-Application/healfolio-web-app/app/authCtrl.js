@@ -7,7 +7,7 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
 
     //DELELTE IN PRODUCTION (Debugging only!!!!)
 //   $scope.login = {email:'doctor.joe@healfolio.com',password:'healfolio'};
-    $scope.login = {email:'doctor.paul@healfolio.com',password:'healfolio'};
+//    $scope.login = {email:'doctor.paul@healfolio.com',password:'healfolio'};
 //   $scope.login = {email:'patient.alice@healfolio.com',password:'healfolio'};
 
     $scope.hide_login_error = function(){
@@ -58,8 +58,6 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
     $scope.doctor = {};
     $scope.doctor = {first_name:'',last_name:'',email:'',password:'',id_num:'',practice_number:'',practice_name:'',cell_phone:''};
     $scope.doctorSignUp = function(){
-//        $scope.doctor_email = "user1@healfolio.com";
-//        $scope.doctor_password = "healfolio";
 
         //Create a new user into the firebase authentication database object
         firebase.auth().createUserWithEmailAndPassword($scope.doctor.email, $scope.doctor.password)
@@ -75,7 +73,7 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
 //                    console.log("Get: " + SessionService.get("userId"));
                     $location.path("/");
                 });
-                
+
                 //Update the users display name to their first name in the firebase authentication database object
                 user.updateProfile({
                     displayName: $scope.doctor.first_name
