@@ -1,10 +1,15 @@
 /**
  * Created by tumbone on 03-Sep-16.
  */
-app.controller('patientViewDoctorsCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
+app.controller('patientViewDoctorsCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location, SessionService) {
     $scope.doctors = [];
 
-    var patient_id_num = $rootScope.user_auth.id_num;
+    $scope.user_auth = {};
+    $scope.user_auth.id_num = SessionService.get("userIdNum");
+    $rootScope.displayName = SessionService.get("userDisplayName");
+    $scope.user_auth.account_type = SessionService.get("userAccountType");
+
+    var patient_id_num = $scope.user_auth.id_num;
     var ref_patients = firebase.database().ref().child("patients").child(patient_id_num).child("doctors");
     //  create a synchronized array
     var patient_doctors = $firebaseArray(ref_patients);
@@ -39,9 +44,14 @@ app.controller('patientViewDoctorsCtrl', function ($scope, $firebaseArray, $fire
 
 });
 
-app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
+app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location, SessionService) {
     $scope.chkbx_edit_diag = false;
     $scope.patient = {};
+
+    $scope.user_auth = {};
+    $scope.user_auth.id_num = SessionService.get("userIdNum");
+    $rootScope.displayName = SessionService.get("userDisplayName");
+    $scope.user_auth.account_type = SessionService.get("userAccountType");
 
     //Load Patient Information
     var ref_patient = firebase.database().ref().child("patients/"+$routeParams.patientId);
@@ -61,7 +71,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
     $scope.diagnosis_info = {practice_name: '',practice_number:'',doctor_id:'',doctor_name:'',title:'',notes:''};
     $scope.doctor = {};
 
-    var ref = firebase.database().ref().child("doctors/" + $rootScope.user_auth.id_num);
+    var ref = firebase.database().ref().child("doctors/" + $scope.user_auth.id_num);
     // return it as a synchronized object
     var doctor_info = $firebaseObject(ref);
     doctor_info.$loaded()
@@ -167,7 +177,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
         $scope.modal_follow_up_diag = {
             practice_name: $scope.doctor.practice_name,
             practice_number: $scope.doctor.practice_number,
-            doctor_id: $rootScope.user_auth.id_num,
+            doctor_id: $scope.user_auth.id_num,
             doctor_name: $rootScope.displayName,
             orgl_diagnosis_key: $scope.orgl_diagnosis_key,
             follow_up_title:'',
@@ -191,7 +201,7 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
             date_time: $scope.date_time,
             practice_name: $scope.doctor.practice_name,
             practice_number: $scope.doctor.practice_number,
-            doctor_id: $rootScope.user_auth.id_num,
+            doctor_id: $scope.user_auth.id_num,
             doctor_name: $rootScope.displayName,
             orgl_diagnosis_id: $scope.follow_up_diag_info.orgl_diagnosis_key,
             title: $scope.follow_up_diag_info.follow_up_title,
@@ -258,9 +268,16 @@ app.controller('viewPatientCtrl', function ($scope, $firebaseArray, $firebaseObj
 
 });
 
-app.controller('patientDoctorRequestsCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location) {
+app.controller('patientDoctorRequestsCtrl', function ($scope, $firebaseArray, $firebaseObject, $firebaseAuth, $rootScope, $filter,$routeParams, $location, SessionService) {
     $scope.doctor_requests = [];
-    var patient_id = $rootScope.user_auth.id_num;
+    $scope.user_status = true;
+
+    $scope.user_auth = {};
+    $scope.user_auth.id_num = SessionService.get("userIdNum");
+    $rootScope.displayName = SessionService.get("userDisplayName");
+    $scope.user_auth.account_type = SessionService.get("userAccountType");
+
+    var patient_id = $scope.user_auth.id_num;
 
     var ref = firebase.database().ref().child("patients").child(patient_id).child('doctor_requests');
     //  create a synchronized array

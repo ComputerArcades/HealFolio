@@ -3,12 +3,17 @@
  */
 
 
-app.controller('docAddDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth, $firebaseArray, $firebaseObject, $routeParams, $location){
+app.controller('docAddDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth, $firebaseArray, $firebaseObject, $routeParams, $location, SessionService){
+    $scope.user_auth = {};
+    $scope.user_auth.id_num = SessionService.get("userIdNum");
+    $rootScope.displayName = SessionService.get("userDisplayName");
+    $scope.user_auth.account_type = SessionService.get("userAccountType");
+
     $scope.diagnosis_info = {};
     $scope.diagnosis_info = {practice_name: '',practice_number:'',doctor_id:'',doctor_name:'',title:'',notes:''};
     $scope.doctor = {};
 
-        var ref = firebase.database().ref().child("doctors/" + $rootScope.user_auth.id_num);
+        var ref = firebase.database().ref().child("doctors/" + $scope.user_auth.id_num);
         // return it as a synchronized object
         var doctor_info = $firebaseObject(ref);
         doctor_info.$loaded()
@@ -32,7 +37,7 @@ app.controller('docAddDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth,
             date_time: $scope.date_time,
             practice_name: $scope.doctor.practice_name,
             practice_number: $scope.doctor.practice_number,
-            doctor_id: $rootScope.user_auth.id_num,
+            doctor_id: $scope.user_auth.id_num,
             doctor_name: $rootScope.displayName,
             title: $scope.diagnosis_info.title,
             notes: $scope.diagnosis_info.notes,
@@ -49,7 +54,7 @@ app.controller('docAddDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth,
                     diagnosis_id: diag_data.key,
                     practice_name: $scope.doctor.practice_name,
                     practice_number: $scope.doctor.practice_number,
-                    doctor_id: $rootScope.user_auth.id_num,
+                    doctor_id: $scope.user_auth.id_num,
                     doctor_name: $rootScope.displayName,
                     title: $scope.diagnosis_info.title,
                     prescription: $scope.diagnosis_info.prescription
@@ -73,7 +78,12 @@ app.controller('docAddDiagnosisCtrl',function($scope, $rootScope, $firebaseAuth,
 });
 
 
-app.controller("docAddPatientCtrl", function($scope, $rootScope, $firebaseArray, $location, $routeParams) {
+app.controller("docAddPatientCtrl", function($scope, $rootScope, $firebaseArray, $location, $routeParams, SessionService) {
+    $scope.user_auth = {};
+    $scope.user_auth.id_num = SessionService.get("userIdNum");
+    $rootScope.displayName = SessionService.get("userDisplayName");
+    $scope.user_auth.account_type = SessionService.get("userAccountType");
+
     $scope.add_patient_success = false;
     $scope.add_patient_error = false;
     $scope.hide_add_patient_success = function(){
@@ -100,7 +110,7 @@ app.controller("docAddPatientCtrl", function($scope, $rootScope, $firebaseArray,
 
                     $scope.patient_doctors.$loaded()
                         .then(function(){
-                            $scope.patient_doctors.$add($rootScope.user_auth.id_num);
+                            $scope.patient_doctors.$add($scope.user_auth.id_num);
                             $scope.add_patient_success = true;
                         })
                         .catch(function(error){

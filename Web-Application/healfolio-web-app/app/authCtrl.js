@@ -1,4 +1,4 @@
-app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootScope,$route, $routeParams, $location) {
+app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootScope,$route, $routeParams, $location, SessionService) {
 
     $scope.login = {};
     $scope.login = {email:'',password:''};
@@ -7,8 +7,8 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
 
     //DELELTE IN PRODUCTION (Debugging only!!!!)
 //   $scope.login = {email:'doctor.joe@healfolio.com',password:'healfolio'};
-//   $scope.login = {email:'doctor.paul@healfolio.com',password:'healfolio'};
-   $scope.login = {email:'patient.alice@healfolio.com',password:'healfolio'};
+    $scope.login = {email:'doctor.paul@healfolio.com',password:'healfolio'};
+//   $scope.login = {email:'patient.alice@healfolio.com',password:'healfolio'};
 
     $scope.hide_login_error = function(){
         $scope.show_login_error = false;
@@ -26,42 +26,23 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
             .then(function(user) {
                 // Success callback
                 $rootScope.hide_navbar = false;
-                $rootScope.displayName = user.displayName;
-                $location.path("/");
+
+                var ref = firebase.database().ref("users").child(user.uid);
+                var user_auth = $firebaseObject(ref);
+                user_auth.$loaded().then(function(){
+                    //Saving information in session to keep after refresh
+                    SessionService.set("userIdNum", user_auth.id_num);
+                    SessionService.set("userAccountType", user_auth.account_type);
+                    SessionService.set("userDisplayName", user.displayName);
+//                    console.log("Get: " + SessionService.get("userId"));
+                    $location.path("/");
+                });
 //
             }, function(error) {
-                // Failure callback
 //                console.log(error);
                 $scope.show_login_error = true;
             });
 
-        //Sign in using firebase.auth()
-//        firebase.auth().signInWithEmailAndPassword(paramUser.email, paramUser.password).catch(function(error) {
-//            // Handle Errors here.
-//            var errorCode = error.code;
-//            var errorMessage = error.message;
-//            // ...
-//            if (error){
-//                console.log(error.message);
-//            }else{
-//                console.log("No error");
-//            }
-//        }
-
-//        firebase.auth().onAuthStateChanged(function(user) {
-//            $rootScope.authenticated = false;
-//            if (user) {
-//                // User is signed in.
-//                $rootScope.authenticated = true;
-////                console.log("User is signed in!");
-//                $location.path("/");
-//                $scope.apply();
-//                $route.reload();
-//            } else {
-//                // No user is signed in.
-//                console.log("No user is signed in!");
-//            }
-//        });
 
     };
 
@@ -84,9 +65,20 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
         firebase.auth().createUserWithEmailAndPassword($scope.doctor.email, $scope.doctor.password)
             .then(function(user){
 
+                var ref = firebase.database().ref("users").child(user.uid);
+                var user_auth = $firebaseObject(ref);
+                user_auth.$loaded().then(function(){
+                    //Saving information in session to keep after refresh
+                    SessionService.set("userIdNum", user_auth.id_num);
+                    SessionService.set("userAccountType", user_auth.account_type);
+                    SessionService.set("userDisplayName", user.displayName);
+//                    console.log("Get: " + SessionService.get("userId"));
+                    $location.path("/");
+                });
+                
                 //Update the users display name to their first name in the firebase authentication database object
                 user.updateProfile({
-                   displayName: $scope.doctor.first_name
+                    displayName: $scope.doctor.first_name
                 }).then(function() {
                     // Update successful.
                 }, function(error) {

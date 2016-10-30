@@ -74,4 +74,27 @@ app.config(['$routeProvider',
             otherwise({
                 redirectTo: '/'
             });
-    }]);
+    }]).run(function($rootScope, $firebaseObject, $location, SessionService){
+
+    $rootScope.$on('$routeChangeStart', function(event, next){
+
+        if (SessionService.get("userIdNum")){
+
+        }else{
+            $location.path('/login');
+        }
+
+    });
+
+
+
+    $rootScope.doLogout = function(){
+        $location.path("/login");
+        firebase.auth().signOut();
+        SessionService.unset("userIdNum");
+        SessionService.unset("userDisplayName");
+        SessionService.unset("userAccountType");
+
+    };
+
+});
