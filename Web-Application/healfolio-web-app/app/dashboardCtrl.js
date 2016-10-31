@@ -111,6 +111,13 @@ app.controller('dashboardCtrl', function ($scope, $firebaseArray, $firebaseObjec
 
         }
 
+    //Prescription Tab
+    $scope.modal_presc = {};
+    $scope.openPresc = function(paramPresc){
+        $scope.modal_presc = paramPresc;
+        $('#prescModal').modal('show');
+    };
+
 
 
 
