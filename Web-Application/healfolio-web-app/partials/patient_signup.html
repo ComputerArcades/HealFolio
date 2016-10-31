@@ -2,12 +2,12 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h3>Patient Sign Up</h3>
-            <form ng-submit="patientSignUp()">
+            <form name="patientSignUpForm" ng-submit="patientSignUp()">
                 <div class="form-group">
-                    <input type="text" class="form-control" ng-model="patient.first_name" placeholder="First Name">
+                    <input type="text" class="form-control" ng-model="patient.first_name" placeholder="First Name" required>
                 </div>
                  <div class="form-group">
-                    <input type="text" class="form-control" ng-model="patient.last_name" placeholder="Last Name">
+                    <input type="text" class="form-control" ng-model="patient.last_name" placeholder="Last Name" required>
                 </div>
                 <div class="form-group">
                     <input type="email" class="form-control" ng-model="patient.email" placeholder="Email" required>
@@ -22,17 +22,17 @@
                     <input type="number" class="form-control" ng-model="patient.id_num" placeholder="ID Number" required>
                 </div>
                  <div class="form-group">
-                    <input type="text" class="form-control" ng-model="patient.date_of_birth" placeholder="Date of Birth">
+                    <input type="text" class="form-control" ng-model="patient.date_of_birth" placeholder="Date of Birth" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" ng-model="patient.gender" placeholder="Gender">
+                    <input type="text" class="form-control" ng-model="patient.gender" placeholder="Gender" required>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" ng-model="patient.cell_phone" placeholder="Cell Phone">
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success" >Sign Up</button>
+                    <button type="submit" class="btn btn-success" data-ng-disabled="patientSingUpForm.$invalid">Sign Up</button>
                 </div>
 
             </form>

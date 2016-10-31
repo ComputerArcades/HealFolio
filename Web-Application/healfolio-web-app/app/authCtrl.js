@@ -8,7 +8,7 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
     //DELELTE IN PRODUCTION (Debugging only!!!!)
 //   $scope.login = {email:'doctor.joe@healfolio.com',password:'healfolio'};
 //    $scope.login = {email:'doctor.paul@healfolio.com',password:'healfolio'};
-   $scope.login = {email:'patient.alice@healfolio.com',password:'healfolio'};
+//   $scope.login = {email:'patient.alice@healfolio.com',password:'healfolio'};
 
     $scope.hide_login_error = function(){
         $scope.show_login_error = false;
@@ -63,16 +63,6 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
         firebase.auth().createUserWithEmailAndPassword($scope.doctor.email, $scope.doctor.password)
             .then(function(user){
 
-                var ref = firebase.database().ref("users").child(user.uid);
-                var user_auth = $firebaseObject(ref);
-                user_auth.$loaded().then(function(){
-                    //Saving information in session to keep after refresh
-                    SessionService.set("userIdNum", user_auth.id_num);
-                    SessionService.set("userAccountType", user_auth.account_type);
-                    SessionService.set("userDisplayName", user.displayName);
-//                    console.log("Get: " + SessionService.get("userId"));
-                    $location.path("/");
-                });
 
                 //Update the users display name to their first name in the firebase authentication database object
                 user.updateProfile({
@@ -102,13 +92,23 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
 
                 });
 
-                console.log("Doctor added successfully!");
-                $rootScope.authenticated = true;
-                $location.path("/");
+                var ref = firebase.database().ref("users").child(user.uid);
+                var user_auth = $firebaseObject(ref);
+                user_auth.$loaded().then(function(){
+                    //Saving information in session to keep after refresh
+                    SessionService.set("userIdNum", $scope.doctor.id_num);
+                    SessionService.set("userAccountType", 'doctor');
+                    SessionService.set("userDisplayName", $scope.doctor.first_name);
+//                    console.log("Get: " + SessionService.get("userIdNum"));
+                });
+
+                alert("Doctor signed up successfully!");
+                $scope.doLogout();
 
             },function(error){
                 //Failure callback
                 console.log(error);
+                alert("Error :" + error.message);
             });
 
 
@@ -149,9 +149,8 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
                     cell_phone: $scope.patient.cell_phone
                 });
 
-                console.log("Patient added successfully!");
-                $rootScope.authenticated = true;
-                $location.path("/");
+                alert("Patient signed up successfully!");
+                $scope.doLogout();
             },function(error){
                 //Failure callback
                 console.log(error);
