@@ -49,7 +49,7 @@
                                 <tr><th ng-repeat="p in columns">{{p.text}}</th></tr>
 
                                 <tr ng-repeat="p in patients | filter:filterPatient | orderBy:'id'" id="{{p.id_num}}" animate-on-change='p.age' ng-animate="'animate'">
-                                    <td><a href="#/doc_view_patient/{{p.$id}}">{{p.$id}}</a></td><td>{{p.first_name}}</td><td>{{p.last_name}}</td><td>{{p.date_of_birth}}</td><td>{{p.gender}}</td>
+                                    <td><a href="#/doc_view_patient/{{p.$id}}">{{p.$id}}</a></td><td>{{p.first_name}}</td><td>{{p.last_name}}</td><td>{{p.date_of_birth | date:'yyyy-MM-dd' }}</td><td>{{p.gender}}</td>
                                 </tr>
                             </table>
                         </div>

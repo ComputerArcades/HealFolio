@@ -8,7 +8,7 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
     //DELELTE IN PRODUCTION (Debugging only!!!!)
 //   $scope.login = {email:'doctor.joe@healfolio.com',password:'healfolio'};
 //    $scope.login = {email:'doctor.paul@healfolio.com',password:'healfolio'};
-//   $scope.login = {email:'patient.alice@healfolio.com',password:'healfolio'};
+   $scope.login = {email:'patient.alice@healfolio.com',password:'healfolio'};
 
     $scope.hide_login_error = function(){
         $scope.show_login_error = false;
@@ -170,10 +170,25 @@ app.controller('userProfileCtrl',function($scope, $rootScope, $firebaseObject, $
     $scope.user_auth.account_type = SessionService.get("userAccountType");
 
     //Show list of Doctor's patients
-
     $scope.doctor = {};
-    $scope.doctor_id_num = $scope.user_auth.id_num;
-    $scope.patients = [];
+    $scope.patient = {};
+
+    $scope.chkbx_edit_profile = false;
+
+    $scope.updateDoctor = function(paramDoctor){
+        $scope.doctor.$save(paramDoctor);
+        $('#profileUpdateModal').modal('show');
+    };
+
+    $scope.updatePatient = function(paramPatient){
+        $scope.patient.$save(paramPatient);
+        $('#profileUpdateModal').modal('show');
+    };
+
+    $scope.proceed = function(){
+        $('#profileUpdateModal').modal('hide');
+        $scope.chkbx_edit_profile = false;
+    };
 
 
     if($scope.user_auth.account_type == 'doctor'){
@@ -185,6 +200,7 @@ app.controller('userProfileCtrl',function($scope, $rootScope, $firebaseObject, $
             .then(function(){
                 //success callback
                 $scope.doctor = doctor_info;
+                $scope.doctor_id_num = $scope.user_auth.id_num;
             })
             .catch(function(error){
                 //Failure callback
@@ -201,6 +217,7 @@ app.controller('userProfileCtrl',function($scope, $rootScope, $firebaseObject, $
             .then(function(){
                 //success callback
                 $scope.patient = patient_info;
+                $scope.patient_id_num = $scope.user_auth.id_num;
             })
             .catch(function(error){
                 //Failure callback
