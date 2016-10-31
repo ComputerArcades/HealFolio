@@ -46,6 +46,16 @@ app.controller('patientViewDoctorsCtrl', function ($scope, $firebaseArray, $fire
 
         var index = patient_doctors.findIndex(x => x.$value==paramDoc.$id);
         patient_doctors.$remove(index);
+
+        var ref_doc_patients = firebase.database().ref().child("doctors/" + paramDoc.$id +"/patients");
+        var doc_patients = $firebaseArray(ref_doc_patients);
+        doc_patients.$loaded()
+            .then(function(){
+                var patient_index = doc_patients.findIndex(x => x.$value== $scope.user_auth.id_num);
+                doc_patients.$remove(patient_index);
+        }).catch(function(error){console.log(error)});
+
+
         $('#confirmDeleteModal').modal('hide');
     };
 
