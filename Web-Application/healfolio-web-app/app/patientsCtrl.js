@@ -43,6 +43,7 @@ app.controller('patientViewDoctorsCtrl', function ($scope, $firebaseArray, $fire
     };
 
     $scope.confirmYes = function(paramDoc){
+
         var index = patient_doctors.findIndex(x => x.$value==paramDoc.$id);
         patient_doctors.$remove(index);
         $('#confirmDeleteModal').modal('hide');

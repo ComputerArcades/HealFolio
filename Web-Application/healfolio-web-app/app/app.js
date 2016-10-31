@@ -79,11 +79,14 @@ app.config(['$routeProvider',
     $rootScope.$on('$routeChangeStart', function(event, next){
 
         if (SessionService.get("userIdNum")){
-
         }else{
-            $location.path('/login');
-        }
+            var nextUrl = next.$$route.originalPath;
+            if (nextUrl == '/signup' || nextUrl == '/doctor_signup' || nextUrl == '/patient_signup'){
 
+            }else{
+                $location.path('/login');
+            }
+        }
     });
 
     $rootScope.userProfile = function(){
