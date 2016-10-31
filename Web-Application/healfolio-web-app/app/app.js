@@ -66,7 +66,7 @@ app.config(['$routeProvider',
                 controller: 'authCtrl'
             }).
             //USER PROFILE
-            when('/user_profile/:userId',{
+            when('/user_profile',{
                 title: 'User Profile',
                 templateUrl: 'partials/user_profile.html',
                 controller: 'userProfileCtrl'
@@ -86,7 +86,9 @@ app.config(['$routeProvider',
 
     });
 
-
+    $rootScope.userProfile = function(){
+        $location.path('/user_profile');
+    };
 
     $rootScope.doLogout = function(){
         $location.path("/login");

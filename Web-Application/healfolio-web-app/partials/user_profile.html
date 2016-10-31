@@ -9,13 +9,16 @@
 
                 <div ng-hide="chkbx_edit_profile">
                 <div>
-                    <p>First Name: {{doctor.first_name}}</p>
-                    <p>Last Name: {{doctor.last_name}}</p>
-                    <p>Email: {{doctor.email}}</p>
-                    <p>Cell phone: {{doctor.cell_phone}}</p>
-                    <p>Id Number: {{doctor_id_num}}</p>
-                    <p>Practice Name: {{doctor.practice_name}}</p>
-                    <p>Practice Number: {{doctor.practice_number}}</p>
+                    </br>
+                    <div class="form-group">
+                        <label>First Name:</label> {{doctor.first_name}}
+                    </div>
+                    <div class="form-group"><label>Last Name:</label> {{doctor.last_name}}</div>
+                    <div class="form-group"><label>Id Number:</label> {{doctor_id_num}}</div>
+                    <div class="form-group"><label>Email:</label> {{doctor.email}}</div>
+                    <div class="form-group"><label>Cell phone:</label> {{doctor.cell_phone}}</div>
+                    <div class="form-group"><label>Practice Name:</label> {{doctor.practice_name}}</div>
+                    <div class="form-group"><label>Practice Number:</label> {{doctor.practice_number}}</div>
                 </div>
                 </div>
 
@@ -23,26 +26,34 @@
                 <!--<form ng-submit="doctor.$save(doctor)">-->
                 <form ng-submit="doctor.$save(doctor)">
                     <div class="form-group">
-                        <input type="text" class="form-control" ng-model="doctor.first_name" placeholder="First Name"/>
+                        <label for="firstName" >First Name:</label>
+                        <input type="text" id="firstName" class="form-control" ng-model="doctor.first_name" placeholder="First Name" disabled/>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" ng-model="doctor.last_name" placeholder="Last Name"/>
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" class="form-control" ng-model="doctor.last_name" placeholder="Last Name" disabled/>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" ng-model="doctor.email" placeholder="Email" disabled/>
+                        <label for="idNum">ID Number:</label>
+                        <input type="number" id="idNum" class="form-control" ng-model="doctor.id_num" placeholder="{{doctor_id_num}}" disabled/>
                     </div>
                     <div class="form-group">
-                        <input type="number" class="form-control" ng-model="doctor.id_num" placeholder="{{doctor_id_num}}" disabled/>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" class="form-control" ng-model="doctor.email" placeholder="Email" disabled/>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" ng-model="doctor.practice_number" placeholder="Practice number"/>
+                        <label for="cellPhone">Cell Phone:</label>
+                        <input type="number" id="cellPhone" class="form-control" ng-model="doctor.cell_phone" placeholder="Cell Phone"/>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" ng-model="doctor.practice_name" placeholder="Practice Name"/>
+                        <label for="practiceName">Practice Name:</label>
+                        <input type="text" id="practiceName" class="form-control" ng-model="doctor.practice_name" placeholder="Practice Name"/>
                     </div>
                     <div class="form-group">
-                        <input type="number" class="form-control" ng-model="doctor.cell_phone" placeholder="Cell Phone"/>
+                        <label for="practiceNumber">Practice Number:</label>
+                        <input type="text" id="practiceNumber" class="form-control" ng-model="doctor.practice_number" placeholder="Practice number"/>
                     </div>
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-success" >Update</button>
                     </div>

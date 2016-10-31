@@ -162,42 +162,51 @@ app.controller('authCtrl',function ($scope, $firebaseObject,$firebaseAuth,$rootS
 });
 
 
-app.controller('userProfileCtrl',function($scope, $rootScope, $firebaseAuth, $firebaseArray, $routeParams, $location){
+app.controller('userProfileCtrl',function($scope, $rootScope, $firebaseObject, $firebaseArray, $routeParams, $location, SessionService){
+
+    $scope.user_auth = {};
+    $scope.user_auth.id_num = SessionService.get("userIdNum");
+    $rootScope.displayName = SessionService.get("userDisplayName");
+    $scope.user_auth.account_type = SessionService.get("userAccountType");
 
     //Show list of Doctor's patients
 
     $scope.doctor = {};
-    $scope.doctor_id_num = "";
+    $scope.doctor_id_num = $scope.user_auth.id_num;
     $scope.patients = [];
 
 
-    if($rootScope.user_auth.account_type == 'doctor'){
-        $scope.doctor_id_num = $routeParams.userId; //This here will come from some form of current User variable
-        var ref_doctors = firebase.database().ref().child("doctors");
-        //  create a synchronized array
-        //  FIX: Figure out how to maybe just retrieve a single record here to the client, this here retrieves the entire doctors object
-        var doctor_info = $firebaseArray(ref_doctors);
-        //Due to asynchronous function, you need to use a promise("$loaded") to update the $scope otherwise "$getRecord()" will always return a "null"
+    if($scope.user_auth.account_type == 'doctor'){
+
+        var ref = firebase.database().ref().child("doctors/" + $scope.user_auth.id_num);
+        // return it as a synchronized object
+        var doctor_info = $firebaseObject(ref);
         doctor_info.$loaded()
             .then(function(){
-                $scope.doctor = doctor_info.$getRecord($scope.doctor_id_num);
+                //success callback
+                $scope.doctor = doctor_info;
             })
             .catch(function(error){
+                //Failure callback
                 console.log(error);
             });
     }
 
-    if($rootScope.user_auth.account_type == 'patient') {
-        $scope.patient_id_num = $routeParams.userId; //This here will come from some form of current User variable
-        var ref_patients = firebase.database().ref().child("patients");
-        var patient_info = $firebaseArray(ref_patients);
+    if($scope.user_auth.account_type == 'patient') {
+
+        var patient_ref = firebase.database().ref().child("patients/" + $scope.user_auth.id_num);
+        // return it as a synchronized object
+        var patient_info = $firebaseObject(patient_ref);
         patient_info.$loaded()
-            .then(function () {
-                $scope.patients.patient_info.$getRecord(patient_id_num);
+            .then(function(){
+                //success callback
+                $scope.patient = patient_info;
             })
-            .catch(function (error) {
+            .catch(function(error){
+                //Failure callback
                 console.log(error);
             });
+
     }
 
 });
