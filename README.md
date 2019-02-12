@@ -8,7 +8,7 @@
 [//]: # ([![Stories in Progress](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=In%20Progress&title=Issues%20In%20Progress)](http://waffle.io/ComputerArcades/HealFolio))
 
 [//]: # ([comment]: <> (The below statemant that has been commented out was used injunction with waffle.io)
-[![Stories in Discussions](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Discuss&title=Issues%20Being%20Discussed)](http://waffle.io/ComputerArcades/HealFolio))
+[//]: # ([![Stories in Discussions](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Discuss&title=Issues%20Being%20Discussed)](http://waffle.io/ComputerArcades/HealFolio))
 
 HealFolio
 =========
