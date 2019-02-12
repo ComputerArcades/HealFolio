@@ -133,10 +133,10 @@ ensure that we use the client’s terms. A precursor to the Data Dictionary.
 [//]: # "Appendix A: Statement of Effort
 -------------------------------"
 
-|                 | Daniel  | Tumbone | Adam | Jan |
+[//]: # "|                 | Daniel  | Tumbone | Adam | Jan |
 | :-------------: | ------: | ------: | ---: | --: |
 | Finishing       |   25%   |   25%   | 25%  | 25% |
 | Introduction    |   15%   |   15%   | 35%  | 35% |
 | Current System  |   30%   |   30%   | 30%  | 10% |
 | Proposed System |   15%   |   15%   | 35%  | 35% |
-| Glossary        |   15%   |   15%   | 15%  | 55% |
+| Glossary        |   15%   |   15%   | 15%  | 55% |"
