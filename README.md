@@ -130,9 +130,8 @@ A glossary of important terms, to ensure consistency in the specification and to
 ensure that we use the client’s terms. A precursor to the Data Dictionary.
 
 [//]: # (The below table is not needed anymore.)
-[//]: # "
-Appendix A: Statement of Effort
--------------------------------
+[//]: # "Appendix A: Statement of Effort
+-------------------------------"
 
 |                 | Daniel  | Tumbone | Adam | Jan |
 | :-------------: | ------: | ------: | ---: | --: |
@@ -141,4 +140,3 @@ Appendix A: Statement of Effort
 | Current System  |   30%   |   30%   | 30%  | 10% |
 | Proposed System |   15%   |   15%   | 35%  | 35% |
 | Glossary        |   15%   |   15%   | 15%  | 55% |
-"
