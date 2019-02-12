@@ -112,13 +112,7 @@ Examples of features that facilitate serviceability include:
 * Graceful degradation, where the product is designed to allow recovery from exceptional events without intervention by       ⋅⋅⋅technical support staff.
 *Hardware replacement or upgrade planning, where the product is designed to allow efficient hardware upgrades with minimal    ⋅⋅⋅computer system downtime (e.g., hotswap components).
 
-##### 3.3.5 Implementation
-
-##### 3.3.6 Interface
-
-##### 3.3.7 Packaging
-
-##### 3.3.8 Legal
+##### 3.3.5 Legal
 
 In proprietary software, an end-user license agreement (EULA) or software license agreement is the contract between the licensor and purchaser, establishing the purchaser's right to use the software. The license may define ways under which the copy can be used, in addition to the automatic rights of the buyer including the first sale doctrine and 17 U.S.C. § 117 (freedom to use, archive, re-sale, and backup).
 
@@ -130,21 +124,13 @@ ification, including mock-ups illustrating the user interface of the system and
 navigational paths representing the sequence of screens. The subsections Object
 model and Dynamic model are written during the Analysis activity.
 
-##### 3.4.1 Scenarios
-
-##### 3.4.2 Use case model
-
-##### 3.4.3 Analysis object model
-
-##### 3.4.4 Dynamic model
-
-##### 3.4.5 User interface—navigational paths and screen mock-ups
-
 # 4 Glossary
 
 A glossary of important terms, to ensure consistency in the specification and to
 ensure that we use the client’s terms. A precursor to the Data Dictionary.
 
+[//]: # (The below table is not needed anymore.)
+[//]: # "
 Appendix A: Statement of Effort
 -------------------------------
 
@@ -155,3 +141,4 @@ Appendix A: Statement of Effort
 | Current System  |   30%   |   30%   | 30%  | 10% |
 | Proposed System |   15%   |   15%   | 35%  | 35% |
 | Glossary        |   15%   |   15%   | 15%  | 55% |
+"
