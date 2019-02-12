@@ -14,12 +14,12 @@ HealFolio
 =========
 
 [//]: # (The below title is not needed anymore.)
-[//]: # "<sub> Level Seven Crew </sub>"
------------------------------
+[//]: # "<sub> Level Seven Crew </sub>
+-----------------------------"
 
 [//]: # (The below link is not active anymore.)
-[//]: # "<sub> Demo: https://healfolio.firebaseapp.com/#/login </sub>"
------------------------------
+[//]: # "<sub> Demo: https://healfolio.firebaseapp.com/#/login </sub>
+-----------------------------"
 
 Summary
 -------
