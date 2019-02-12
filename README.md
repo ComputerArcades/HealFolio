@@ -1,4 +1,4 @@
-[comment]: <> (The below statemant that has been commented out was used injunction with waffle.io)
+[//]: # (The below statemant that has been commented out was used injunction with waffle.io)
 [comment]: <> ([![Stories in Backlog](https://badge.waffle.io/ComputerArcades/HealFolio.png?label=Backlog&title=Issues%20In%20Backlog)](http://waffle.io/ComputerArcades/HealFolio))
 
 [comment]: <> (The below statemant that has been commented out was used injunction with waffle.io)
